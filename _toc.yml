@@ -1,0 +1,6 @@
+format: jb-book
+root: intro
+chapters:
+  - file: profil
+  - file: tugas1-crawling-
+  - file: tugas2-postgres knime-

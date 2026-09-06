@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  --psd-paper: #F2F4F1;
+  --psd-ink: #1A2B2A;
+  --psd-teal: #1F6F78;
+  --psd-teal-dark: #164E55;
+  --psd-amber: #C97B2E;
+  --psd-line: #D8DED9;
+  --psd-card: #FFFFFF;
+}
+
+body, .bd-content {
+  background-color: var(--psd-paper) !important;
+  color: var(--psd-ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Fraunces', serif;
+  color: var(--psd-ink);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+h1 { border-bottom: 2px solid var(--psd-teal); padding-bottom: 0.3em; }
+
+a { color: var(--psd-teal-dark); }
+a:hover { color: var(--psd-amber); }
+
+code, pre, .highlight {
+  font-family: 'IBM Plex Mono', monospace !important;
+}
+
+/* ---------- Hero / profile block on intro page ---------- */
+.psd-hero {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background: var(--psd-card);
+  border: 1px solid var(--psd-line);
+  border-left: 6px solid var(--psd-teal);
+  border-radius: 8px;
+  padding: 1.75rem 2rem;
+  margin: 1.5rem 0 2rem 0;
+  flex-wrap: wrap;
+}
+
+.psd-hero img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--psd-teal);
+  flex-shrink: 0;
+}
+
+.psd-hero-text h1 {
+  border-bottom: none;
+  margin: 0 0 0.25rem 0;
+  font-size: 1.6rem;
+}
+
+/* Data-chip row: styled like a sensor/log readout */
+.psd-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+}
+
+.psd-chip {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  background: var(--psd-paper);
+  border: 1px solid var(--psd-line);
+  color: var(--psd-teal-dark);
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+}
+
+/* ---------- Chapter/task list styled as log entries ---------- */
+.psd-log-entry {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  border-bottom: 1px solid var(--psd-line);
+  padding: 0.9rem 0;
+}
+
+.psd-log-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--psd-amber);
+  white-space: nowrap;
+  min-width: 4.5rem;
+}
+
+.psd-log-entry a {
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.psd-log-entry a:hover { text-decoration: underline; }
+
+/* ---------- Sidebar accent ---------- */
+.bd-sidebar-primary {
+  background-color: var(--psd-card);
+  border-right: 1px solid var(--psd-line);
+}

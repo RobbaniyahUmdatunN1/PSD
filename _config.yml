@@ -1,0 +1,29 @@
+# Konfigurasi Jupyter Book
+# Referensi lengkap: https://jupyterbook.org/customize/config.html
+
+title: Catatan Proyek Sains Data
+author: "Robbaniyah Umdatun Ni'mah (240411100101)"
+logo: ""
+
+# Jangan jalankan ulang notebook otomatis tiap build
+execute:
+  execute_notebooks: "off"
+
+# Setting repository
+repository:
+  url: "https://github.com/RobbaniyahUmdatunN1/PSD"
+  path_to_book: ""
+  branch: main
+
+# Setting tampilan HTML
+html:
+  use_issues_button: false
+  use_repository_button: true
+  use_edit_page_button: false
+  extra_css:
+    - _static/custom.css
+
+# Format sitasi
+sphinx:
+  config:
+    html_theme: sphinx_book_theme
