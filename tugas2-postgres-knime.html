@@ -1,0 +1,786 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Tugas 2: Migrasi ke PostgreSQL &amp; Analisis Statistik dengan KNIME &#8212; Catatan Proyek Sains Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=bdde7595" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tugas2-postgres-knime';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Catatan Proyek Sains Data</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Selamat Datang di Catatan Proyek Sains Data
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="profil.html">Profil</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/RobbaniyahUmdatunN1/PSD" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/tugas2-postgres-knime.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tugas 2: Migrasi ke PostgreSQL & Analisis Statistik dengan KNIME</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">Latar Belakang</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-kerja">Alur Kerja</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-statistics-node">Hasil Statistics Node</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-rumus-contoh-perhitungan-setiap-fitur">Penjelasan Rumus &amp; Contoh Perhitungan Setiap Fitur</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#count-jumlah-data">1. Count (Jumlah Data)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-values">2. Missing Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minimum-maximum">3. Minimum &amp; Maximum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-rata-rata">4. Mean (Rata-rata)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#median">5. Median</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-deviation-simpangan-baku">6. Standard Deviation (Simpangan Baku)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance">7. Variance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-overall-sum">8. Sum (Overall Sum)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skewness-kemencengan">9. Skewness (Kemencengan)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kurtosis-keruncingan">10. Kurtosis (Keruncingan)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi">Interpretasi</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tugas-2-migrasi-ke-postgresql-analisis-statistik-dengan-knime">
+<h1>Tugas 2: Migrasi ke PostgreSQL &amp; Analisis Statistik dengan KNIME<a class="headerlink" href="#tugas-2-migrasi-ke-postgresql-analisis-statistik-dengan-knime" title="Link to this heading">#</a></h1>
+<section id="latar-belakang">
+<h2>Latar Belakang<a class="headerlink" href="#latar-belakang" title="Link to this heading">#</a></h2>
+<p>Melanjutkan Tugas 1, data hasil crawling polutan (<code class="docutils literal notranslate"><span class="pre">gresik_pollutant_data.csv</span></code>) dipindahkan ke database <strong>PostgreSQL</strong> (di-hosting menggunakan <strong>Aiven</strong>), kemudian ditarik ke <strong>KNIME Analytics Platform</strong> untuk dianalisis menggunakan node <strong>Statistics</strong>.</p>
+</section>
+<section id="alur-kerja">
+<h2>Alur Kerja<a class="headerlink" href="#alur-kerja" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Data CSV diupload ke PostgreSQL Aiven menggunakan script Python (<code class="docutils literal notranslate"><span class="pre">migrate_csv_to_postgres.py</span></code>).</p></li>
+<li><p>KNIME terhubung ke database Aiven menggunakan node <code class="docutils literal notranslate"><span class="pre">PostgreSQL</span> <span class="pre">Connector</span></code>.</p></li>
+<li><p>Data ditarik menggunakan <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Table</span> <span class="pre">Selector</span></code> → <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">Reader</span></code>.</p></li>
+<li><p>Node <code class="docutils literal notranslate"><span class="pre">Statistics</span></code> dijalankan pada 6 kolom numerik: CO, NO2, HCHO, O3, SO2, CH4.</p></li>
+</ol>
+<p><img alt="workflow" src="_images/knime_workflow.png" />
+<br>
+Workflow KNIME: PostgreSQL Connector → DB Table Selector → DB Reader → Statistics</p>
+</section>
+<section id="hasil-statistics-node">
+<h2>Hasil Statistics Node<a class="headerlink" href="#hasil-statistics-node" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>row ID</p></th>
+<th class="head"><p>Column</p></th>
+<th class="head"><p>Min</p></th>
+<th class="head"><p>Max</p></th>
+<th class="head"><p>Mean</p></th>
+<th class="head"><p>Std. deviation</p></th>
+<th class="head"><p>Variance</p></th>
+<th class="head"><p>Skewness</p></th>
+<th class="head"><p>Kurtosis</p></th>
+<th class="head"><p>Overall sum</p></th>
+<th class="head"><p>No. missings</p></th>
+<th class="head"><p>No. NaNs</p></th>
+<th class="head"><p>No. +∞s</p></th>
+<th class="head"><p>No. -∞s</p></th>
+<th class="head"><p>Median</p></th>
+<th class="head"><p>Row count</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>longitude</p></td>
+<td><p>longitude</p></td>
+<td><p>112.6103</p></td>
+<td><p>112.6103</p></td>
+<td><p>112.6103</p></td>
+<td><p>0.0</p></td>
+<td><p>0.0</p></td>
+<td><p>0.0</p></td>
+<td><p>0.0</p></td>
+<td><p>40990.1536</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>112.6103</p></td>
+<td><p>364</p></td>
+</tr>
+<tr class="row-odd"><td><p>latitude</p></td>
+<td><p>latitude</p></td>
+<td><p>-7.1356</p></td>
+<td><p>-7.1356</p></td>
+<td><p>-7.1356</p></td>
+<td><p>0.0</p></td>
+<td><p>0.0</p></td>
+<td><p>0.0</p></td>
+<td><p>0.0</p></td>
+<td><p>-2597.3477</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>-7.1356</p></td>
+<td><p>364</p></td>
+</tr>
+<tr class="row-even"><td><p>CO</p></td>
+<td><p>CO</p></td>
+<td><p>0.0157</p></td>
+<td><p>0.0506</p></td>
+<td><p>0.0309</p></td>
+<td><p>0.0054</p></td>
+<td><p>0.0</p></td>
+<td><p>0.7979</p></td>
+<td><p>1.2062</p></td>
+<td><p>6.4903</p></td>
+<td><p>154</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0.0298</p></td>
+<td><p>364</p></td>
+</tr>
+<tr class="row-odd"><td><p>NO2</p></td>
+<td><p>NO2</p></td>
+<td><p>0.0</p></td>
+<td><p>0.0003</p></td>
+<td><p>0.0001</p></td>
+<td><p>0.0001</p></td>
+<td><p>0.0</p></td>
+<td><p>1.5466</p></td>
+<td><p>1.8385</p></td>
+<td><p>0.018</p></td>
+<td><p>170</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0.0001</p></td>
+<td><p>364</p></td>
+</tr>
+<tr class="row-even"><td><p>HCHO</p></td>
+<td><p>HCHO</p></td>
+<td><p>-0.0001</p></td>
+<td><p>0.0006</p></td>
+<td><p>0.0002</p></td>
+<td><p>0.0001</p></td>
+<td><p>0.0</p></td>
+<td><p>0.1592</p></td>
+<td><p>1.1552</p></td>
+<td><p>0.0346</p></td>
+<td><p>173</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0.0002</p></td>
+<td><p>364</p></td>
+</tr>
+<tr class="row-odd"><td><p>O3</p></td>
+<td><p>O3</p></td>
+<td><p>0.1102</p></td>
+<td><p>0.1603</p></td>
+<td><p>0.1178</p></td>
+<td><p>0.0039</p></td>
+<td><p>0.0</p></td>
+<td><p>3.8276</p></td>
+<td><p>39.3445</p></td>
+<td><p>42.8772</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0.1175</p></td>
+<td><p>364</p></td>
+</tr>
+<tr class="row-even"><td><p>SO2</p></td>
+<td><p>SO2</p></td>
+<td><p>-0.0007</p></td>
+<td><p>0.0035</p></td>
+<td><p>0.0002</p></td>
+<td><p>0.0005</p></td>
+<td><p>0.0</p></td>
+<td><p>2.7789</p></td>
+<td><p>14.7688</p></td>
+<td><p>0.0388</p></td>
+<td><p>186</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0.0001</p></td>
+<td><p>364</p></td>
+</tr>
+<tr class="row-odd"><td><p>CH4</p></td>
+<td><p>CH4</p></td>
+<td><p>1792.9053</p></td>
+<td><p>1890.1228</p></td>
+<td><p>1862.6584</p></td>
+<td><p>30.1797</p></td>
+<td><p>910.8161</p></td>
+<td><p>-1.4533</p></td>
+<td><p>1.5521</p></td>
+<td><p>24214.5594</p></td>
+<td><p>351</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>1867.2894</p></td>
+<td><p>364</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="penjelasan-rumus-contoh-perhitungan-setiap-fitur">
+<h2>Penjelasan Rumus &amp; Contoh Perhitungan Setiap Fitur<a class="headerlink" href="#penjelasan-rumus-contoh-perhitungan-setiap-fitur" title="Link to this heading">#</a></h2>
+<p>Berikut penjelasan makna, rumus, dan contoh perhitungan manual untuk setiap fitur statistik yang dihasilkan node Statistics di KNIME.</p>
+<section id="count-jumlah-data">
+<h3>1. Count (Jumlah Data)<a class="headerlink" href="#count-jumlah-data" title="Link to this heading">#</a></h3>
+<p>Jumlah total baris data pada kolom tersebut.</p>
+<div class="math notranslate nohighlight">
+\[\text{Count} = n\]</div>
+</section>
+<section id="missing-values">
+<h3>2. Missing Values<a class="headerlink" href="#missing-values" title="Link to this heading">#</a></h3>
+<p>Jumlah sel yang datanya kosong/NULL pada kolom tersebut.</p>
+<div class="math notranslate nohighlight">
+\[\text{Missing} = (\text{jumlah baris}) - (\text{jumlah data valid})\]</div>
+</section>
+<section id="minimum-maximum">
+<h3>3. Minimum &amp; Maximum<a class="headerlink" href="#minimum-maximum" title="Link to this heading">#</a></h3>
+<p>Nilai terkecil dan terbesar dalam kolom.</p>
+<div class="math notranslate nohighlight">
+\[\text{Min} = \min(x_1, x_2, ..., x_n) \qquad \text{Max} = \max(x_1, x_2, ..., x_n)\]</div>
+</section>
+<section id="mean-rata-rata">
+<h3>4. Mean (Rata-rata)<a class="headerlink" href="#mean-rata-rata" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[\text{Mean} = \bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i\]</div>
+<p><strong>Contoh:</strong> untuk data <code class="docutils literal notranslate"><span class="pre">[12,</span> <span class="pre">15,</span> <span class="pre">14,</span> <span class="pre">18,</span> <span class="pre">13,</span> <span class="pre">100,</span> <span class="pre">16]</span></code>:
+$<span class="math notranslate nohighlight">\(\bar{x} = \frac{12+15+14+18+13+100+16}{7} = \frac{188}{7} \approx 26{,}86\)</span>$</p>
+</section>
+<section id="median">
+<h3>5. Median<a class="headerlink" href="#median" title="Link to this heading">#</a></h3>
+<p>Nilai tengah data yang sudah diurutkan.</p>
+<p><strong>Contoh:</strong> data terurut <code class="docutils literal notranslate"><span class="pre">12,</span> <span class="pre">13,</span> <span class="pre">14,</span> <span class="pre">15,</span> <span class="pre">16,</span> <span class="pre">18,</span> <span class="pre">100</span></code> (n=7, ganjil) → Median = nilai ke-4 = <strong>15</strong></p>
+</section>
+<section id="standard-deviation-simpangan-baku">
+<h3>6. Standard Deviation (Simpangan Baku)<a class="headerlink" href="#standard-deviation-simpangan-baku" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[s = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2}\]</div>
+<p><strong>Contoh:</strong> menggunakan data &amp; Mean di atas → <span class="math notranslate nohighlight">\(s \approx 32{,}31\)</span></p>
+</section>
+<section id="variance">
+<h3>7. Variance<a class="headerlink" href="#variance" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[s^2 = \frac{1}{n-1}\sum_{i=1}^{n}(x_i - \bar{x})^2\]</div>
+<p><strong>Contoh:</strong> <span class="math notranslate nohighlight">\(s^2 \approx 1044{,}15\)</span> (kuadrat dari Std. Deviation)</p>
+</section>
+<section id="sum-overall-sum">
+<h3>8. Sum (Overall Sum)<a class="headerlink" href="#sum-overall-sum" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[\text{Sum} = \sum_{i=1}^{n} x_i\]</div>
+<p><strong>Contoh:</strong> Sum = 188</p>
+</section>
+<section id="skewness-kemencengan">
+<h3>9. Skewness (Kemencengan)<a class="headerlink" href="#skewness-kemencengan" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[\text{Skewness} = \frac{n}{(n-1)(n-2)} \sum_{i=1}^{n}\left(\frac{x_i-\bar{x}}{s}\right)^3\]</div>
+<p>Nilai positif → distribusi menceng ke kanan (ekor panjang di kanan, biasanya karena outlier bernilai besar).</p>
+<p><strong>Contoh:</strong> Skewness ≈ 2,63 (menceng kanan akibat outlier 100)</p>
+</section>
+<section id="kurtosis-keruncingan">
+<h3>10. Kurtosis (Keruncingan)<a class="headerlink" href="#kurtosis-keruncingan" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[\text{Kurtosis} = \frac{n(n+1)}{(n-1)(n-2)(n-3)} \sum_{i=1}^{n}\left(\frac{x_i-\bar{x}}{s}\right)^4 - \frac{3(n-1)^2}{(n-2)(n-3)}\]</div>
+<p>Nilai jauh di atas 0 → distribusi leptokurtik (ekor tebal, ada outlier ekstrem).</p>
+<p><strong>Contoh:</strong> Kurtosis ≈ 6,93</p>
+</section>
+</section>
+<section id="interpretasi">
+<h2>Interpretasi<a class="headerlink" href="#interpretasi" title="Link to this heading">#</a></h2>
+<!-- Isi dengan interpretasi kamu berdasarkan angka asli dari data polutan Gresik, misalnya: -->
+<ul class="simple">
+<li><p>Kolom mana yang punya Std. Deviation/Skewness/Kurtosis tinggi? Apakah itu mengindikasikan ada hari dengan lonjakan polusi ekstrem?</p></li>
+<li><p>Bandingkan Mean vs Median tiap kolom — apakah ada perbedaan signifikan yang mengindikasikan outlier?</p></li>
+<li><p>Kaitkan temuan ini dengan dugaan sumber polutan dari Tugas 1.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">Latar Belakang</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-kerja">Alur Kerja</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-statistics-node">Hasil Statistics Node</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penjelasan-rumus-contoh-perhitungan-setiap-fitur">Penjelasan Rumus &amp; Contoh Perhitungan Setiap Fitur</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#count-jumlah-data">1. Count (Jumlah Data)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#missing-values">2. Missing Values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#minimum-maximum">3. Minimum &amp; Maximum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-rata-rata">4. Mean (Rata-rata)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#median">5. Median</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-deviation-simpangan-baku">6. Standard Deviation (Simpangan Baku)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variance">7. Variance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sum-overall-sum">8. Sum (Overall Sum)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skewness-kemencengan">9. Skewness (Kemencengan)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kurtosis-keruncingan">10. Kurtosis (Keruncingan)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi">Interpretasi</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Robbaniyah Umdatun Ni'mah (240411100101)
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

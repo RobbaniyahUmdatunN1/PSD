@@ -1,0 +1,924 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>&lt;no title&gt; &#8212; Catatan Proyek Sains Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=bdde7595" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'try';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Catatan Proyek Sains Data</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Selamat Datang di Catatan Proyek Sains Data
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="profil.html">Profil</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/RobbaniyahUmdatunN1/PSD" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/try.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1><no title></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple pst-show_toc_level nav section-nav flex-column">
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">pip</span> install tsfel
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting tsfel
+  Using cached tsfel-0.2.0-py3-none-any.whl.metadata (9.4 kB)
+Requirement already satisfied: ipython&gt;=7.4.0 in c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages (from tsfel) (9.17.0)
+Requirement already satisfied: numpy&gt;=1.18.5 in c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages (from tsfel) (2.5.2)
+Requirement already satisfied: pandas&gt;=1.5.3 in c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages (from tsfel) (3.0.5)
+Collecting PyWavelets&gt;=1.4.1 (from tsfel)
+  Downloading pywavelets-1.9.0-cp313-cp313-win_amd64.whl.metadata (7.6 kB)
+Requirement already satisfied: requests&gt;=2.31.0 in c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages (from tsfel) (2.34.2)
+Collecting scikit-learn&gt;=0.21.3 (from tsfel)
+  Downloading scikit_learn-1.9.0-cp313-cp313-win_amd64.whl.metadata (11 kB)
+Collecting scipy&gt;=1.7.3 (from tsfel)
+  Downloading scipy-1.18.1-cp313-cp313-win_amd64.whl.metadata (61 kB)
+Requirement already satisfied: setuptools&gt;=47.1.1 in c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages (from tsfel) (84.0.0)
+Collecting statsmodels&gt;=0.12.0 (from tsfel)
+  Downloading statsmodels-0.15.0-cp313-cp313-win_amd64.whl.metadata (9.6 kB)
+Requirement already satisfied: colorama&gt;=0.4.4 in c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages (from ipython&gt;=7.4.0-&gt;tsfel) (0.4.6)
+Requirement already satisfied: ipython-pygments-lexers&gt;=1.0.0 in c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages (from ipython&gt;=7.4.0-&gt;tsfel) (1.1.1)
+Requirement already satisfied: jedi&gt;=0.18.2 in c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages (from ipython&gt;=7.4.0-&gt;tsfel) (0.20.0)
+Requirement already satisfied: matplotlib-inline&gt;=0.1.6 in c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages (from ipython&gt;=7.4.0-&gt;tsfel) (0.2.2)
+Requirement already satisfied: prompt_toolkit&lt;3.1.0,&gt;=3.0.41 in c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages (from ipython&gt;=7.4.0-&gt;tsfel) (3.0.53)
+Requirement already satisfied: psutil&gt;=7 in c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages (from ipython&gt;=7.4.0-&gt;tsfel) (7.2.2)
+Requirement already satisfied: pygments&gt;=2.14.0 in c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages (from ipython&gt;=7.4.0-&gt;tsfel) (2.21.0)
+Requirement already satisfied: stack_data&gt;=0.6.0 in c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages (from ipython&gt;=7.4.0-&gt;tsfel) (0.6.3)
+Requirement already satisfied: traitlets&gt;=5.13.0 in c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages (from ipython&gt;=7.4.0-&gt;tsfel) (5.16.1)
+Requirement already satisfied: wcwidth&gt;=0.1.4 in c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages (from prompt_toolkit&lt;3.1.0,&gt;=3.0.41-&gt;ipython&gt;=7.4.0-&gt;tsfel) (0.8.3)
+Requirement already satisfied: parso&lt;0.9.0,&gt;=0.8.6 in c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages (from jedi&gt;=0.18.2-&gt;ipython&gt;=7.4.0-&gt;tsfel) (0.8.7)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages (from pandas&gt;=1.5.3-&gt;tsfel) (2.9.0.post0)
+Requirement already satisfied: tzdata in c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages (from pandas&gt;=1.5.3-&gt;tsfel) (2026.3)
+Requirement already satisfied: six&gt;=1.5 in c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas&gt;=1.5.3-&gt;tsfel) (1.17.0)
+Requirement already satisfied: charset_normalizer&lt;4,&gt;=2 in c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages (from requests&gt;=2.31.0-&gt;tsfel) (3.5.1)
+Requirement already satisfied: idna&lt;4,&gt;=2.5 in c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages (from requests&gt;=2.31.0-&gt;tsfel) (3.19)
+Requirement already satisfied: urllib3&lt;3,&gt;=1.26 in c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages (from requests&gt;=2.31.0-&gt;tsfel) (2.7.0)
+Requirement already satisfied: certifi&gt;=2023.5.7 in c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages (from requests&gt;=2.31.0-&gt;tsfel) (2026.7.22)
+Collecting joblib&gt;=1.4.0 (from scikit-learn&gt;=0.21.3-&gt;tsfel)
+  Using cached joblib-1.6.0-py3-none-any.whl.metadata (6.5 kB)
+Collecting narwhals&gt;=2.0.1 (from scikit-learn&gt;=0.21.3-&gt;tsfel)
+  Using cached narwhals-2.25.0-py3-none-any.whl.metadata (15 kB)
+Collecting threadpoolctl&gt;=3.5.0 (from scikit-learn&gt;=0.21.3-&gt;tsfel)
+  Using cached threadpoolctl-3.6.0-py3-none-any.whl.metadata (13 kB)
+Collecting cloudpickle&gt;=3.0 (from joblib&gt;=1.4.0-&gt;scikit-learn&gt;=0.21.3-&gt;tsfel)
+  Using cached cloudpickle-3.1.2-py3-none-any.whl.metadata (7.1 kB)
+Requirement already satisfied: executing&gt;=1.2.0 in c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages (from stack_data&gt;=0.6.0-&gt;ipython&gt;=7.4.0-&gt;tsfel) (2.2.1)
+Requirement already satisfied: asttokens&gt;=2.1.0 in c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages (from stack_data&gt;=0.6.0-&gt;ipython&gt;=7.4.0-&gt;tsfel) (3.0.2)
+Requirement already satisfied: pure-eval in c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages (from stack_data&gt;=0.6.0-&gt;ipython&gt;=7.4.0-&gt;tsfel) (0.2.3)
+Collecting patsy&gt;=0.5.6 (from statsmodels&gt;=0.12.0-&gt;tsfel)
+  Using cached patsy-1.0.3-py2.py3-none-any.whl.metadata (3.7 kB)
+Requirement already satisfied: packaging&gt;=21.3 in c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages (from statsmodels&gt;=0.12.0-&gt;tsfel) (26.3)
+Collecting formulaic&gt;=1.1.0 (from statsmodels&gt;=0.12.0-&gt;tsfel)
+  Using cached formulaic-1.2.2-py3-none-any.whl.metadata (7.0 kB)
+Collecting interface-meta&gt;=1.2.0 (from formulaic&gt;=1.1.0-&gt;statsmodels&gt;=0.12.0-&gt;tsfel)
+  Using cached interface_meta-2.0.1-py3-none-any.whl.metadata (6.4 kB)
+Requirement already satisfied: typing-extensions&gt;=4.2.0 in c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages (from formulaic&gt;=1.1.0-&gt;statsmodels&gt;=0.12.0-&gt;tsfel) (4.16.0)
+Collecting wrapt&gt;=1.17.0rc1 (from formulaic&gt;=1.1.0-&gt;statsmodels&gt;=0.12.0-&gt;tsfel)
+  Downloading wrapt-2.4.1rc1-cp313-cp313-win_amd64.whl.metadata (7.6 kB)
+Using cached tsfel-0.2.0-py3-none-any.whl (63 kB)
+Downloading pywavelets-1.9.0-cp313-cp313-win_amd64.whl (4.2 MB)
+   ---------------------------------------- 0.0/4.2 MB ? eta -:--:--
+   ------------------- -------------------- 2.1/4.2 MB 13.2 MB/s eta 0:00:01
+   ---------------------------------------  4.2/4.2 MB 13.3 MB/s eta 0:00:01
+   ---------------------------------------- 4.2/4.2 MB 11.1 MB/s  0:00:00
+Downloading scikit_learn-1.9.0-cp313-cp313-win_amd64.whl (8.2 MB)
+   ---------------------------------------- 0.0/8.2 MB ? eta -:--:--
+   -------------- ------------------------- 2.9/8.2 MB 14.6 MB/s eta 0:00:01
+   ---------------------------- ----------- 5.8/8.2 MB 13.8 MB/s eta 0:00:01
+   ---------------------------------------  8.1/8.2 MB 14.1 MB/s eta 0:00:01
+   ---------------------------------------- 8.2/8.2 MB 12.5 MB/s  0:00:00
+Using cached joblib-1.6.0-py3-none-any.whl (306 kB)
+Using cached cloudpickle-3.1.2-py3-none-any.whl (22 kB)
+Using cached narwhals-2.25.0-py3-none-any.whl (467 kB)
+Downloading scipy-1.18.1-cp313-cp313-win_amd64.whl (36.6 MB)
+   ---------------------------------------- 0.0/36.6 MB ? eta -:--:--
+   -- ------------------------------------- 1.8/36.6 MB 8.6 MB/s eta 0:00:05
+   ---- ----------------------------------- 4.2/36.6 MB 10.2 MB/s eta 0:00:04
+   -------- ------------------------------- 7.6/36.6 MB 12.3 MB/s eta 0:00:03
+   ----------- ---------------------------- 10.2/36.6 MB 12.4 MB/s eta 0:00:03
+   -------------- ------------------------- 13.1/36.6 MB 13.1 MB/s eta 0:00:02
+   ------------------ --------------------- 16.5/36.6 MB 13.3 MB/s eta 0:00:02
+   ---------------------- ----------------- 20.2/36.6 MB 14.0 MB/s eta 0:00:02
+   ------------------------- -------------- 23.6/36.6 MB 14.2 MB/s eta 0:00:01
+   ---------------------------- ----------- 26.2/36.6 MB 14.0 MB/s eta 0:00:01
+   ------------------------------- -------- 29.1/36.6 MB 13.9 MB/s eta 0:00:01
+   ----------------------------------- ---- 32.8/36.6 MB 14.3 MB/s eta 0:00:01
+   ---------------------------------------  36.2/36.6 MB 14.4 MB/s eta 0:00:01
+   ---------------------------------------- 36.6/36.6 MB 13.5 MB/s  0:00:02
+Downloading statsmodels-0.15.0-cp313-cp313-win_amd64.whl (11.3 MB)
+   ---------------------------------------- 0.0/11.3 MB ? eta -:--:--
+   ------------ --------------------------- 3.7/11.3 MB 18.3 MB/s eta 0:00:01
+   ----------------------- ---------------- 6.6/11.3 MB 16.0 MB/s eta 0:00:01
+   ------------------------------- -------- 8.9/11.3 MB 14.6 MB/s eta 0:00:01
+   ---------------------------------------  11.3/11.3 MB 14.5 MB/s eta 0:00:01
+   ---------------------------------------- 11.3/11.3 MB 13.3 MB/s  0:00:00
+Using cached formulaic-1.2.2-py3-none-any.whl (118 kB)
+Using cached interface_meta-2.0.1-py3-none-any.whl (15 kB)
+Using cached patsy-1.0.3-py2.py3-none-any.whl (233 kB)
+Using cached threadpoolctl-3.6.0-py3-none-any.whl (18 kB)
+Downloading wrapt-2.4.1rc1-cp313-cp313-win_amd64.whl (98 kB)
+Installing collected packages: wrapt, threadpoolctl, scipy, PyWavelets, patsy, narwhals, interface-meta, cloudpickle, joblib, scikit-learn, formulaic, statsmodels, tsfel
+
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   ------ ---------------------------------  2/13 [scipy]
+   --------- ------------------------------  3/13 [PyWavelets]
+   ------------ ---------------------------  4/13 [patsy]
+   --------------- ------------------------  5/13 [narwhals]
+   --------------- ------------------------  5/13 [narwhals]
+   --------------- ------------------------  5/13 [narwhals]
+   --------------- ------------------------  5/13 [narwhals]
+   ------------------------ ---------------  8/13 [joblib]
+   ------------------------ ---------------  8/13 [joblib]
+   --------------------------- ------------  9/13 [scikit-learn]
+   --------------------------- ------------  9/13 [scikit-learn]
+   --------------------------- ------------  9/13 [scikit-learn]
+   --------------------------- ------------  9/13 [scikit-learn]
+   --------------------------- ------------  9/13 [scikit-learn]
+   --------------------------- ------------  9/13 [scikit-learn]
+   --------------------------- ------------  9/13 [scikit-learn]
+   --------------------------- ------------  9/13 [scikit-learn]
+   --------------------------- ------------  9/13 [scikit-learn]
+   --------------------------- ------------  9/13 [scikit-learn]
+   --------------------------- ------------  9/13 [scikit-learn]
+   --------------------------- ------------  9/13 [scikit-learn]
+   --------------------------- ------------  9/13 [scikit-learn]
+   --------------------------- ------------  9/13 [scikit-learn]
+   --------------------------- ------------  9/13 [scikit-learn]
+   --------------------------- ------------  9/13 [scikit-learn]
+   --------------------------- ------------  9/13 [scikit-learn]
+   --------------------------- ------------  9/13 [scikit-learn]
+   --------------------------- ------------  9/13 [scikit-learn]
+   --------------------------- ------------  9/13 [scikit-learn]
+   --------------------------- ------------  9/13 [scikit-learn]
+   --------------------------- ------------  9/13 [scikit-learn]
+   ------------------------------ --------- 10/13 [formulaic]
+   --------------------------------- ------ 11/13 [statsmodels]
+   --------------------------------- ------ 11/13 [statsmodels]
+   --------------------------------- ------ 11/13 [statsmodels]
+   --------------------------------- ------ 11/13 [statsmodels]
+   --------------------------------- ------ 11/13 [statsmodels]
+   --------------------------------- ------ 11/13 [statsmodels]
+   --------------------------------- ------ 11/13 [statsmodels]
+   --------------------------------- ------ 11/13 [statsmodels]
+   --------------------------------- ------ 11/13 [statsmodels]
+   --------------------------------- ------ 11/13 [statsmodels]
+   --------------------------------- ------ 11/13 [statsmodels]
+   --------------------------------- ------ 11/13 [statsmodels]
+   --------------------------------- ------ 11/13 [statsmodels]
+   --------------------------------- ------ 11/13 [statsmodels]
+   --------------------------------- ------ 11/13 [statsmodels]
+   --------------------------------- ------ 11/13 [statsmodels]
+   --------------------------------- ------ 11/13 [statsmodels]
+   --------------------------------- ------ 11/13 [statsmodels]
+   --------------------------------- ------ 11/13 [statsmodels]
+   --------------------------------- ------ 11/13 [statsmodels]
+   --------------------------------- ------ 11/13 [statsmodels]
+   --------------------------------- ------ 11/13 [statsmodels]
+   --------------------------------- ------ 11/13 [statsmodels]
+   --------------------------------- ------ 11/13 [statsmodels]
+   --------------------------------- ------ 11/13 [statsmodels]
+   --------------------------------- ------ 11/13 [statsmodels]
+   --------------------------------- ------ 11/13 [statsmodels]
+   --------------------------------- ------ 11/13 [statsmodels]
+   --------------------------------- ------ 11/13 [statsmodels]
+   ------------------------------------ --- 12/13 [tsfel]
+   ---------------------------------------- 13/13 [tsfel]
+
+Successfully installed PyWavelets-1.9.0 cloudpickle-3.1.2 formulaic-1.2.2 interface-meta-2.0.1 joblib-1.6.0 narwhals-2.25.0 patsy-1.0.3 scikit-learn-1.9.0 scipy-1.18.1 statsmodels-0.15.0 threadpoolctl-3.6.0 tsfel-0.2.0 wrapt-2.4.1rc1
+Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tsfel</span>
+
+<span class="c1"># 1. Buat data time series (20 titik)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">"time"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">21</span><span class="p">)),</span>
+    <span class="s2">"value"</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span>
+              <span class="mi">20</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># 2. Simpan ke CSV</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">"timeseries.csv"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># 3. Ambil konfigurasi fitur statistik dari TSFEL</span>
+<span class="n">cfg</span> <span class="o">=</span> <span class="n">tsfel</span><span class="o">.</span><span class="n">get_features_by_domain</span><span class="p">(</span><span class="s2">"statistical"</span><span class="p">)</span>
+
+<span class="c1"># 4. Ekstraksi fitur statistik</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">tsfel</span><span class="o">.</span><span class="n">time_series_features_extractor</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s2">"value"</span><span class="p">])</span>
+
+<span class="c1"># 5. Tampilkan hasil</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>   <span class="c1"># .T biar lebih mudah dibaca (transpose)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\robba\AppData\Local\Python\pythoncore-3.13-64\Lib\site-packages\tsfel\feature_extraction\calc_features.py:195: SyntaxWarning: invalid escape sequence '\*'
+  \**kwargs:
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">tsfel</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> 
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># 1. Buat data time series (20 titik)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+
+<span class="n">File</span> <span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Python</span>\<span class="n">pythoncore</span><span class="o">-</span><span class="mf">3.13</span><span class="o">-</span><span class="mi">64</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">tsfel</span>\<span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">tsfel.constants</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span><span class="w"> </span><span class="nn">tsfel.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">from</span><span class="w"> </span><span class="nn">tsfel.feature_extraction</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span><span class="w"> </span><span class="nn">tsfel.utils</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">File</span> <span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Python</span>\<span class="n">pythoncore</span><span class="o">-</span><span class="mf">3.13</span><span class="o">-</span><span class="mi">64</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">tsfel</span>\<span class="n">feature_extraction</span>\<span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">tsfel.feature_extraction.calc_features</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span><span class="w"> </span><span class="nn">tsfel.feature_extraction.features</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span><span class="w"> </span><span class="nn">tsfel.feature_extraction.features_settings</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">File</span> <span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Python</span>\<span class="n">pythoncore</span><span class="o">-</span><span class="mf">3.13</span><span class="o">-</span><span class="mi">64</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">tsfel</span>\<span class="n">feature_extraction</span>\<span class="n">calc_features</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">18</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="kn">from</span><span class="w"> </span><span class="nn">IPython</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_ipython</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">display</span>
+<span class="ne">---&gt; </span><span class="mi">18</span> <span class="kn">from</span><span class="w"> </span><span class="nn">tsfel.utils.progress_bar</span><span class="w"> </span><span class="kn">import</span> <span class="n">display_progress_bar</span><span class="p">,</span> <span class="n">progress_bar_notebook</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="kn">from</span><span class="w"> </span><span class="nn">tsfel.utils.signal_processing</span><span class="w"> </span><span class="kn">import</span> <span class="n">merge_time_series</span><span class="p">,</span> <span class="n">signal_window_splitter</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="kn">from</span><span class="w"> </span><span class="nn">tsfel.feature_extraction</span><span class="w"> </span><span class="kn">import</span> <span class="n">features</span> <span class="k">as</span> <span class="n">tsfel_features</span>
+
+<span class="n">File</span> <span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Python</span>\<span class="n">pythoncore</span><span class="o">-</span><span class="mf">3.13</span><span class="o">-</span><span class="mi">64</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">tsfel</span>\<span class="n">utils</span>\<span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">tsfel.constants</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span><span class="w"> </span><span class="nn">tsfel.utils.add_personal_features</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span><span class="w"> </span><span class="nn">tsfel.utils.calculate_complexity</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span><span class="w"> </span><span class="nn">tsfel.utils.progress_bar</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">File</span> <span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Python</span>\<span class="n">pythoncore</span><span class="o">-</span><span class="mf">3.13</span><span class="o">-</span><span class="mi">64</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">tsfel</span>\<span class="n">utils</span>\<span class="n">add_personal_features</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">9</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">from</span><span class="w"> </span><span class="nn">inspect</span><span class="w"> </span><span class="kn">import</span> <span class="n">getmembers</span><span class="p">,</span> <span class="n">isfunction</span>
+<span class="ne">----&gt; </span><span class="mi">9</span> <span class="kn">from</span><span class="w"> </span><span class="nn">tsfel.feature_extraction.features_settings</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_json</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">from</span><span class="w"> </span><span class="nn">tsfel.utils.calculate_complexity</span><span class="w"> </span><span class="kn">import</span> <span class="n">compute_complexity</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="k">def</span><span class="w"> </span><span class="nf">add_feature_json</span><span class="p">(</span><span class="n">features_path</span><span class="p">,</span> <span class="n">json_path</span><span class="p">):</span>
+
+<span class="n">File</span> <span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Python</span>\<span class="n">pythoncore</span><span class="o">-</span><span class="mf">3.13</span><span class="o">-</span><span class="mi">64</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">tsfel</span>\<span class="n">feature_extraction</span>\<span class="n">features_settings</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">6</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span><span class="w"> </span><span class="nn">tsfel</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="kn">from</span><span class="w"> </span><span class="nn">tsfel.feature_extraction.features_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">safe_eval_string</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="k">def</span><span class="w"> </span><span class="nf">load_json</span><span class="p">(</span><span class="n">json_path</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span><span class="w">     </span><span class="sd">"""A convenient method that wraps the built-in `json.load`. This method</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span><span class="sd">     might be handy to load customized feature configuration files.</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span><span class="sd"> </span>
+<span class="sd">   (...)     21         Data stored in the file.</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span><span class="sd">     """</span>
+
+<span class="n">File</span> <span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Python</span>\<span class="n">pythoncore</span><span class="o">-</span><span class="mf">3.13</span><span class="o">-</span><span class="mi">64</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">tsfel</span>\<span class="n">feature_extraction</span>\<span class="n">features_utils</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">4</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">pywt</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.neighbors</span><span class="w"> </span><span class="kn">import</span> <span class="n">KDTree</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="k">def</span><span class="w"> </span><span class="nf">set_domain</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="k">def</span><span class="w"> </span><span class="nf">decorate_func</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+
+<span class="n">File</span> <span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Python</span>\<span class="n">pythoncore</span><span class="o">-</span><span class="mf">3.13</span><span class="o">-</span><span class="mi">64</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">sklearn</span>\<span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">70</span>
+<span class="g g-Whitespace">     </span><span class="mi">62</span> <span class="c1"># `_distributor_init` allows distributors to run custom init code.</span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span> <span class="c1"># For instance, for the Windows wheel, this is used to pre-load the</span>
+<span class="g g-Whitespace">     </span><span class="mi">64</span> <span class="c1"># vcomp shared library runtime for OpenMP embedded in the sklearn/.libs</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>     <span class="mi">67</span> <span class="c1"># later is linked to the OpenMP runtime to make it possible to introspect</span>
+<span class="g g-Whitespace">     </span><span class="mi">68</span> <span class="c1"># it and importing it first would fail if the OpenMP dll cannot be found.</span>
+<span class="g g-Whitespace">     </span><span class="mi">69</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">__check_build</span><span class="p">,</span> <span class="n">_distributor_init</span>  <span class="c1"># noqa: E402 F401</span>
+<span class="ne">---&gt; </span><span class="mi">70</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">clone</span>  <span class="c1"># noqa: E402</span>
+<span class="g g-Whitespace">     </span><span class="mi">71</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.utils._show_versions</span><span class="w"> </span><span class="kn">import</span> <span class="n">show_versions</span>  <span class="c1"># noqa: E402</span>
+<span class="g g-Whitespace">     </span><span class="mi">73</span> <span class="n">_submodules</span> <span class="o">=</span> <span class="p">[</span>
+<span class="g g-Whitespace">     </span><span class="mi">74</span>     <span class="s2">"calibration"</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">75</span>     <span class="s2">"callback"</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>    <span class="mi">112</span>     <span class="s2">"compose"</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">113</span> <span class="p">]</span>
+
+<span class="n">File</span> <span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Python</span>\<span class="n">pythoncore</span><span class="o">-</span><span class="mf">3.13</span><span class="o">-</span><span class="mi">64</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">sklearn</span>\<span class="n">base</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">20</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn._config</span><span class="w"> </span><span class="kn">import</span> <span class="n">config_context</span><span class="p">,</span> <span class="n">get_config</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">InconsistentVersionWarning</span>
+<span class="ne">---&gt; </span><span class="mi">20</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.utils._metadata_requests</span><span class="w"> </span><span class="kn">import</span> <span class="n">_MetadataRequester</span><span class="p">,</span> <span class="n">_routing_enabled</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.utils._missing</span><span class="w"> </span><span class="kn">import</span> <span class="n">is_pandas_na</span><span class="p">,</span> <span class="n">is_scalar_nan</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.utils._param_validation</span><span class="w"> </span><span class="kn">import</span> <span class="n">validate_parameter_constraints</span>
+
+<span class="n">File</span> <span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Python</span>\<span class="n">pythoncore</span><span class="o">-</span><span class="mf">3.13</span><span class="o">-</span><span class="mi">64</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">sklearn</span>\<span class="n">utils</span>\<span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">9</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">metadata_routing</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.utils._bunch</span><span class="w"> </span><span class="kn">import</span> <span class="n">Bunch</span>
+<span class="ne">----&gt; </span><span class="mi">9</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.utils._chunking</span><span class="w"> </span><span class="kn">import</span> <span class="n">gen_batches</span><span class="p">,</span> <span class="n">gen_even_slices</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span> <span class="c1"># Make _safe_indexing importable from here for backward compat as this particular</span>
+<span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="c1"># helper is considered semi-private and typically very useful for third-party</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="c1"># libraries that want to comply with scikit-learn's estimator API. In particular,</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="c1"># _safe_indexing was included in our public API documentation despite the leading</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="c1"># `_` in its name.</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.utils._indexing</span><span class="w"> </span><span class="kn">import</span> <span class="n">_safe_indexing</span><span class="p">,</span> <span class="n">resample</span><span class="p">,</span> <span class="n">shuffle</span>
+
+<span class="n">File</span> <span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Python</span>\<span class="n">pythoncore</span><span class="o">-</span><span class="mf">3.13</span><span class="o">-</span><span class="mi">64</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">sklearn</span>\<span class="n">utils</span>\<span class="n">_chunking</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">11</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn._config</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_config</span>
+<span class="ne">---&gt; </span><span class="mi">11</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.utils._param_validation</span><span class="w"> </span><span class="kn">import</span> <span class="n">Interval</span><span class="p">,</span> <span class="n">validate_params</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="k">def</span><span class="w"> </span><span class="nf">chunk_generator</span><span class="p">(</span><span class="n">gen</span><span class="p">,</span> <span class="n">chunksize</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span><span class="w">     </span><span class="sd">"""Chunk generator, ``gen`` into lists of length ``chunksize``. The last</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span><span class="sd">     chunk may have a length less than ``chunksize``."""</span>
+
+<span class="n">File</span> <span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Python</span>\<span class="n">pythoncore</span><span class="o">-</span><span class="mf">3.13</span><span class="o">-</span><span class="mi">64</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">sklearn</span>\<span class="n">utils</span>\<span class="n">_param_validation</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">17</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.sparse</span><span class="w"> </span><span class="kn">import</span> <span class="n">csr_array</span><span class="p">,</span> <span class="n">issparse</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn._config</span><span class="w"> </span><span class="kn">import</span> <span class="n">config_context</span><span class="p">,</span> <span class="n">get_config</span>
+<span class="ne">---&gt; </span><span class="mi">17</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.utils.validation</span><span class="w"> </span><span class="kn">import</span> <span class="n">_is_arraylike_not_scalar</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span> <span class="k">class</span><span class="w"> </span><span class="nc">InvalidParameterError</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">):</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span><span class="w">     </span><span class="sd">"""Custom exception to be raised when the parameter of a class/method/function</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span><span class="sd">     does not have a valid type or value.</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span><span class="sd">     """</span>
+
+<span class="n">File</span> <span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Python</span>\<span class="n">pythoncore</span><span class="o">-</span><span class="mf">3.13</span><span class="o">-</span><span class="mi">64</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">sklearn</span>\<span class="n">utils</span>\<span class="n">validation</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">24</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_config</span> <span class="k">as</span> <span class="n">_get_config</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span>     <span class="n">DataConversionWarning</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span>     <span class="n">NotFittedError</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span>     <span class="n">PositiveSpectrumWarning</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span> <span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">24</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.utils._array_api</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span>     <span class="n">_asarray_with_order</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">26</span>     <span class="n">_is_numpy_namespace</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">27</span>     <span class="n">_max_precision_float_dtype</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">28</span>     <span class="n">get_namespace</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">29</span>     <span class="n">get_namespace_and_device</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">30</span>     <span class="n">move_to</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">31</span> <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">32</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.utils._dataframe</span><span class="w"> </span><span class="kn">import</span> <span class="n">is_pandas_df_or_series</span>
+<span class="g g-Whitespace">     </span><span class="mi">33</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.utils._isfinite</span><span class="w"> </span><span class="kn">import</span> <span class="n">FiniteStatus</span><span class="p">,</span> <span class="n">cy_isfinite</span>
+
+<span class="n">File</span> <span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Python</span>\<span class="n">pythoncore</span><span class="o">-</span><span class="mf">3.13</span><span class="o">-</span><span class="mi">64</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">sklearn</span>\<span class="n">utils</span>\<span class="n">_array_api</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">16</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="kn">import</span><span class="w"> </span><span class="nn">scipy.sparse</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
+<span class="ne">---&gt; </span><span class="mi">16</span> <span class="kn">import</span><span class="w"> </span><span class="nn">scipy.special</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">special</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn._config</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_config</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span> <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.externals</span><span class="w"> </span><span class="kn">import</span> <span class="n">array_api_compat</span>
+
+<span class="n">File</span> <span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Python</span>\<span class="n">pythoncore</span><span class="o">-</span><span class="mf">3.13</span><span class="o">-</span><span class="mi">64</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">scipy</span>\<span class="n">special</span>\<span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">785</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span><span class="w"> </span><span class="sd">"""</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span><span class="sd"> ========================================</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span><span class="sd"> Special functions (:mod:`scipy.special`)</span>
+<span class="sd">   (...)    779 </span>
+<span class="g g-Whitespace">    </span><span class="mi">780</span><span class="sd"> """</span>  <span class="c1"># noqa: E501</span>
+<span class="g g-Whitespace">    </span><span class="mi">783</span> <span class="kn">from</span><span class="w"> </span><span class="nn">._sf_error</span><span class="w"> </span><span class="kn">import</span> <span class="n">SpecialFunctionWarning</span><span class="p">,</span> <span class="n">SpecialFunctionError</span>
+<span class="ne">--&gt; </span><span class="mi">785</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">_ufuncs</span>
+<span class="g g-Whitespace">    </span><span class="mi">786</span> <span class="kn">from</span><span class="w"> </span><span class="nn">._ufuncs</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">    </span><span class="mi">788</span> <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">_basic</span>
+
+<span class="nn">File scipy/special/_ufuncs.pyx:1,</span> in <span class="ni">init scipy.special._ufuncs</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
+
+<span class="nn">File scipy/special/_ellip_harm_2.pyx:1,</span> in <span class="ni">init scipy.special._ellip_harm_2</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
+
+<span class="n">File</span> <span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Python</span>\<span class="n">pythoncore</span><span class="o">-</span><span class="mf">3.13</span><span class="o">-</span><span class="mi">64</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">scipy</span>\<span class="n">linalg</span>\<span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">219</span>
+<span class="g g-Whitespace">    </span><span class="mi">217</span> <span class="kn">from</span><span class="w"> </span><span class="nn">._solvers</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">    </span><span class="mi">218</span> <span class="kn">from</span><span class="w"> </span><span class="nn">._procrustes</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="ne">--&gt; </span><span class="mi">219</span> <span class="kn">from</span><span class="w"> </span><span class="nn">._decomp_update</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">    </span><span class="mi">220</span> <span class="kn">from</span><span class="w"> </span><span class="nn">._sketches</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">    </span><span class="mi">221</span> <span class="kn">from</span><span class="w"> </span><span class="nn">._decomp_cossin</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="nn">File scipy/linalg/_decomp_update.pyx:1,</span> in <span class="ni">init scipy.linalg._decomp_update</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
+
+<span class="nn">File &lt;frozen importlib._bootstrap&gt;:645,</span> in <span class="ni">ModuleSpec.parent</span><span class="nt">(self)</span>
+<span class="ne">--&gt; </span><span class="mi">645</span> <span class="s1">'Could not get source, probably due dynamically evaluated source code.'</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="simple pst-show_toc_level nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Robbaniyah Umdatun Ni'mah (240411100101)
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
