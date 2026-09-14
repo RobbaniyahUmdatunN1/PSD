@@ -378,7 +378,6 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tugas 3: Preprocessing &amp; Ekstraksi Fitur (TSFEL)</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">Latar Belakang</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-kerja">Alur Kerja</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-wilayah-kecamatan-cerme">1. Boundary Wilayah: Kecamatan Cerme</a></li>
@@ -395,15 +394,15 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-fractal-6-fitur-kategori-tambahan-di-luar-3-domain-utama">Domain Fractal (6 fitur — kategori tambahan di luar 3 domain utama)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-interpretasi">5. Hasil &amp; Interpretasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-ekstraksi-fitur-milik-sendiri">5. Hasil Ekstraksi Fitur (Milik Sendiri)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-dengan-kecamatan-lain-sekelas">6. Perbandingan dengan Kecamatan Lain (Sekelas)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rata-rata-no2-calc-mean-antar-kecamatan">Rata-rata NO2 (calc_mean) Antar Kecamatan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-entropy-antar-kecamatan">Spectral Entropy Antar Kecamatan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabel-ringkas-perbandingan">Tabel Ringkas Perbandingan</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi">Interpretasi:</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengumpulan">Pengumpulan</a></li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -489,23 +488,515 @@ Hasil ekstraksi: <a class="reference download internal" download="" href="_downl
 <p><strong>Ringkasan:</strong> Statistical (20) + Temporal (16) + Spectral (26) + Fractal (6) = <strong>68 fitur</strong></p>
 </section>
 </section>
-<section id="hasil-interpretasi">
-<h2>5. Hasil &amp; Interpretasi<a class="headerlink" href="#hasil-interpretasi" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">calc_mean</span></code> (rata-rata NO2 setahun): 5.26e-05. Rata-rata konsentrasi NO₂ relatif rendah (sekitar 0.000052 unit, kemungkinan dalam skala normalisasi atau ppm/ppb tergantung preprocessing). Artinya baseline polusi NO₂ di Cerme tidak terlalu tinggi sepanjang tahun.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">calc_std</span></code> (variasi NO2): 2.17e-05. Variasi cukup moderat. Ada fluktuasi, tapi tidak ekstrem. Jadi polusi NO₂ di Cerme cenderung stabil, meski tetap ada naik-turun harian/mingguan.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">spectral_entropy</span></code>: 0.77. Nilai mendekati 1 untuk pola NO₂ lebih acak, tidak terlalu periodik. Artinya sumber emisi bercampur (transportasi, aktivitas rumah tangga, mungkin sedikit industri), sehingga tidak ada siklus harian/mingguan yang sangat kuat.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">autocorr</span></code>: 3.0. Angka ini menunjukkan ada pola berulang, tapi tidak terlalu dominan. Bisa jadi ada sedikit pola mingguan (misalnya Senin–Jumat lebih tinggi, akhir pekan lebih rendah), tapi tidak sekuat kota besar dengan lalu lintas padat.</p></li>
-</ul>
+<section id="hasil-ekstraksi-fitur-milik-sendiri">
+<h2>5. Hasil Ekstraksi Fitur (Milik Sendiri)<a class="headerlink" href="#hasil-ekstraksi-fitur-milik-sendiri" title="Link to this heading">#</a></h2>
+<p>Berikut seluruh 68 nilai fitur hasil ekstraksi NO2 Kecamatan Cerme:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fitur</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>abs_energy</p></td>
+<td><p>7.51745e-07</p></td>
+</tr>
+<tr class="row-odd"><td><p>auc</p></td>
+<td><p>0.0121711</p></td>
+</tr>
+<tr class="row-even"><td><p>autocorr</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p>average_power</p></td>
+<td><p>3.25431e-09</p></td>
+</tr>
+<tr class="row-even"><td><p>calc_centroid</p></td>
+<td><p>118.29</p></td>
+</tr>
+<tr class="row-odd"><td><p>calc_max</p></td>
+<td><p>0.000113708</p></td>
+</tr>
+<tr class="row-even"><td><p>calc_mean</p></td>
+<td><p>5.26352e-05</p></td>
+</tr>
+<tr class="row-odd"><td><p>calc_median</p></td>
+<td><p>5.08489e-05</p></td>
+</tr>
+<tr class="row-even"><td><p>calc_min</p></td>
+<td><p>7.84193e-06</p></td>
+</tr>
+<tr class="row-odd"><td><p>calc_std</p></td>
+<td><p>2.16751e-05</p></td>
+</tr>
+<tr class="row-even"><td><p>calc_var</p></td>
+<td><p>4.69812e-10</p></td>
+</tr>
+<tr class="row-odd"><td><p>dfa</p></td>
+<td><p>0.876405</p></td>
+</tr>
+<tr class="row-even"><td><p>distance</p></td>
+<td><p>231</p></td>
+</tr>
+<tr class="row-odd"><td><p>ecdf</p></td>
+<td><p>0.0237069</p></td>
+</tr>
+<tr class="row-even"><td><p>ecdf_percentile</p></td>
+<td><p>5.16794e-05</p></td>
+</tr>
+<tr class="row-odd"><td><p>ecdf_percentile_count</p></td>
+<td><p>115.5</p></td>
+</tr>
+<tr class="row-even"><td><p>ecdf_slope</p></td>
+<td><p>15791.7</p></td>
+</tr>
+<tr class="row-odd"><td><p>entropy</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>fundamental_frequency</p></td>
+<td><p>0.00862069</p></td>
+</tr>
+<tr class="row-odd"><td><p>higuchi_fractal_dimension</p></td>
+<td><p>1.95986</p></td>
+</tr>
+<tr class="row-even"><td><p>hist_mode</p></td>
+<td><p>4.48952e-05</p></td>
+</tr>
+<tr class="row-odd"><td><p>human_range_energy</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>hurst_exponent</p></td>
+<td><p>0.760805</p></td>
+</tr>
+<tr class="row-odd"><td><p>interq_range</p></td>
+<td><p>2.89651e-05</p></td>
+</tr>
+<tr class="row-even"><td><p>kurtosis</p></td>
+<td><p>-0.285991</p></td>
+</tr>
+<tr class="row-odd"><td><p>lempel_ziv</p></td>
+<td><p>0.215517</p></td>
+</tr>
+<tr class="row-even"><td><p>lpcc</p></td>
+<td><p>0.647167</p></td>
+</tr>
+<tr class="row-odd"><td><p>max_frequency</p></td>
+<td><p>0.443966</p></td>
+</tr>
+<tr class="row-even"><td><p>max_power_spectrum</p></td>
+<td><p>43.5571</p></td>
+</tr>
+<tr class="row-odd"><td><p>maximum_fractal_length</p></td>
+<td><p>-2.3707</p></td>
+</tr>
+<tr class="row-even"><td><p>mean_abs_deviation</p></td>
+<td><p>1.74297e-05</p></td>
+</tr>
+<tr class="row-odd"><td><p>mean_abs_diff</p></td>
+<td><p>1.5521e-05</p></td>
+</tr>
+<tr class="row-even"><td><p>mean_diff</p></td>
+<td><p>-5.05161e-08</p></td>
+</tr>
+<tr class="row-odd"><td><p>median_abs_deviation</p></td>
+<td><p>1.47537e-05</p></td>
+</tr>
+<tr class="row-even"><td><p>median_abs_diff</p></td>
+<td><p>1.25611e-05</p></td>
+</tr>
+<tr class="row-odd"><td><p>median_diff</p></td>
+<td><p>1.61124e-07</p></td>
+</tr>
+<tr class="row-even"><td><p>median_frequency</p></td>
+<td><p>0.0862069</p></td>
+</tr>
+<tr class="row-odd"><td><p>mfcc</p></td>
+<td><p>29.0873</p></td>
+</tr>
+<tr class="row-even"><td><p>mse</p></td>
+<td><p>1.16518</p></td>
+</tr>
+<tr class="row-odd"><td><p>negative_turning</p></td>
+<td><p>65</p></td>
+</tr>
+<tr class="row-even"><td><p>neighbourhood_peaks</p></td>
+<td><p>11</p></td>
+</tr>
+<tr class="row-odd"><td><p>petrosian_fractal_dimension</p></td>
+<td><p>1.03856</p></td>
+</tr>
+<tr class="row-even"><td><p>pk_pk_distance</p></td>
+<td><p>0.000105867</p></td>
+</tr>
+<tr class="row-odd"><td><p>positive_turning</p></td>
+<td><p>65</p></td>
+</tr>
+<tr class="row-even"><td><p>power_bandwidth</p></td>
+<td><p>0.443966</p></td>
+</tr>
+<tr class="row-odd"><td><p>rms</p></td>
+<td><p>5.69235e-05</p></td>
+</tr>
+<tr class="row-even"><td><p>skewness</p></td>
+<td><p>0.39445</p></td>
+</tr>
+<tr class="row-odd"><td><p>slope</p></td>
+<td><p>3.20787e-08</p></td>
+</tr>
+<tr class="row-even"><td><p>spectral_centroid</p></td>
+<td><p>0.139716</p></td>
+</tr>
+<tr class="row-odd"><td><p>spectral_decrease</p></td>
+<td><p>-2.09791</p></td>
+</tr>
+<tr class="row-even"><td><p>spectral_distance</p></td>
+<td><p>-1.08872</p></td>
+</tr>
+<tr class="row-odd"><td><p>spectral_entropy</p></td>
+<td><p>0.771136</p></td>
+</tr>
+<tr class="row-even"><td><p>spectral_kurtosis</p></td>
+<td><p>2.33087</p></td>
+</tr>
+<tr class="row-odd"><td><p>spectral_positive_turning</p></td>
+<td><p>39</p></td>
+</tr>
+<tr class="row-even"><td><p>spectral_roll_off</p></td>
+<td><p>0.443966</p></td>
+</tr>
+<tr class="row-odd"><td><p>spectral_roll_on</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>spectral_skewness</p></td>
+<td><p>0.813145</p></td>
+</tr>
+<tr class="row-odd"><td><p>spectral_slope</p></td>
+<td><p>-0.0444779</p></td>
+</tr>
+<tr class="row-even"><td><p>spectral_spread</p></td>
+<td><p>0.153038</p></td>
+</tr>
+<tr class="row-odd"><td><p>spectral_variation</p></td>
+<td><p>0.435391</p></td>
+</tr>
+<tr class="row-even"><td><p>spectrogram_mean_coeff</p></td>
+<td><p>6.79365e-10</p></td>
+</tr>
+<tr class="row-odd"><td><p>sum_abs_diff</p></td>
+<td><p>0.00358536</p></td>
+</tr>
+<tr class="row-even"><td><p>wavelet_abs_mean</p></td>
+<td><p>5.06571e-06</p></td>
+</tr>
+<tr class="row-odd"><td><p>wavelet_energy</p></td>
+<td><p>2.78441e-05</p></td>
+</tr>
+<tr class="row-even"><td><p>wavelet_entropy</p></td>
+<td><p>2.18084</p></td>
+</tr>
+<tr class="row-odd"><td><p>wavelet_std</p></td>
+<td><p>2.72305e-05</p></td>
+</tr>
+<tr class="row-even"><td><p>wavelet_var</p></td>
+<td><p>7.64648e-10</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero_cross</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Data lengkap: <a class="reference download internal" download="" href="_downloads/e70f6131ea84f6915d8557c48555c912/NO2_Cerme_TSFEL.csv"><span class="xref download myst"><code class="docutils literal notranslate"><span class="pre">NO2_Cerme_TSFEL.csv</span></code></span></a></p>
+</section>
+<section id="perbandingan-dengan-kecamatan-lain-sekelas">
+<h2>6. Perbandingan dengan Kecamatan Lain (Sekelas)<a class="headerlink" href="#perbandingan-dengan-kecamatan-lain-sekelas" title="Link to this heading">#</a></h2>
+<p>Setelah data seluruh kelas (37 kecamatan berbeda) digabung, berikut perbandingan beberapa fitur kunci:</p>
+<section id="rata-rata-no2-calc-mean-antar-kecamatan">
+<h3>Rata-rata NO2 (calc_mean) Antar Kecamatan<a class="headerlink" href="#rata-rata-no2-calc-mean-antar-kecamatan" title="Link to this heading">#</a></h3>
+<p><img alt="Perbandingan rata-rata NO2 sekelas" src="_images/perbandingan-kelas-mean.png" /></p>
+</section>
+<section id="spectral-entropy-antar-kecamatan">
+<h3>Spectral Entropy Antar Kecamatan<a class="headerlink" href="#spectral-entropy-antar-kecamatan" title="Link to this heading">#</a></h3>
+<p>Spectral entropy menunjukkan seberapa “acak” (entropy tinggi) vs “periodik/musiman” (entropy rendah) pola NO2 sepanjang tahun.</p>
+<p><img alt="Perbandingan spectral entropy sekelas" src="_images/perbandingan-kelas-entropy.png" /></p>
+</section>
+<section id="tabel-ringkas-perbandingan">
+<h3>Tabel Ringkas Perbandingan<a class="headerlink" href="#tabel-ringkas-perbandingan" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>nama</p></th>
+<th class="head"><p>daerah</p></th>
+<th class="head"><p>calc_mean</p></th>
+<th class="head"><p>calc_std</p></th>
+<th class="head"><p>spectral_entropy</p></th>
+<th class="head"><p>autocorr</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Muhammad Ali Murtadho</p></td>
+<td><p>Baron, Nganjuk</p></td>
+<td><p>2.9e-05</p></td>
+<td><p>9e-06</p></td>
+<td><p>0.664351</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ahmad Dafi Zidni Alfarisi</p></td>
+<td><p>Kalitengah Lamongan</p></td>
+<td><p>3.9e-05</p></td>
+<td><p>2e-05</p></td>
+<td><p>0.736851</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-even"><td><p>Okan Syailendra wahyudi</p></td>
+<td><p>Manyar</p></td>
+<td><p>6.6e-05</p></td>
+<td><p>3.1e-05</p></td>
+<td><p>0.70243</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rahardian Ananta</p></td>
+<td><p>Jabon</p></td>
+<td><p>3.2e-05</p></td>
+<td><p>1.1e-05</p></td>
+<td><p>0.848125</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>Triswanti Jannatul Ma’wa</p></td>
+<td><p>Kedungpring Lamongan</p></td>
+<td><p>3e-05</p></td>
+<td><p>1.1e-05</p></td>
+<td><p>0.651185</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p>Muhammad Isa</p></td>
+<td><p>Jogoroto, Jombang</p></td>
+<td><p>3.3e-05</p></td>
+<td><p>1.3e-05</p></td>
+<td><p>0.609055</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-even"><td><p>Laila Maghfiroh</p></td>
+<td><p>Kamal, Bangkalan</p></td>
+<td><p>4.1e-05</p></td>
+<td><p>1.8e-05</p></td>
+<td><p>0.661859</p></td>
+<td><p>11</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dedy Nurohim</p></td>
+<td><p>sambeng lamongan</p></td>
+<td><p>3.1e-05</p></td>
+<td><p>1e-05</p></td>
+<td><p>0.685528</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-even"><td><p>Ahmad Syahrul Farihin</p></td>
+<td><p>Gresik Kota, Gresik</p></td>
+<td><p>6.1e-05</p></td>
+<td><p>2e-05</p></td>
+<td><p>0.843411</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p>Nurhabibatul Umah</p></td>
+<td><p>Kerek Tuban</p></td>
+<td><p>4.3e-05</p></td>
+<td><p>1.6e-05</p></td>
+<td><p>0.685283</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-even"><td><p>Rian Renaldy</p></td>
+<td><p>Waru, Pamekasan</p></td>
+<td><p>1.6e-05</p></td>
+<td><p>7e-06</p></td>
+<td><p>0.770757</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rachelia Andini Tendean</p></td>
+<td><p>Tikala, Manado</p></td>
+<td><p>8e-06</p></td>
+<td><p>5e-06</p></td>
+<td><p>0.747429</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-even"><td><p>Moh Rafie Nazar J</p></td>
+<td><p>Bangkalan Kota,Bangkalan</p></td>
+<td><p>2.8e-05</p></td>
+<td><p>9e-06</p></td>
+<td><p>0.825623</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p>Lailatul Hasanah</p></td>
+<td><p>Socah, Bangkalan</p></td>
+<td><p>3e-05</p></td>
+<td><p>1.1e-05</p></td>
+<td><p>0.765899</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>Ainur Raftuzzaki</p></td>
+<td><p>Nunukan</p></td>
+<td><p>7e-06</p></td>
+<td><p>4e-06</p></td>
+<td><p>0.833144</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ahmad Maulana Ishaq</p></td>
+<td><p>Bandarkedungmulyo</p></td>
+<td><p>3.2e-05</p></td>
+<td><p>1.1e-05</p></td>
+<td><p>0.664111</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-even"><td><p>Mochammad Zaenal Abidin</p></td>
+<td><p>Widang Tuban</p></td>
+<td><p>3.2e-05</p></td>
+<td><p>1e-05</p></td>
+<td><p>0.789597</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p>Muhammad Zaidan Nabil Rafi</p></td>
+<td><p>Kamal, Bangkalan</p></td>
+<td><p>7.2e-05</p></td>
+<td><p>2.5e-05</p></td>
+<td><p>0.866469</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>Robbaniyah Umdatun Ni’mah</p></td>
+<td><p>Cerme, Gresik</p></td>
+<td><p>5.3e-05</p></td>
+<td><p>2.2e-05</p></td>
+<td><p>0.771136</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fahdimas Akmal</p></td>
+<td><p>Kec.Kwanyar , Kab.Bangkalan</p></td>
+<td><p>2.7e-05</p></td>
+<td><p>1.2e-05</p></td>
+<td><p>0.694141</p></td>
+<td><p>11</p></td>
+</tr>
+<tr class="row-even"><td><p>Dewi Geizya</p></td>
+<td><p>Kamal, Banyuajuh</p></td>
+<td><p>11.98377</p></td>
+<td><p>5.091847</p></td>
+<td><p>0.407387</p></td>
+<td><p>42</p></td>
+</tr>
+<tr class="row-odd"><td><p>Magdalena Jovita Hatuopar</p></td>
+<td><p>Pilangkenceng, Madiun</p></td>
+<td><p>2.5e-05</p></td>
+<td><p>7e-06</p></td>
+<td><p>0.843911</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>Alifah Sayyidaturrhohma</p></td>
+<td><p>Kota Sumenep, Sumenep</p></td>
+<td><p>1.5e-05</p></td>
+<td><p>9e-06</p></td>
+<td><p>0.727952</p></td>
+<td><p>11</p></td>
+</tr>
+<tr class="row-odd"><td><p>Riska Nana Nuril Fadilah</p></td>
+<td><p>Asemrowo, Surabaya</p></td>
+<td><p>5.4e-05</p></td>
+<td><p>1.6e-05</p></td>
+<td><p>0.741942</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-even"><td><p>M. Hendrik Purwanto</p></td>
+<td><p>Sreseh, Sampang</p></td>
+<td><p>2.4e-05</p></td>
+<td><p>1e-05</p></td>
+<td><p>0.750765</p></td>
+<td><p>9</p></td>
+</tr>
+<tr class="row-odd"><td><p>Alghifari Amar Mukhasyafah</p></td>
+<td><p>Wonoayu</p></td>
+<td><p>3.6e-05</p></td>
+<td><p>1.1e-05</p></td>
+<td><p>0.838884</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>Fathan Ruhul Alam</p></td>
+<td><p>Warudoyong, Kota Sukabumi</p></td>
+<td><p>3.6e-05</p></td>
+<td><p>1.1e-05</p></td>
+<td><p>0.561411</p></td>
+<td><p>15</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fathul Aziz Saifuddin</p></td>
+<td><p>Dukun, Gresik</p></td>
+<td><p>3e-05</p></td>
+<td><p>1.1e-05</p></td>
+<td><p>0.73751</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-even"><td><p>Deo Candra Saputra</p></td>
+<td><p>Widodaren, Ngawi</p></td>
+<td><p>2.4e-05</p></td>
+<td><p>6e-06</p></td>
+<td><p>0.872358</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rifqi Fairurrafi</p></td>
+<td><p>Kec. Bangkalan, Kab. Bangkalan</p></td>
+<td><p>2.9e-05</p></td>
+<td><p>1.1e-05</p></td>
+<td><p>0.891563</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>Mohammad Aziz Huzaini</p></td>
+<td><p>Tanah Merah, Bangkalan</p></td>
+<td><p>2.5e-05</p></td>
+<td><p>8e-06</p></td>
+<td><p>0.739665</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>Muhammad izzul Millah Aqil</p></td>
+<td><p>Wonokromo, Surabaya</p></td>
+<td><p>4e-05</p></td>
+<td><p>1.1e-05</p></td>
+<td><p>0.811484</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-even"><td><p>M. Fatihul Umam</p></td>
+<td><p>Kwanyar, Bangkalan</p></td>
+<td><p>2.7e-05</p></td>
+<td><p>1.3e-05</p></td>
+<td><p>0.657224</p></td>
+<td><p>13</p></td>
+</tr>
+<tr class="row-odd"><td><p>A.Choiril Anwar El-Asfihani Risydan</p></td>
+<td><p>Banyu Ajuh, Perumnas, Kamal</p></td>
+<td><p>4.3e-05</p></td>
+<td><p>1.8e-05</p></td>
+<td><p>0.625351</p></td>
+<td><p>11</p></td>
+</tr>
+<tr class="row-even"><td><p>Verdi Setyawan Ardiansyah Putra</p></td>
+<td><p>Menganti Gresik</p></td>
+<td><p>4.6e-05</p></td>
+<td><p>1.9e-05</p></td>
+<td><p>0.713724</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p>Kurnia Maulinda Sari</p></td>
+<td><p>Labang, Bangkalan</p></td>
+<td><p>3.1e-05</p></td>
+<td><p>1.4e-05</p></td>
+<td><p>0.681756</p></td>
+<td><p>12</p></td>
+</tr>
+<tr class="row-even"><td><p>Marshella Aulia Putri</p></td>
+<td><p>Kec. Kalianget, Sumenep</p></td>
+<td><p>1.6e-05</p></td>
+<td><p>6e-06</p></td>
+<td><p>0.867727</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Data lengkap sekelas: <a class="reference download internal" download="" href="_downloads/230546cc762ab3c243d21682d8402948/ekstraksi_fitur_no2_psd-a.csv"><span class="xref download myst"><code class="docutils literal notranslate"><span class="pre">ekstraksi_fitur_no2_psd-a.csv</span></code></span></a></p>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="interpretasi">
-<h1>Interpretasi:<a class="headerlink" href="#interpretasi" title="Link to this heading">#</a></h1>
-<ul class="simple">
-<li><p>Transportasi: kemungkinan jadi faktor utama, tapi tidak terlalu padat. Oleh sebab itu mean rendah dan entropy tinggi (acak).</p></li>
-<li><p>Industri/pertanian: tidak tampak pola musiman kuat dari data ini.</p></li>
-<li><p>Kehidupan harian: ada sedikit pola berulang (autocorr), mungkin jam sibuk pagi–sore, tapi tidak konsisten sepanjang tahun.</p></li>
-</ul>
 <section id="pengumpulan">
 <h2>Pengumpulan<a class="headerlink" href="#pengumpulan" title="Link to this heading">#</a></h2>
 <p>File <code class="docutils literal notranslate"><span class="pre">NO2_Cerme_TSFEL.csv</span></code> (tanpa modifikasi) telah diunggah ke sistem pengumpulan kelas: <a class="reference external" href="https://psd.basisdata2-c.my.id/index.php">psd.basisdata2-c.my.id</a>, atas nama [Nama Kamu], Kecamatan Cerme.</p>
@@ -560,7 +1051,6 @@ Hasil ekstraksi: <a class="reference download internal" download="" href="_downl
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Tugas 3: Preprocessing &amp; Ekstraksi Fitur (TSFEL)</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latar-belakang">Latar Belakang</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-kerja">Alur Kerja</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boundary-wilayah-kecamatan-cerme">1. Boundary Wilayah: Kecamatan Cerme</a></li>
@@ -577,15 +1067,15 @@ Hasil ekstraksi: <a class="reference download internal" download="" href="_downl
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-fractal-6-fitur-kategori-tambahan-di-luar-3-domain-utama">Domain Fractal (6 fitur — kategori tambahan di luar 3 domain utama)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-interpretasi">5. Hasil &amp; Interpretasi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-ekstraksi-fitur-milik-sendiri">5. Hasil Ekstraksi Fitur (Milik Sendiri)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-dengan-kecamatan-lain-sekelas">6. Perbandingan dengan Kecamatan Lain (Sekelas)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rata-rata-no2-calc-mean-antar-kecamatan">Rata-rata NO2 (calc_mean) Antar Kecamatan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-entropy-antar-kecamatan">Spectral Entropy Antar Kecamatan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabel-ringkas-perbandingan">Tabel Ringkas Perbandingan</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi">Interpretasi:</a><ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengumpulan">Pengumpulan</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>
