@@ -31,3 +31,7 @@ Blog ini berisi catatan progres saya mengerjakan Mata Kuliah Proyek Sains Data S
   <span class="psd-log-tag">TUGAS 03</span>
   <a href="tugas3-preprocessing-tsfel.html">Preprocessing & Ekstraksi Fitur TSFEL (NO2, Kec. Cerme)</a>
 </div>
+<div class="psd-log-entry">
+  <span class="psd-log-tag">TUGAS 03</span>
+  <a href="tugas3.1-preprocessing-tsfel.md">Preprocessing & Ekstraksi Fitur TSFEL (NO2, Kec. Cerme) 2</a>
+</div>
