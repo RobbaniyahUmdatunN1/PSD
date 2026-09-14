@@ -214,16 +214,6 @@ Spectral entropy menunjukkan seberapa "acak" (entropy tinggi) vs "periodik/musim
 
 Data lengkap sekelas: [`ekstraksi_fitur_no2_psd-a.csv`](ekstraksi_fitur_no2_psd-a.csv)
 
-## 7. Hasil & Interpretasi
-
-<!-- Ganti dengan beberapa nilai fitur kunci dari hasil ekstraksi kamu, misal: -->
-- `calc_mean` (rata-rata NO2 setahun): ...
-- `calc_std` (variasi NO2): ...
-- `spectral_entropy`: mengindikasikan seberapa "acak" vs "periodik" pola NO2 sepanjang tahun
-- `autocorr`: mengindikasikan seberapa kuat pola berulang (misal pola mingguan akibat aktivitas kerja vs akhir pekan)
-
-<!-- Tambahkan interpretasi kamu: apakah pola NO2 di Cerme lebih "musiman/periodik" (spectral tinggi) atau cenderung acak? Bandingkan dengan dugaan sumber polutan (lalu lintas vs pertanian). -->
-
 ## Pengumpulan
 
 File `NO2_Cerme_TSFEL.csv` (tanpa modifikasi) telah diunggah ke sistem pengumpulan kelas: [psd.basisdata2-c.my.id](https://psd.basisdata2-c.my.id/index.php), atas nama [Nama Kamu], Kecamatan Cerme.
