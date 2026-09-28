@@ -31,3 +31,10 @@ Blog ini berisi catatan progres saya mengerjakan Mata Kuliah Proyek Sains Data S
   <span class="psd-log-tag">TUGAS 03</span>
   <a href="tugas3-preprocessing-tsfel.html">Preprocessing & Ekstraksi Fitur TSFEL (NO2, Kec. Cerme)</a>
 </div>
+<div class="psd-log-entry">
+  <span class="psd-log-tag">TUGAS 04</span>
+  <a href="tugas4-eda-pca-clustering.html">EDA-PCA-Clustering</a>
+  <a href="fitur-negative-turning-penjelasan.html">Fitur Negative Turning</a>
+  <a href="fitur-mfcc-penjelasan.html">Fitur MFCC</a>
+</div>
+</div>
