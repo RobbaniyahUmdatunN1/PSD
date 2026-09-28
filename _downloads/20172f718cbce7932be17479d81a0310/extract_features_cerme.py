@@ -3,14 +3,12 @@ import numpy as np
 import inspect
 import tsfel.feature_extraction.features as tsfel_features
 
-# ---------- 1. Muat dan bersihkan data ----------
-df = pd.read_csv('mystorage/NO2-Cerme.csv')
+df = pd.read_csv('mystorage/CO-Cerme.csv')
 df['date'] = pd.to_datetime(df['date'])
 df = df.sort_values('date').reset_index(drop=True)
 
-target_pollutant = 'NO2'
+target_pollutant = 'CO'
 
-# --- FIX: paksa kolom target jadi numerik, nilai yang gagal dikonversi -> NaN ---
 df[target_pollutant] = pd.to_numeric(df[target_pollutant], errors='coerce')
 
 n_missing_before = df[target_pollutant].isna().sum()
@@ -28,7 +26,6 @@ df_clean = df.set_index('date').interpolate(method='time').ffill().bfill()
 fs = 1
 signal_1d = df_clean[target_pollutant].astype(float).values
 
-# ---------- 2. Daftar PERSIS fitur yang diminta ----------
 FEATURE_LIST = """abs_energy auc autocorr average_power calc_centroid calc_max calc_mean
 calc_median calc_min calc_std calc_var dfa distance ecdf ecdf_percentile ecdf_percentile_count
 ecdf_slope entropy fundamental_frequency higuchi_fractal_dimension hist_mode human_range_energy

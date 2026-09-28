@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Selamat Datang di Catatan Proyek Sains Data &#8212; Catatan Proyek Sains Data</title>
+    <title>Fitur: Negative Turning Points &#8212; Catatan Proyek Sains Data</title>
   
   
   
@@ -61,11 +61,12 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'fitur-negative-turning-penjelasan';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Profil" href="profil.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -188,7 +189,7 @@
     
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="intro.html">
   
   
   
@@ -209,8 +210,8 @@
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
                     Selamat Datang di Catatan Proyek Sains Data
                 </a>
             </li>
@@ -291,7 +292,7 @@
       
       
       
-      <li><a href="_sources/intro.md" target="_blank"
+      <li><a href="_sources/fitur-negative-turning-penjelasan.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -367,7 +368,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Selamat Datang di Catatan Proyek Sains Data</h1>
+    <h1>Fitur: Negative Turning Points</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -377,7 +378,13 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#daftar-tugas-materi">Daftar Tugas &amp; Materi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar">1. Konsep Dasar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus">2. Rumus</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-manual-co">3. Contoh Perhitungan Manual CO</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-manual-no2">4. Contoh Perhitungan Manual NO2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-manual-so2">5. Contoh Perhitungan Manual SO2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-perbandingan-3-polutan">6. Ringkasan Perbandingan 3 Polutan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi">7. Interpretasi</a></li>
 </ul>
             </nav>
         </div>
@@ -389,45 +396,227 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="selamat-datang-di-catatan-proyek-sains-data">
-<h1>Selamat Datang di Catatan Proyek Sains Data<a class="headerlink" href="#selamat-datang-di-catatan-proyek-sains-data" title="Link to this heading">#</a></h1>
-<div class="psd-hero">
-  <img src="_static/charts/foto-profil.jpeg" alt="Foto profil" style="width:120px; height:120px; border-radius:50%; object-fit:cover; border:3px solid #1F6F78; flex-shrink:0;">
-  <div class="psd-hero-text">
-    <h1>Robbaniyah Umdatun Ni'mah</h1><br>
-    <div class="psd-chips">
-      <span class="psd-chip">NIM: 240411100101</span><br>
-      <span class="psd-chip">Prodi: Teknik Informatika</span> <br>
-      <span class="psd-chip">Semester 5</span> <br>
-      <span class="psd-chip">Dosen: Mula'ab, S.Si., M.Kom.</span>
-    </div>
-  </div>
+  <section class="tex2jax_ignore mathjax_ignore" id="fitur-negative-turning-points">
+<h1>Fitur: Negative Turning Points<a class="headerlink" href="#fitur-negative-turning-points" title="Link to this heading">#</a></h1>
+<p><strong>Nama:</strong> Robbaniyah Umdatun Ni’mah
+<strong>Fitur yang dijelaskan:</strong> <code class="docutils literal notranslate"><span class="pre">negative_turning(signal)</span></code>
+<strong>Domain TSFEL:</strong> Temporal
+<strong>Data yang digunakan:</strong> CO, NO2, SO2 Kecamatan Cerme (data pribadi)</p>
+<section id="konsep-dasar">
+<h2>1. Konsep Dasar<a class="headerlink" href="#konsep-dasar" title="Link to this heading">#</a></h2>
+<p><strong>Negative turning point</strong> adalah titik pada sinyal di mana nilainya berubah dari <strong>menurun</strong> menjadi <strong>naik</strong>, dengan kata lain, titik tersebut adalah <strong>local minimum (titik lembah lokal)</strong> pada sinyal. Fitur ini menghitung <strong>berapa kali</strong> kejadian seperti ini muncul sepanjang keseluruhan data.</p>
+<p>Fitur ini termasuk domain <strong>Temporal</strong> karena murni mengandalkan urutan nilai dari waktu ke waktu (bukan nilai absolutnya), untuk menangkap seberapa sering sinyal “berbalik arah dari turun ke naik”. semakin banyak negative turning points, semakin sering/fluktuatif sinyalnya naik-turun (bukan tren yang mulus).</p>
+</section>
+<section id="rumus">
+<h2>2. Rumus<a class="headerlink" href="#rumus" title="Link to this heading">#</a></h2>
+<p>Diberikan sinyal <span class="math notranslate nohighlight">\(x_1, x_2, ..., x_n\)</span>, hitung dulu selisih antar titik berurutan:</p>
+<div class="math notranslate nohighlight">
+\[\Delta_i = x_{i+1} - x_i\]</div>
+<p>Titik ke-<span class="math notranslate nohighlight">\(i\)</span> (dengan <span class="math notranslate nohighlight">\(2 \le i \le n-1\)</span>) disebut <strong>negative turning point</strong> jika:</p>
+<div class="math notranslate nohighlight">
+\[\Delta_{i-1} &lt; 0 \quad \text{dan} \quad \Delta_i &gt; 0\]</div>
+<p>(artinya: sebelum titik ini sinyal sedang turun, setelah titik ini sinyal mulai naik — titik ini adalah lembahnya)</p>
+<div class="math notranslate nohighlight">
+\[\text{negative\_turning} = \sum_{i=2}^{n-1} \mathbb{1}\left[\Delta_{i-1} &lt; 0 \ \text{dan} \ \Delta_i &gt; 0\right]\]</div>
+</section>
+<section id="contoh-perhitungan-manual-co">
+<h2>3. Contoh Perhitungan Manual CO<a class="headerlink" href="#contoh-perhitungan-manual-co" title="Link to this heading">#</a></h2>
+<p>Menggunakan cuplikan 10 hari pertama data CO Kecamatan Cerme:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Hari ke</p></th>
+<th class="head"><p>Nilai CO (x)</p></th>
+<th class="head"><p>Selisih (Δ)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2025-08-31</p></td>
+<td><p>0.026594</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p>2025-09-01</p></td>
+<td><p>0.024891</p></td>
+<td><p>Delta1 = 0.024891 - 0.026594 = -0.001702</p></td>
+</tr>
+<tr class="row-even"><td><p>2025-09-02</p></td>
+<td><p>0.024403</p></td>
+<td><p>Delta2 = 0.024403 - 0.024891 = -0.000488</p></td>
+</tr>
+<tr class="row-odd"><td><p>2025-09-03</p></td>
+<td><p>0.024798</p></td>
+<td><p>Delta3 = 0.024798 - 0.024403 = 0.000395</p></td>
+</tr>
+<tr class="row-even"><td><p>2025-09-04</p></td>
+<td><p>0.027628</p></td>
+<td><p>Delta4 = 0.027628 - 0.024798 = 0.002831</p></td>
+</tr>
+<tr class="row-odd"><td><p>2025-09-05</p></td>
+<td><p>0.032402</p></td>
+<td><p>Delta5 = 0.032402 - 0.027628 = 0.004774</p></td>
+</tr>
+<tr class="row-even"><td><p>2025-09-06</p></td>
+<td><p>0.029381</p></td>
+<td><p>Delta6 = 0.029381 - 0.032402 = -0.003021</p></td>
+</tr>
+<tr class="row-odd"><td><p>2025-09-09</p></td>
+<td><p>0.032387</p></td>
+<td><p>Delta7 = 0.032387 - 0.029381 = 0.003005</p></td>
+</tr>
+<tr class="row-even"><td><p>2025-09-10</p></td>
+<td><p>0.023247</p></td>
+<td><p>Delta8 = 0.023247 - 0.032387 = -0.009140</p></td>
+</tr>
+<tr class="row-odd"><td><p>2025-09-12</p></td>
+<td><p>0.032229</p></td>
+<td><p>Delta9 = 0.032229 - 0.023247 = 0.008981</p></td>
+</tr>
+</tbody>
+</table>
 </div>
-<p>Sain Data merupakan bidang yang memanfaatkan berbagai metode dan teknik untuk mengolah serta menganalisis data sehingga dapat menghasilkan informasi dan pengetahuan yang berguna. Melalui proses pengumpulan, pengolahan, analisis, dan visualisasi data, berbagai pola maupun informasi penting dapat ditemukan untuk membantu dalam memahami suatu permasalahan dan mengambil keputusan.</p>
-<p>Blog ini berisi catatan progres saya mengerjakan Mata Kuliah Proyek Sains Data Semester 5 — mulai dari pengumpulan data, eksplorasi, hingga analisis akhir.</p>
-<section id="daftar-tugas-materi">
-<h2>Daftar Tugas &amp; Materi<a class="headerlink" href="#daftar-tugas-materi" title="Link to this heading">#</a></h2>
-<div class="psd-log-entry">
-  <span class="psd-log-tag">TUGAS 01</span>
-  <a href="tugas1-crawling-polutan.html">Crawling Data Polutan Udara di Gresik</a>
+<p><strong>Jumlah negative turning points (manual, 10 hari pertama):</strong> 3
+<strong>Hasil TSFEL:</strong> 3.0
+<strong>Status:</strong> Cocok</p>
+</section>
+<section id="contoh-perhitungan-manual-no2">
+<h2>4. Contoh Perhitungan Manual NO2<a class="headerlink" href="#contoh-perhitungan-manual-no2" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Hari ke</p></th>
+<th class="head"><p>Nilai NO2 (x)</p></th>
+<th class="head"><p>Selisih (Δ)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2025-08-31</p></td>
+<td><p>0.000046</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p>2025-09-01</p></td>
+<td><p>0.000036</p></td>
+<td><p>Delta1 = 0.000036 - 0.000046 = -0.000010</p></td>
+</tr>
+<tr class="row-even"><td><p>2025-09-02</p></td>
+<td><p>0.000020</p></td>
+<td><p>Delta2 = 0.000020 - 0.000036 = -0.000016</p></td>
+</tr>
+<tr class="row-odd"><td><p>2025-09-03</p></td>
+<td><p>0.000038</p></td>
+<td><p>Delta3 = 0.000038 - 0.000020 = 0.000018</p></td>
+</tr>
+<tr class="row-even"><td><p>2025-09-04</p></td>
+<td><p>0.000057</p></td>
+<td><p>Delta4 = 0.000057 - 0.000038 = 0.000018</p></td>
+</tr>
+<tr class="row-odd"><td><p>2025-09-05</p></td>
+<td><p>0.000086</p></td>
+<td><p>Delta5 = 0.000086 - 0.000057 = 0.000029</p></td>
+</tr>
+<tr class="row-even"><td><p>2025-09-07</p></td>
+<td><p>0.000069</p></td>
+<td><p>Delta6 = 0.000069 - 0.000086 = -0.000017</p></td>
+</tr>
+<tr class="row-odd"><td><p>2025-09-10</p></td>
+<td><p>0.000080</p></td>
+<td><p>Delta7 = 0.000080 - 0.000069 = 0.000011</p></td>
+</tr>
+<tr class="row-even"><td><p>2025-09-11</p></td>
+<td><p>0.000035</p></td>
+<td><p>Delta8 = 0.000035 - 0.000080 = -0.000045</p></td>
+</tr>
+<tr class="row-odd"><td><p>2025-09-12</p></td>
+<td><p>0.000066</p></td>
+<td><p>Delta9 = 0.000066 - 0.000035 = 0.000031</p></td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="psd-log-entry">
-  <span class="psd-log-tag">TUGAS 02</span>
-  <a href="tugas2-postgres-knime.html">Migratsi ke PostgreSQL dan Analisis KNIME</a>
+<p><strong>Jumlah negative turning points (manual, 10 hari pertama):</strong> 3
+<strong>Hasil TSFEL:</strong> 3.0
+<strong>Status:</strong> Cocok</p>
+</section>
+<section id="contoh-perhitungan-manual-so2">
+<h2>5. Contoh Perhitungan Manual SO2<a class="headerlink" href="#contoh-perhitungan-manual-so2" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Hari ke</p></th>
+<th class="head"><p>Nilai SO2 (x)</p></th>
+<th class="head"><p>Selisih (Δ)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2025-08-31</p></td>
+<td><p>0.000052</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p>2025-09-01</p></td>
+<td><p>-0.000001</p></td>
+<td><p>Delta1 = -0.000001 - 0.000052 = -0.000053</p></td>
+</tr>
+<tr class="row-even"><td><p>2025-09-02</p></td>
+<td><p>0.000021</p></td>
+<td><p>Delta2 = 0.000021 - -0.000001 = 0.000022</p></td>
+</tr>
+<tr class="row-odd"><td><p>2025-09-03</p></td>
+<td><p>0.000056</p></td>
+<td><p>Delta3 = 0.000056 - 0.000021 = 0.000035</p></td>
+</tr>
+<tr class="row-even"><td><p>2025-09-04</p></td>
+<td><p>0.000038</p></td>
+<td><p>Delta4 = 0.000038 - 0.000056 = -0.000018</p></td>
+</tr>
+<tr class="row-odd"><td><p>2025-09-05</p></td>
+<td><p>-0.000016</p></td>
+<td><p>Delta5 = -0.000016 - 0.000038 = -0.000054</p></td>
+</tr>
+<tr class="row-even"><td><p>2025-09-06</p></td>
+<td><p>-0.000012</p></td>
+<td><p>Delta6 = -0.000012 - -0.000016 = 0.000003</p></td>
+</tr>
+<tr class="row-odd"><td><p>2025-09-07</p></td>
+<td><p>0.000002</p></td>
+<td><p>Delta7 = 0.000002 - -0.000012 = 0.000015</p></td>
+</tr>
+<tr class="row-even"><td><p>2025-09-08</p></td>
+<td><p>0.000061</p></td>
+<td><p>Delta8 = 0.000061 - 0.000002 = 0.000058</p></td>
+</tr>
+<tr class="row-odd"><td><p>2025-09-09</p></td>
+<td><p>0.000006</p></td>
+<td><p>Delta9 = 0.000006 - 0.000061 = -0.000055</p></td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="psd-log-entry">
-  <span class="psd-log-tag">TUGAS 03</span>
-  <a href="tugas3-preprocessing-tsfel.html">Preprocessing & Ekstraksi Fitur TSFEL (NO2, Kec. Cerme)</a>
+<p><strong>Jumlah negative turning points (manual, 10 hari pertama):</strong> 2
+<strong>Hasil TSFEL:</strong> 2.0
+<strong>Status:</strong> Cocok</p>
+</section>
+<section id="ringkasan-perbandingan-3-polutan">
+<h2>6. Ringkasan Perbandingan 3 Polutan<a class="headerlink" href="#ringkasan-perbandingan-3-polutan" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Polutan</p></th>
+<th class="head"><p>Jumlah negative_turning (setahun penuh)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CO</p></td>
+<td><p>77 (264 hari)</p></td>
+</tr>
+<tr class="row-odd"><td><p>NO2</p></td>
+<td><p>66 (232 hari)</p></td>
+</tr>
+<tr class="row-even"><td><p>SO2</p></td>
+<td><p>118 (364 hari)</p></td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="psd-log-entry">
-  <span class="psd-log-tag">TUGAS 04</span>
-  <a href="tugas4-eda-pca-clustering.html">EDA-PCA-Clustering</a>
-  <a href="fitur-negative-turning-penjelasan.html">Fitur Negative Turning</a>
-  <a href="fitur-mfcc-penjelasan.html">Fitur MFCC</a>
-</div>
-</div></section>
-<div class="toctree-wrapper compound">
-</div>
+</section>
+<section id="interpretasi">
+<h2>7. Interpretasi<a class="headerlink" href="#interpretasi" title="Link to this heading">#</a></h2>
+<p>Nilai <code class="docutils literal notranslate"><span class="pre">negative_turning</span></code> yang tinggi pada suatu polutan mengindikasikan konsentrasinya <strong>sering naik-turun secara tidak beraturan</strong> (misalnya dipengaruhi variasi lalu lintas harian atau cuaca), bukan mengikuti tren yang mulus/musiman. Perbandingan antar polutan (CO vs NO2 vs SO2) di Kecamatan Cerme bisa menunjukkan mana yang sumbernya lebih “sporadis” (misal CO dari kendaraan, cenderung naik-turun harian) dibanding yang lebih stabil/musiman (misal SO2 dari sumber industri jauh yang pengaruhnya lebih konstan).</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -460,15 +649,6 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="right-next"
-       href="profil.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Profil</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -487,7 +667,13 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#daftar-tugas-materi">Daftar Tugas &amp; Materi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar">1. Konsep Dasar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rumus">2. Rumus</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-manual-co">3. Contoh Perhitungan Manual CO</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-manual-no2">4. Contoh Perhitungan Manual NO2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-manual-so2">5. Contoh Perhitungan Manual SO2</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-perbandingan-3-polutan">6. Ringkasan Perbandingan 3 Polutan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi">7. Interpretasi</a></li>
 </ul>
   </nav></div>
 
@@ -512,7 +698,7 @@ By Robbaniyah Umdatun Ni'mah (240411100101)
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2026.
       <br/>
     
   </p>

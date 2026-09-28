@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Selamat Datang di Catatan Proyek Sains Data &#8212; Catatan Proyek Sains Data</title>
+    <title>Fitur: MFCC (Mel-Frequency Cepstral Coefficients) &#8212; Catatan Proyek Sains Data</title>
   
   
   
@@ -61,11 +61,12 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'intro';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'fitur-mfcc-penjelasan';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Profil" href="profil.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -188,7 +189,7 @@
     
   
 
-<a class="navbar-brand logo" href="#">
+<a class="navbar-brand logo" href="intro.html">
   
   
   
@@ -209,8 +210,8 @@
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
-            <li class="toctree-l1 current active">
-                <a class="reference internal" href="#">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
                     Selamat Datang di Catatan Proyek Sains Data
                 </a>
             </li>
@@ -291,7 +292,7 @@
       
       
       
-      <li><a href="_sources/intro.md" target="_blank"
+      <li><a href="_sources/fitur-mfcc-penjelasan.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -367,7 +368,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Selamat Datang di Catatan Proyek Sains Data</h1>
+    <h1>Fitur: MFCC (Mel-Frequency Cepstral Coefficients)</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -377,7 +378,20 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#daftar-tugas-materi">Daftar Tugas &amp; Materi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar">1. Konsep Dasar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-perhitungan-pipeline">2. Alur Perhitungan (Pipeline)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-1-pre-emphasis-opsional">Tahap 1: Pre-emphasis (opsional)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-2-transformasi-fourier-fft">Tahap 2: Transformasi Fourier (FFT)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-3-power-spectrum">Tahap 3: Power Spectrum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-4-filter-bank-mel">Tahap 4: Filter Bank Mel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-5-logaritma-skala-desibel">Tahap 5: Logaritma (skala desibel)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-6-discrete-cosine-transform-dct-tipe-2-ortonormal">Tahap 6: Discrete Cosine Transform (DCT), tipe-2 ortonormal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-7-mean-normalization">Tahap 7: Mean Normalization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-8-cepstral-liftering">Tahap 8: Cepstral Liftering</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-dibuktikan-dengan-kode">3. Contoh Perhitungan (Dibuktikan dengan Kode)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi">4. Interpretasi</a></li>
 </ul>
             </nav>
         </div>
@@ -389,45 +403,119 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="selamat-datang-di-catatan-proyek-sains-data">
-<h1>Selamat Datang di Catatan Proyek Sains Data<a class="headerlink" href="#selamat-datang-di-catatan-proyek-sains-data" title="Link to this heading">#</a></h1>
-<div class="psd-hero">
-  <img src="_static/charts/foto-profil.jpeg" alt="Foto profil" style="width:120px; height:120px; border-radius:50%; object-fit:cover; border:3px solid #1F6F78; flex-shrink:0;">
-  <div class="psd-hero-text">
-    <h1>Robbaniyah Umdatun Ni'mah</h1><br>
-    <div class="psd-chips">
-      <span class="psd-chip">NIM: 240411100101</span><br>
-      <span class="psd-chip">Prodi: Teknik Informatika</span> <br>
-      <span class="psd-chip">Semester 5</span> <br>
-      <span class="psd-chip">Dosen: Mula'ab, S.Si., M.Kom.</span>
-    </div>
-  </div>
-</div>
-<p>Sain Data merupakan bidang yang memanfaatkan berbagai metode dan teknik untuk mengolah serta menganalisis data sehingga dapat menghasilkan informasi dan pengetahuan yang berguna. Melalui proses pengumpulan, pengolahan, analisis, dan visualisasi data, berbagai pola maupun informasi penting dapat ditemukan untuk membantu dalam memahami suatu permasalahan dan mengambil keputusan.</p>
-<p>Blog ini berisi catatan progres saya mengerjakan Mata Kuliah Proyek Sains Data Semester 5 — mulai dari pengumpulan data, eksplorasi, hingga analisis akhir.</p>
-<section id="daftar-tugas-materi">
-<h2>Daftar Tugas &amp; Materi<a class="headerlink" href="#daftar-tugas-materi" title="Link to this heading">#</a></h2>
-<div class="psd-log-entry">
-  <span class="psd-log-tag">TUGAS 01</span>
-  <a href="tugas1-crawling-polutan.html">Crawling Data Polutan Udara di Gresik</a>
-</div>
-<div class="psd-log-entry">
-  <span class="psd-log-tag">TUGAS 02</span>
-  <a href="tugas2-postgres-knime.html">Migratsi ke PostgreSQL dan Analisis KNIME</a>
-</div>
-<div class="psd-log-entry">
-  <span class="psd-log-tag">TUGAS 03</span>
-  <a href="tugas3-preprocessing-tsfel.html">Preprocessing & Ekstraksi Fitur TSFEL (NO2, Kec. Cerme)</a>
-</div>
-<div class="psd-log-entry">
-  <span class="psd-log-tag">TUGAS 04</span>
-  <a href="tugas4-eda-pca-clustering.html">EDA-PCA-Clustering</a>
-  <a href="fitur-negative-turning-penjelasan.html">Fitur Negative Turning</a>
-  <a href="fitur-mfcc-penjelasan.html">Fitur MFCC</a>
-</div>
-</div></section>
-<div class="toctree-wrapper compound">
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="fitur-mfcc-mel-frequency-cepstral-coefficients">
+<h1>Fitur: MFCC (Mel-Frequency Cepstral Coefficients)<a class="headerlink" href="#fitur-mfcc-mel-frequency-cepstral-coefficients" title="Link to this heading">#</a></h1>
+<p><strong>Nama:</strong> Robbaniyah Umdatun Ni’mah
+<strong>Fitur yang dijelaskan:</strong> <code class="docutils literal notranslate"><span class="pre">mfcc(signal,</span> <span class="pre">fs[,</span> <span class="pre">pre_emphasis,</span> <span class="pre">nfft,</span> <span class="pre">...])</span></code>
+<strong>Domain TSFEL:</strong> Spectral</p>
+<section id="konsep-dasar">
+<h2>1. Konsep Dasar<a class="headerlink" href="#konsep-dasar" title="Link to this heading">#</a></h2>
+<p>MFCC (Mel-Frequency Cepstral Coefficients) adalah fitur yang awalnya dikembangkan untuk pengolahan sinyal suara/audio, yang menangkap <strong>bentuk spektrum frekuensi sinyal dengan cara meniru persepsi pendengaran manusia</strong>. Manusia lebih peka terhadap perbedaan frekuensi rendah dibanding frekuensi tinggi. MFCC mengakomodasi ini lewat <strong>skala Mel</strong>, sebuah transformasi frekuensi yang non-linear (lebih rapat di frekuensi rendah, lebih renggang di frekuensi tinggi).</p>
+<p>Dalam konteks TSFEL, MFCC diterapkan pada sinyal time-series apa pun (bukan cuma audio) sebagai cara mengekstrak pola bentuk spektral yang ringkas dari sinyal tersebut.</p>
+</section>
+<section id="alur-perhitungan-pipeline">
+<h2>2. Alur Perhitungan (Pipeline)<a class="headerlink" href="#alur-perhitungan-pipeline" title="Link to this heading">#</a></h2>
+<p>MFCC dihitung melalui 6 tahap berurutan:</p>
+<section id="tahap-1-pre-emphasis-opsional">
+<h3>Tahap 1: Pre-emphasis (opsional)<a class="headerlink" href="#tahap-1-pre-emphasis-opsional" title="Link to this heading">#</a></h3>
+<p>Menguatkan komponen frekuensi tinggi pada sinyal, untuk menyeimbangkan spektrum:</p>
+<div class="math notranslate nohighlight">
+\[y[n] = x[n] - \alpha \cdot x[n-1]\]</div>
+<p>dengan <span class="math notranslate nohighlight">\(\alpha\)</span> (pre_emphasis) biasanya bernilai 0,97.</p>
+</section>
+<section id="tahap-2-transformasi-fourier-fft">
+<h3>Tahap 2: Transformasi Fourier (FFT)<a class="headerlink" href="#tahap-2-transformasi-fourier-fft" title="Link to this heading">#</a></h3>
+<p>Mengubah sinyal dari domain waktu ke domain frekuensi:</p>
+<div class="math notranslate nohighlight">
+\[X(k) = \sum_{n=0}^{N-1} y[n] \cdot e^{-j 2\pi kn/N}\]</div>
+</section>
+<section id="tahap-3-power-spectrum">
+<h3>Tahap 3: Power Spectrum<a class="headerlink" href="#tahap-3-power-spectrum" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[P(k) = \frac{|X(k)|^2}{N}\]</div>
+</section>
+<section id="tahap-4-filter-bank-mel">
+<h3>Tahap 4: Filter Bank Mel<a class="headerlink" href="#tahap-4-filter-bank-mel" title="Link to this heading">#</a></h3>
+<p>Frekuensi (Hz) dikonversi ke skala Mel:</p>
+<div class="math notranslate nohighlight">
+\[\text{mel}(f) = 2595 \cdot \log_{10}\left(1 + \frac{f}{700}\right)\]</div>
+<p>Dipasang serangkaian <strong>filter segitiga</strong> (default 40 filter) yang tersebar merata pada skala Mel, lalu <strong>dinormalisasi berdasarkan lebar filter</strong> (supaya filter yang lebih lebar di frekuensi tinggi tidak “membesar-besarkan” energi secara tidak proporsional):</p>
+<div class="math notranslate nohighlight">
+\[\text{enorm}_m = \frac{2}{f_{m+1} - f_{m-1}}\]</div>
+<p>Energi spektrum di tiap filter (setelah dinormalisasi) dijumlahkan:</p>
+<div class="math notranslate nohighlight">
+\[S(m) = \text{enorm}_m \cdot \sum_{k} P(k) \cdot H_m(k)\]</div>
+</section>
+<section id="tahap-5-logaritma-skala-desibel">
+<h3>Tahap 5: Logaritma (skala desibel)<a class="headerlink" href="#tahap-5-logaritma-skala-desibel" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[20 \cdot \log_{10}(S(m))\]</div>
+</section>
+<section id="tahap-6-discrete-cosine-transform-dct-tipe-2-ortonormal">
+<h3>Tahap 6: Discrete Cosine Transform (DCT), tipe-2 ortonormal<a class="headerlink" href="#tahap-6-discrete-cosine-transform-dct-tipe-2-ortonormal" title="Link to this heading">#</a></h3>
+<p>Menghasilkan koefisien cepstral, mengambil koefisien ke-1 sampai ke-12 (koefisien ke-0 dibuang):</p>
+<div class="math notranslate nohighlight">
+\[C(n) = \sqrt{\frac{2}{M}} \sum_{m=0}^{M-1} \log(S(m)) \cdot \cos\left(\frac{\pi(2m+1)n}{2M}\right), \quad n = 1, ..., 12\]</div>
+</section>
+<section id="tahap-7-mean-normalization">
+<h3>Tahap 7: Mean Normalization<a class="headerlink" href="#tahap-7-mean-normalization" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[C'(n) = C(n) - \left(\overline{C} + 10^{-8}\right)\]</div>
+</section>
+<section id="tahap-8-cepstral-liftering">
+<h3>Tahap 8: Cepstral Liftering<a class="headerlink" href="#tahap-8-cepstral-liftering" title="Link to this heading">#</a></h3>
+<p>Langkah terakhir untuk mengurangi bobot koefisien orde tinggi:</p>
+<div class="math notranslate nohighlight">
+\[\text{lift}(n) = 1 + \frac{L}{2}\sin\left(\frac{\pi n}{L}\right), \quad L = 22 \text{ (cep\_lifter)}\]</div>
+<div class="math notranslate nohighlight">
+\[\text{MFCC}(n) = C'(n) \cdot \text{lift}(n)\]</div>
+<p><strong>Catatan penting:</strong> hasil akhir MFCC berupa <strong>12 koefisien sekaligus</strong> (bukan 1 angka), sehingga saat digunakan sebagai 1 kolom fitur, nilai-nilai koefisien tersebut dirata-ratakan menjadi 1 angka ringkasan.</p>
+</section>
+</section>
+<section id="contoh-perhitungan-dibuktikan-dengan-kode">
+<h2>3. Contoh Perhitungan (Dibuktikan dengan Kode)<a class="headerlink" href="#contoh-perhitungan-dibuktikan-dengan-kode" title="Link to this heading">#</a></h2>
+<p>Karena melibatkan FFT dan filter bank yang kompleks, perhitungan manual “di atas kertas” untuk data riil tidak praktis. Sebagai gantinya, dibuat <strong>implementasi manual dari nol menggunakan NumPy</strong> (tanpa memanggil fungsi MFCC bawaan library manapun), lalu hasilnya dibandingkan dengan fungsi <code class="docutils literal notranslate"><span class="pre">tsfel.feature_extraction.features.mfcc()</span></code> untuk membuktikan rumus di atas sudah diterapkan dengan benar.</p>
+<p>Lihat script pembuktian: <a class="reference download internal" download="" href="_downloads/b6b920d780db98f28a7a02f079fe36a3/verifikasi_mfcc_3polutan.py"><span class="xref download myst"><code class="docutils literal notranslate"><span class="pre">verifikasi_mfcc_3polutan.py</span></code></span></a></p>
+<p>Ringkasan alur pembuktian:</p>
+<ol class="arabic simple">
+<li><p>Signal NO2/CO/SO2 Kecamatan Cerme (data harian setahun) digunakan sebagai input, untuk masing-masing dari 3 polutan.</p></li>
+<li><p>Implementasi manual (pre-emphasis → FFT → power spectrum → filter bank Mel + normalisasi luas → log dB → DCT ortonormal → mean normalization → cepstral liftering) dijalankan menggunakan NumPy dan SciPy (<code class="docutils literal notranslate"><span class="pre">scipy.fftpack.dct</span></code>).</p></li>
+<li><p>Hasil MFCC dari implementasi manual dibandingkan dengan hasil <code class="docutils literal notranslate"><span class="pre">tsfel_features.mfcc()</span></code> untuk data yang sama.</p></li>
+<li><p><strong>Hasil: selisih = 0.0 (cocok sempurna)</strong> untuk ketiga polutan, membuktikan rumus di atas sudah diterapkan dengan benar dan identik dengan implementasi asli TSFEL.</p></li>
+</ol>
+<p><strong>Hasil bisa dilihat:</strong>
+<strong>POLUTAN: CO</strong>
+Koefisien MFCC (manual, 12 koefisien):
+[-29.7058 -11.0509  -7.3303  20.3376  79.243  -27.4087  51.5839 -17.9131
+84.6548  26.1903  69.8192  53.535 ]</p>
+<p>Koefisien MFCC (TSFEL, 12 koefisien):
+[-29.7058 -11.0509  -7.3303  20.3376  79.243  -27.4087  51.5839 -17.9131
+84.6548  26.1903  69.8192  53.535 ]</p>
+<p>Selisih maksimum antar koefisien: 0.00000000
+=&gt; COCOK SEMPURNA</p>
+<p><strong>POLUTAN: NO2</strong>
+Koefisien MFCC (manual, 12 koefisien):
+[-29.862  -45.6672 -37.7367  16.6995 -24.4272  85.2586 138.91   119.0468
+60.8137  35.1996  51.2277  91.0484]</p>
+<p>Koefisien MFCC (TSFEL, 12 koefisien):
+[-29.862  -45.6672 -37.7367  16.6995 -24.4272  85.2586 138.91   119.0468
+60.8137  35.1996  51.2277  91.0484]</p>
+<p>Selisih maksimum antar koefisien: 0.00000000
+=&gt; COCOK SEMPURNA</p>
+<p><strong>POLUTAN: SO2</strong>
+Koefisien MFCC (manual, 12 koefisien):
+[-48.9099 -50.4393 -30.8259  -5.0579  16.6457 117.9598  65.2982  77.0791
+117.3402 166.5438 181.576   64.1536]</p>
+<p>Koefisien MFCC (TSFEL, 12 koefisien):
+[-48.9099 -50.4393 -30.8259  -5.0579  16.6457 117.9598  65.2982  77.0791
+117.3402 166.5438 181.576   64.1536]</p>
+<p>Selisih maksimum antar koefisien: 0.00000000
+=&gt; COCOK SEMPURNA</p>
+</section>
+<section id="interpretasi">
+<h2>4. Interpretasi<a class="headerlink" href="#interpretasi" title="Link to this heading">#</a></h2>
+<p>Nilai MFCC yang tinggi/rendah mengindikasikan bentuk spektrum frekuensi sinyal NO2 (atau polutan lain) secara keseluruhan, apakah energi sinyal terkonsentrasi di frekuensi rendah (perubahan lambat/musiman) atau tersebar ke frekuensi tinggi (fluktuasi harian yang tajam/tidak teratur).</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -460,15 +548,6 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
-    <a class="right-next"
-       href="profil.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Profil</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
-    </a>
 </div>
                 </footer>
               
@@ -487,7 +566,20 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#daftar-tugas-materi">Daftar Tugas &amp; Materi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar">1. Konsep Dasar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-perhitungan-pipeline">2. Alur Perhitungan (Pipeline)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-1-pre-emphasis-opsional">Tahap 1: Pre-emphasis (opsional)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-2-transformasi-fourier-fft">Tahap 2: Transformasi Fourier (FFT)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-3-power-spectrum">Tahap 3: Power Spectrum</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-4-filter-bank-mel">Tahap 4: Filter Bank Mel</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-5-logaritma-skala-desibel">Tahap 5: Logaritma (skala desibel)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-6-discrete-cosine-transform-dct-tipe-2-ortonormal">Tahap 6: Discrete Cosine Transform (DCT), tipe-2 ortonormal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-7-mean-normalization">Tahap 7: Mean Normalization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tahap-8-cepstral-liftering">Tahap 8: Cepstral Liftering</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-perhitungan-dibuktikan-dengan-kode">3. Contoh Perhitungan (Dibuktikan dengan Kode)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi">4. Interpretasi</a></li>
 </ul>
   </nav></div>
 
@@ -512,7 +604,7 @@ By Robbaniyah Umdatun Ni'mah (240411100101)
 
   <p class="copyright">
     
-      © Copyright 2023.
+      © Copyright 2026.
       <br/>
     
   </p>

@@ -1,0 +1,930 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Tugas 4: Eksplorasi Data, Penjelasan Fitur, PCA &amp; K-Means Clustering &#8212; Catatan Proyek Sains Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=bdde7595" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tugas4-eda-pca-clustering';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Catatan Proyek Sains Data</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Selamat Datang di Catatan Proyek Sains Data
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="profil.html">Profil</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/RobbaniyahUmdatunN1/PSD" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/tugas4-eda-pca-clustering.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Tugas 4: Eksplorasi Data, Penjelasan Fitur, PCA & K-Means Clustering</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-data-eda-time-series-3-polutan">1. Eksplorasi Data (EDA): Time Series 3 Polutan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-rumus-fitur-tsfel">2. Konsep Dasar &amp; Rumus Fitur TSFEL</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-singkat-68-fitur">Deskripsi Singkat 68 Fitur</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-statistical-20-fitur">Domain Statistical (20 fitur)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-temporal-16-fitur">Domain Temporal (16 fitur)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-spectral-26-fitur">Domain Spectral (26 fitur)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-fractal-6-fitur">Domain Fractal (6 fitur)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-yang-menjadi-tanggung-jawab-individu">Fitur yang Menjadi Tanggung Jawab Individu</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstraksi-fitur-satu-kelas">3. Ekstraksi Fitur Satu Kelas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-reduksi-dimensi-ke-37-komponen-penentuan-jumlah-cluster-terbaik">4. PCA (Reduksi Dimensi ke 37 Komponen) &amp; Penentuan Jumlah Cluster Terbaik</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-menggunakan-code-python">4a. Menggunakan Code (Python)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-menggunakan-tools-knime">4b. Menggunakan Tools (KNIME)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-perbandingan-code-vs-tools">4c. Perbandingan Code vs Tools</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seberapa-baik-data-ini-di-cluster">5. Seberapa Baik Data Ini Di-cluster?</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="tugas-4-eksplorasi-data-penjelasan-fitur-pca-k-means-clustering">
+<h1>Tugas 4: Eksplorasi Data, Penjelasan Fitur, PCA &amp; K-Means Clustering<a class="headerlink" href="#tugas-4-eksplorasi-data-penjelasan-fitur-pca-k-means-clustering" title="Link to this heading">#</a></h1>
+<section id="eksplorasi-data-eda-time-series-3-polutan">
+<h2>1. Eksplorasi Data (EDA): Time Series 3 Polutan<a class="headerlink" href="#eksplorasi-data-eda-time-series-3-polutan" title="Link to this heading">#</a></h2>
+<p>Dilakukan eksplorasi time series untuk 3 polutan di Kecamatan Cerme: <strong>CO, NO2, SO2</strong>, rentang 31 Agustus 2025 – 31 Agustus 2026.</p>
+<p>Source code: <a class="reference download internal" download="" href="_downloads/ec4c4561a0b640518044c4ffa5a76e7b/eda_tugas4.py"><span class="xref download myst"><code class="docutils literal notranslate"><span class="pre">eda_tugas4.py</span></code></span></a></p>
+<p><strong>Contoh time series NO2</strong>
+<img alt="Time series 1 polutan" src="_images/timeseries-no2-cerme.png" /></p>
+<p><strong>Catatan:</strong> seluruh polutan memenuhi syarat missing value maksimum 15% sebelum diproses lebih lanjut (deteksi outlier + imputasi, lihat Tugas 3).</p>
+</section>
+<section id="konsep-dasar-rumus-fitur-tsfel">
+<h2>2. Konsep Dasar &amp; Rumus Fitur TSFEL<a class="headerlink" href="#konsep-dasar-rumus-fitur-tsfel" title="Link to this heading">#</a></h2>
+<p>TSFEL mengelompokkan 68 fitur ke dalam 4 domain: <strong>Statistical (20)</strong>, <strong>Temporal (16)</strong>, <strong>Spectral (26)</strong>, dan <strong>Fractal (6)</strong>.</p>
+<p>Rumus, contoh hitung manual, dan pembuktian dengan TSFEL untuk fitur-fitur representatif tiap domain: <a class="reference internal" href="#verifikasi_fitur_tsfel.py"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">verifikasi_fitur_tsfel.py</span></code></span></a></p>
+<section id="deskripsi-singkat-68-fitur">
+<h3>Deskripsi Singkat 68 Fitur<a class="headerlink" href="#deskripsi-singkat-68-fitur" title="Link to this heading">#</a></h3>
+<section id="domain-statistical-20-fitur">
+<h4>Domain Statistical (20 fitur)<a class="headerlink" href="#domain-statistical-20-fitur" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fitur</p></th>
+<th class="head"><p>Deskripsi Singkat</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>abs_energy</p></td>
+<td><p>Jumlah kuadrat seluruh nilai sinyal; menunjukkan total “energi” sinyal.</p></td>
+</tr>
+<tr class="row-odd"><td><p>average_power</p></td>
+<td><p>Rata-rata daya sinyal (energi dibagi jumlah titik).</p></td>
+</tr>
+<tr class="row-even"><td><p>calc_max</p></td>
+<td><p>Nilai tertinggi dalam sinyal.</p></td>
+</tr>
+<tr class="row-odd"><td><p>calc_mean</p></td>
+<td><p>Rata-rata (mean) seluruh nilai sinyal.</p></td>
+</tr>
+<tr class="row-even"><td><p>calc_median</p></td>
+<td><p>Nilai tengah sinyal setelah diurutkan.</p></td>
+</tr>
+<tr class="row-odd"><td><p>calc_min</p></td>
+<td><p>Nilai terendah dalam sinyal.</p></td>
+</tr>
+<tr class="row-even"><td><p>calc_std</p></td>
+<td><p>Simpangan baku (standard deviation); ukuran sebaran data.</p></td>
+</tr>
+<tr class="row-odd"><td><p>calc_var</p></td>
+<td><p>Variansi; kuadrat dari simpangan baku.</p></td>
+</tr>
+<tr class="row-even"><td><p>ecdf</p></td>
+<td><p>Empirical Cumulative Distribution Function; peta distribusi kumulatif nilai sinyal.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ecdf_percentile</p></td>
+<td><p>Nilai sinyal pada persentil tertentu dari ECDF.</p></td>
+</tr>
+<tr class="row-even"><td><p>ecdf_percentile_count</p></td>
+<td><p>Jumlah titik data di bawah persentil ECDF tertentu.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ecdf_slope</p></td>
+<td><p>Kemiringan garis ECDF antar dua persentil.</p></td>
+</tr>
+<tr class="row-even"><td><p>entropy</p></td>
+<td><p>Ukuran ketidakteraturan/ketidakpastian distribusi nilai sinyal.</p></td>
+</tr>
+<tr class="row-odd"><td><p>hist_mode</p></td>
+<td><p>Nilai yang paling sering muncul (modus) berdasarkan histogram sinyal.</p></td>
+</tr>
+<tr class="row-even"><td><p>interq_range</p></td>
+<td><p>Interquartile Range (IQR); selisih antara kuartil 3 dan kuartil 1.</p></td>
+</tr>
+<tr class="row-odd"><td><p>kurtosis</p></td>
+<td><p>Ukuran “keruncingan” distribusi data dibanding distribusi normal.</p></td>
+</tr>
+<tr class="row-even"><td><p>mean_abs_deviation</p></td>
+<td><p>Rata-rata dari nilai absolut selisih tiap titik terhadap mean.</p></td>
+</tr>
+<tr class="row-odd"><td><p>median_abs_deviation</p></td>
+<td><p>Median dari nilai absolut selisih tiap titik terhadap median.</p></td>
+</tr>
+<tr class="row-even"><td><p>rms</p></td>
+<td><p>Root Mean Square; akar dari rata-rata kuadrat nilai sinyal.</p></td>
+</tr>
+<tr class="row-odd"><td><p>skewness</p></td>
+<td><p>Ukuran kemencengan/asimetri distribusi data.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="domain-temporal-16-fitur">
+<h4>Domain Temporal (16 fitur)<a class="headerlink" href="#domain-temporal-16-fitur" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fitur</p></th>
+<th class="head"><p>Deskripsi Singkat</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>auc</p></td>
+<td><p>Area Under Curve; luas area di bawah kurva sinyal.</p></td>
+</tr>
+<tr class="row-odd"><td><p>autocorr</p></td>
+<td><p>Autokorelasi; seberapa mirip sinyal dengan versi tergesernya sendiri.</p></td>
+</tr>
+<tr class="row-even"><td><p>calc_centroid</p></td>
+<td><p>Titik berat (centroid) sinyal berdasarkan waktu.</p></td>
+</tr>
+<tr class="row-odd"><td><p>distance</p></td>
+<td><p>Estimasi panjang lintasan sinyal (jarak kumulatif antar titik berurutan).</p></td>
+</tr>
+<tr class="row-even"><td><p>lempel_ziv</p></td>
+<td><p>Ukuran kompleksitas sinyal berdasarkan algoritma kompresi Lempel-Ziv.</p></td>
+</tr>
+<tr class="row-odd"><td><p>mean_abs_diff</p></td>
+<td><p>Rata-rata nilai absolut selisih antar titik berurutan.</p></td>
+</tr>
+<tr class="row-even"><td><p>mean_diff</p></td>
+<td><p>Rata-rata selisih (tanpa nilai absolut) antar titik berurutan.</p></td>
+</tr>
+<tr class="row-odd"><td><p>median_abs_diff</p></td>
+<td><p>Median dari nilai absolut selisih antar titik berurutan.</p></td>
+</tr>
+<tr class="row-even"><td><p>median_diff</p></td>
+<td><p>Median dari selisih antar titik berurutan.</p></td>
+</tr>
+<tr class="row-odd"><td><p>negative_turning</p></td>
+<td><p>Jumlah titik lembah (local minimum) pada sinyal.</p></td>
+</tr>
+<tr class="row-even"><td><p>neighbourhood_peaks</p></td>
+<td><p>Jumlah puncak lokal dalam suatu jendela/tetangga tertentu.</p></td>
+</tr>
+<tr class="row-odd"><td><p>pk_pk_distance</p></td>
+<td><p>Peak-to-peak distance; selisih antara nilai maksimum dan minimum.</p></td>
+</tr>
+<tr class="row-even"><td><p>positive_turning</p></td>
+<td><p>Jumlah titik puncak (local maximum) pada sinyal.</p></td>
+</tr>
+<tr class="row-odd"><td><p>slope</p></td>
+<td><p>Kemiringan garis tren linear sinyal.</p></td>
+</tr>
+<tr class="row-even"><td><p>sum_abs_diff</p></td>
+<td><p>Jumlah total nilai absolut selisih antar titik berurutan.</p></td>
+</tr>
+<tr class="row-odd"><td><p>zero_cross</p></td>
+<td><p>Jumlah kali sinyal melewati/menyentuh nilai nol.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="domain-spectral-26-fitur">
+<h4>Domain Spectral (26 fitur)<a class="headerlink" href="#domain-spectral-26-fitur" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fitur</p></th>
+<th class="head"><p>Deskripsi Singkat</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>fundamental_frequency</p></td>
+<td><p>Frekuensi dasar/utama yang mendominasi sinyal.</p></td>
+</tr>
+<tr class="row-odd"><td><p>human_range_energy</p></td>
+<td><p>Proporsi energi sinyal pada rentang frekuensi yang relevan bagi manusia.</p></td>
+</tr>
+<tr class="row-even"><td><p>lpcc</p></td>
+<td><p>Linear Prediction Cepstral Coefficients; fitur berbasis prediksi linear sinyal.</p></td>
+</tr>
+<tr class="row-odd"><td><p>max_frequency</p></td>
+<td><p>Frekuensi dengan kekuatan (power) tertinggi.</p></td>
+</tr>
+<tr class="row-even"><td><p>max_power_spectrum</p></td>
+<td><p>Nilai power spectrum tertinggi.</p></td>
+</tr>
+<tr class="row-odd"><td><p>median_frequency</p></td>
+<td><p>Frekuensi tengah dari distribusi power spectrum.</p></td>
+</tr>
+<tr class="row-even"><td><p>mfcc</p></td>
+<td><p>Mel-Frequency Cepstral Coefficients; representasi bentuk spektrum meniru persepsi pendengaran manusia.</p></td>
+</tr>
+<tr class="row-odd"><td><p>power_bandwidth</p></td>
+<td><p>Lebar pita frekuensi yang mengandung sebagian besar energi sinyal.</p></td>
+</tr>
+<tr class="row-even"><td><p>spectral_centroid</p></td>
+<td><p>“Titik berat” spektrum frekuensi sinyal.</p></td>
+</tr>
+<tr class="row-odd"><td><p>spectral_decrease</p></td>
+<td><p>Ukuran seberapa cepat energi spektrum menurun terhadap frekuensi.</p></td>
+</tr>
+<tr class="row-even"><td><p>spectral_distance</p></td>
+<td><p>Jarak antara bentuk spektrum sinyal dengan garis linear referensi.</p></td>
+</tr>
+<tr class="row-odd"><td><p>spectral_entropy</p></td>
+<td><p>Ukuran ketidakteraturan distribusi energi pada spektrum frekuensi.</p></td>
+</tr>
+<tr class="row-even"><td><p>spectral_kurtosis</p></td>
+<td><p>Keruncingan distribusi energi spektrum.</p></td>
+</tr>
+<tr class="row-odd"><td><p>spectral_positive_turning</p></td>
+<td><p>Jumlah titik puncak lokal pada spektrum frekuensi.</p></td>
+</tr>
+<tr class="row-even"><td><p>spectral_roll_off</p></td>
+<td><p>Frekuensi di mana persentase tertentu dari energi total spektrum tercapai.</p></td>
+</tr>
+<tr class="row-odd"><td><p>spectral_roll_on</p></td>
+<td><p>Kebalikan dari roll-off, dihitung dari sisi frekuensi rendah.</p></td>
+</tr>
+<tr class="row-even"><td><p>spectral_skewness</p></td>
+<td><p>Kemencengan distribusi energi spektrum.</p></td>
+</tr>
+<tr class="row-odd"><td><p>spectral_slope</p></td>
+<td><p>Kemiringan tren energi spektrum terhadap frekuensi.</p></td>
+</tr>
+<tr class="row-even"><td><p>spectral_spread</p></td>
+<td><p>Sebaran/lebar distribusi energi di sekitar spectral centroid.</p></td>
+</tr>
+<tr class="row-odd"><td><p>spectral_variation</p></td>
+<td><p>Variasi bentuk spektrum antar segmen sinyal.</p></td>
+</tr>
+<tr class="row-even"><td><p>spectrogram_mean_coeff</p></td>
+<td><p>Rata-rata koefisien dari spectrogram (representasi frekuensi-waktu) sinyal.</p></td>
+</tr>
+<tr class="row-odd"><td><p>wavelet_abs_mean</p></td>
+<td><p>Rata-rata nilai absolut koefisien wavelet sinyal.</p></td>
+</tr>
+<tr class="row-even"><td><p>wavelet_energy</p></td>
+<td><p>Total energi dari koefisien wavelet.</p></td>
+</tr>
+<tr class="row-odd"><td><p>wavelet_entropy</p></td>
+<td><p>Ukuran ketidakteraturan distribusi energi wavelet.</p></td>
+</tr>
+<tr class="row-even"><td><p>wavelet_std</p></td>
+<td><p>Simpangan baku koefisien wavelet.</p></td>
+</tr>
+<tr class="row-odd"><td><p>wavelet_var</p></td>
+<td><p>Variansi koefisien wavelet.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="domain-fractal-6-fitur">
+<h4>Domain Fractal (6 fitur)<a class="headerlink" href="#domain-fractal-6-fitur" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fitur</p></th>
+<th class="head"><p>Deskripsi Singkat</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>dfa</p></td>
+<td><p>Detrended Fluctuation Analysis; mengukur korelasi jangka panjang dalam sinyal.</p></td>
+</tr>
+<tr class="row-odd"><td><p>higuchi_fractal_dimension</p></td>
+<td><p>Dimensi fraktal sinyal berdasarkan metode Higuchi; ukuran kompleksitas bentuk sinyal.</p></td>
+</tr>
+<tr class="row-even"><td><p>hurst_exponent</p></td>
+<td><p>Mengukur kecenderungan sinyal: tren persisten, acak, atau anti-persisten.</p></td>
+</tr>
+<tr class="row-odd"><td><p>maximum_fractal_length</p></td>
+<td><p>Panjang maksimum kurva fraktal sinyal pada skala tertentu.</p></td>
+</tr>
+<tr class="row-even"><td><p>mse</p></td>
+<td><p>Multiscale Entropy; ukuran kompleksitas sinyal pada berbagai skala waktu.</p></td>
+</tr>
+<tr class="row-odd"><td><p>petrosian_fractal_dimension</p></td>
+<td><p>Dimensi fraktal berdasarkan metode Petrosian; alternatif lebih cepat dari Higuchi.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="fitur-yang-menjadi-tanggung-jawab-individu">
+<h3>Fitur yang Menjadi Tanggung Jawab Individu<a class="headerlink" href="#fitur-yang-menjadi-tanggung-jawab-individu" title="Link to this heading">#</a></h3>
+<p>Sesuai pembagian kelas, dua fitur berikut dijelaskan secara mendalam (deskripsi + rumus + perhitungan manual + pembuktian TSFEL, untuk 3 polutan CO/NO2/SO2):</p>
+<ul class="simple">
+<li><p><strong>mfcc</strong> (domain Spectral): <a class="reference internal" href="fitur-mfcc-penjelasan.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">fitur-mfcc-penjelasan.md</span></code></span></a> | script: <a class="reference download internal" download="" href="_downloads/b6b920d780db98f28a7a02f079fe36a3/verifikasi_mfcc_3polutan.py"><span class="xref download myst"><code class="docutils literal notranslate"><span class="pre">verifikasi_mfcc_3polutan.py</span></code></span></a></p></li>
+<li><p><strong>negative_turning</strong> (domain Temporal): <a class="reference internal" href="fitur-negative-turning-penjelasan.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">fitur-negative-turning-penjelasan.md</span></code></span></a> | script: <a class="reference internal" href="#verifikasi_negative_turning_3polutan.py"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">verifikasi_negative_turning_3polutan.py</span></code></span></a></p></li>
+</ul>
+</section>
+</section>
+<section id="ekstraksi-fitur-satu-kelas">
+<h2>3. Ekstraksi Fitur Satu Kelas<a class="headerlink" href="#ekstraksi-fitur-satu-kelas" title="Link to this heading">#</a></h2>
+<p>Fitur diekstraksi untuk 3 polutan (CO, NO2, SO2) × 68 fitur = <strong>204 fitur</strong> per kecamatan, kemudian digabung untuk seluruh kelas.</p>
+<ul class="simple">
+<li><p>File per polutan: <code class="docutils literal notranslate"><span class="pre">ekstraksi_fitur_co.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">ekstraksi_fitur_no2.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">ekstraksi_fitur_so2.csv</span></code></p></li>
+<li><p>Digabung menjadi: <a class="reference download internal" download="" href="_downloads/5115a01fce76c648ed02ff1708a33a7c/ekstraksi_fitur_204_gabungan.csv"><span class="xref download myst"><code class="docutils literal notranslate"><span class="pre">ekstraksi_fitur_204_gabungan.csv</span></code></span></a> (36 mahasiswa × 204 fitur)</p></li>
+<li><p>Script penggabungan: <a class="reference download internal" download="" href="_downloads/f6ab292898fc812fb58ae3a1e97da1b6/gabungkan_204_fitur.py"><span class="xref download myst"><code class="docutils literal notranslate"><span class="pre">gabungkan_204_fitur.py</span></code></span></a></p></li>
+</ul>
+</section>
+<section id="pca-reduksi-dimensi-ke-37-komponen-penentuan-jumlah-cluster-terbaik">
+<h2>4. PCA (Reduksi Dimensi ke 37 Komponen) &amp; Penentuan Jumlah Cluster Terbaik<a class="headerlink" href="#pca-reduksi-dimensi-ke-37-komponen-penentuan-jumlah-cluster-terbaik" title="Link to this heading">#</a></h2>
+<p>Dikerjakan dengan <strong>2 cara</strong> (code dan tools), pada <strong>2 dataset</strong> (204 fitur gabungan, dan 68 fitur NO2 saja), untuk saling membandingkan hasil.</p>
+<section id="a-menggunakan-code-python">
+<h3>4a. Menggunakan Code (Python)<a class="headerlink" href="#a-menggunakan-code-python" title="Link to this heading">#</a></h3>
+<p>Source code: <a class="reference download internal" download="" href="_downloads/22267a78e8cc37d9c53aae744e056f32/pca_clustering_tugas4.py"><span class="xref download myst"><code class="docutils literal notranslate"><span class="pre">pca_clustering_tugas4.py</span></code></span></a></p>
+<p>Langkah: Standarisasi (Z-score) → PCA (37 komponen) → K-Means dengan berbagai k (2-10) → Silhouette Score untuk menentukan k terbaik.</p>
+<p><strong>Hasil:</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Dataset</p></th>
+<th class="head"><p>Jumlah Sampel</p></th>
+<th class="head"><p>k Terbaik</p></th>
+<th class="head"><p>Silhouette Score</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>204 fitur (CO+NO2+SO2) + PCA 37 komponen</p></td>
+<td><p>36</p></td>
+<td><p>2</p></td>
+<td><p>0,7668</p></td>
+</tr>
+<tr class="row-odd"><td><p>204 fitur (CO+NO2+SO2), tanpa PCA</p></td>
+<td><p>36</p></td>
+<td><p>2</p></td>
+<td><p>0,7668</p></td>
+</tr>
+<tr class="row-even"><td><p>68 fitur (NO2 saja) + PCA 37 komponen</p></td>
+<td><p>37</p></td>
+<td><p>2</p></td>
+<td><p>0,7455</p></td>
+</tr>
+<tr class="row-odd"><td><p>68 fitur (NO2 saja), tanpa PCA</p></td>
+<td><p>37</p></td>
+<td><p>2</p></td>
+<td><p>0,7455</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img alt="Elbow &amp; Silhouette - PCA 204 fitur" src="_images/cluster-analysis-data-pca-%2836-komponen%29.png" /></p>
+<p><img alt="Elbow &amp; Silhouette - 204 fitur asli" src="_images/cluster-analysis-68-fitur-asli.png" /></p>
+<p>Hasil label cluster per kecamatan: <a class="reference internal" href="#hasil_clustering_204fitur.csv"><span class="xref myst"><code class="docutils literal notranslate"><span class="pre">hasil_clustering_204fitur.csv</span></code></span></a></p>
+</section>
+<section id="b-menggunakan-tools-knime">
+<h3>4b. Menggunakan Tools (KNIME)<a class="headerlink" href="#b-menggunakan-tools-knime" title="Link to this heading">#</a></h3>
+<p>Workflow: <code class="docutils literal notranslate"><span class="pre">CSV</span> <span class="pre">Reader</span> <span class="pre">→</span> <span class="pre">Column</span> <span class="pre">Filter</span> <span class="pre">→</span> <span class="pre">Normalizer</span> <span class="pre">(Z-score)</span> <span class="pre">→</span> <span class="pre">PCA</span> <span class="pre">(37</span> <span class="pre">komponen)</span> <span class="pre">→</span> <span class="pre">k-Means</span> <span class="pre">(k=2...10)</span> <span class="pre">→</span> <span class="pre">Silhouette</span> <span class="pre">Coefficient</span></code></p>
+<p><a class="reference download internal" download="" href="_downloads/89a0c1ee2ede93343fc927eb08465353/knime-pca-clustering-workflow.png"><span class="xref download myst">Workflow KNIME PCA Clustering</span></a></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>k</p></th>
+<th class="head"><p>Silhouette Score (KNIME, 204 fitur)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>0.047</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>0.338</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>0.101</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>-0.016</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>0.147</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>0.115</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>0.048</p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p>0.022</p></td>
+</tr>
+<tr class="row-even"><td><p>10</p></td>
+<td><p>0.013</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>k terbaik menurut KNIME:</strong> K=3</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="c-perbandingan-code-vs-tools">
+<h3>4c. Perbandingan Code vs Tools<a class="headerlink" href="#c-perbandingan-code-vs-tools" title="Link to this heading">#</a></h3>
+<p>Analisis dengan Python (sklearn) menunjukkan bahwa jumlah cluster terbaik adalah k=2 dengan nilai silhouette 0.7668.
+Sedangkan analisis menggunakan KNIME menghasilkan nilai rata-rata silhouette yang berbeda:</p>
+<p>k=2 → 0.047
+k=3 → 0.101
+k=4 → 0.118
+dan seterusnya, sehingga KNIME menyimpulkan k terbaik adalah 3.</p>
+<p>Perbedaan ini muncul karena adanya perbedaan preprocessing dan metode perhitungan silhouette antara Python dan KNIME (misalnya normalisasi data, jumlah komponen PCA, atau cara menghitung jarak).</p>
+</section>
+</section>
+<section id="seberapa-baik-data-ini-di-cluster">
+<h2>5. Seberapa Baik Data Ini Di-cluster?<a class="headerlink" href="#seberapa-baik-data-ini-di-cluster" title="Link to this heading">#</a></h2>
+<p>Silhouette Score tertinggi (0,77 untuk 204 fitur; 0,75 untuk 68 fitur NO2) secara umum tergolong <strong>baik</strong> (mendekati 1). Namun perlu dicatat: dari hasil clustering k=2, distribusi anggota cluster <strong>sangat timpang</strong>, 35 dari 36 kecamatan masuk 1 cluster besar, dan hanya 1 kecamatan (outlier) masuk cluster terpisah. Artinya, skor silhouette yang tinggi di sini lebih mencerminkan <strong>keberadaan 1 outlier ekstrem</strong> yang terpisah jauh, bukan pembagian 2 kelompok besar yang seimbang secara substansi.</p>
+<p><strong>Kesimpulan:</strong> dataset ini “cukup baik” untuk di-cluster secara matematis, tetapi interpretasinya perlu hati-hati dan perlu investigasi lebih lanjut terhadap kecamatan yang jadi outlier, dan mempertimbangkan k=3 sebagai alternatif untuk melihat apakah kelompok besar tadi punya sub-struktur yang lebih bermakna.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksplorasi-data-eda-time-series-3-polutan">1. Eksplorasi Data (EDA): Time Series 3 Polutan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konsep-dasar-rumus-fitur-tsfel">2. Konsep Dasar &amp; Rumus Fitur TSFEL</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi-singkat-68-fitur">Deskripsi Singkat 68 Fitur</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-statistical-20-fitur">Domain Statistical (20 fitur)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-temporal-16-fitur">Domain Temporal (16 fitur)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-spectral-26-fitur">Domain Spectral (26 fitur)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-fractal-6-fitur">Domain Fractal (6 fitur)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-yang-menjadi-tanggung-jawab-individu">Fitur yang Menjadi Tanggung Jawab Individu</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ekstraksi-fitur-satu-kelas">3. Ekstraksi Fitur Satu Kelas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-reduksi-dimensi-ke-37-komponen-penentuan-jumlah-cluster-terbaik">4. PCA (Reduksi Dimensi ke 37 Komponen) &amp; Penentuan Jumlah Cluster Terbaik</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-menggunakan-code-python">4a. Menggunakan Code (Python)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-menggunakan-tools-knime">4b. Menggunakan Tools (KNIME)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-perbandingan-code-vs-tools">4c. Perbandingan Code vs Tools</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seberapa-baik-data-ini-di-cluster">5. Seberapa Baik Data Ini Di-cluster?</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Robbaniyah Umdatun Ni'mah (240411100101)
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
