@@ -2,3 +2,7 @@ _build/
 .jupyter_cache/
 __pycache__/
 .env
+ UTS/data/raster/
+ UTS/data/training_samples.csv
+ UTS/models/
+ UTS/data/raster/*.tif

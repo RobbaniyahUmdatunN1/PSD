@@ -5,10 +5,6 @@ Dilakukan 2x:
   1. Pada data yang sudah direduksi PCA (37 komponen)
   2. Pada data 68 fitur asli (tanpa reduksi)
 Untuk dibandingkan mana yang menghasilkan cluster lebih baik.
-
-Cara pakai:
-    pip install pandas scikit-learn matplotlib
-    python pca_clustering_tugas4.py
 """
 
 import pandas as pd

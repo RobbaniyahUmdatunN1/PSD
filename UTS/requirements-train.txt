@@ -1,0 +1,9 @@
+# Untuk training & prediksi peta di komputer lokal
+-r requirements.txt
+scikit-learn
+xgboost
+lightgbm
+joblib
+matplotlib
+pillow
+rasterio

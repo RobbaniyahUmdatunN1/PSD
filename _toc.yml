@@ -5,4 +5,6 @@ chapters:
   - file: tugas1-crawling-
   - file: tugas2-postgres knime-
   - file: tugas3-preprocessing-tsfel-
-  - file: tugas3.1-preprocessing-tsfel-
+  - file: tugas4-pca-knime-
+  - file: tugas5-eksperimen_pca_3level-
+  - file: UTS/klasifikasi_lulc-

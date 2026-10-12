@@ -1,0 +1,355 @@
+{
+  "n_raw_rows": 17966,
+  "n_clean_rows": 17966,
+  "n_classes": 6,
+  "class_names": [
+    "Sawah",
+    "Bangunan",
+    "Mangrove",
+    "Lahan Hijau",
+    "Perairan Terbuka (Laut)",
+    "Danau (Ranu)"
+  ],
+  "n_polygons": {
+    "Sawah": 60,
+    "Bangunan": 60,
+    "Mangrove": 60,
+    "Lahan Hijau": 60,
+    "Perairan Terbuka (Laut)": 60,
+    "Danau (Ranu)": 60
+  },
+  "clean_counts_per_class": {
+    "Sawah": 3000,
+    "Bangunan": 3000,
+    "Mangrove": 3000,
+    "Lahan Hijau": 2966,
+    "Perairan Terbuka (Laut)": 3000,
+    "Danau (Ranu)": 3000
+  },
+  "balanced": true,
+  "n_train": 14227,
+  "n_test": 3569,
+  "train_per_class": {
+    "Sawah": 2373,
+    "Bangunan": 2371,
+    "Mangrove": 2370,
+    "Lahan Hijau": 2366,
+    "Perairan Terbuka (Laut)": 2369,
+    "Danau (Ranu)": 2378
+  },
+  "test_per_class": {
+    "Sawah": 593,
+    "Bangunan": 595,
+    "Mangrove": 596,
+    "Lahan Hijau": 600,
+    "Perairan Terbuka (Laut)": 597,
+    "Danau (Ranu)": 588
+  },
+  "test_frac_polygons": 0.2,
+  "seed": 42,
+  "features": [
+    "B2",
+    "B3",
+    "B4",
+    "B5",
+    "B6",
+    "B7",
+    "B8",
+    "B8A",
+    "B11",
+    "B12",
+    "NDVI",
+    "NDWI",
+    "MNDWI",
+    "NDBI",
+    "NDMI",
+    "EVI",
+    "SAVI",
+    "MVI"
+  ],
+  "models": [
+    {
+      "model": "Random Forest (baseline)",
+      "cv_acc_mean": 0.9121661961418932,
+      "cv_acc_std": 0.01754221238159019,
+      "test_acc": 0.9655365648641075,
+      "test_f1_macro": 0.9654552275896248,
+      "test_kappa": 0.9586433096506669,
+      "seconds": 7.4
+    },
+    {
+      "model": "Extra Trees",
+      "cv_acc_mean": 0.9141407829683615,
+      "cv_acc_std": 0.017592019750958348,
+      "test_acc": 0.9630148500980666,
+      "test_f1_macro": 0.9629244371866781,
+      "test_kappa": 0.9556172312631775,
+      "seconds": 4.0
+    },
+    {
+      "model": "HistGradientBoosting",
+      "cv_acc_mean": 0.9191721324558444,
+      "cv_acc_std": 0.015683690591303357,
+      "test_acc": 0.9674978985710283,
+      "test_f1_macro": 0.9673677691828396,
+      "test_kappa": 0.9609967917815947,
+      "seconds": 5.0
+    },
+    {
+      "model": "SVM (RBF)",
+      "cv_acc_mean": 0.9271870338184826,
+      "cv_acc_std": 0.017972916490232207,
+      "test_acc": 0.9588119921546652,
+      "test_f1_macro": 0.9586917249891345,
+      "test_kappa": 0.9505725520580238,
+      "seconds": 4.7
+    },
+    {
+      "model": "KNN (k=7)",
+      "cv_acc_mean": 0.902624981271382,
+      "cv_acc_std": 0.024506377533197374,
+      "test_acc": 0.9450826562062202,
+      "test_f1_macro": 0.9448324184548763,
+      "test_kappa": 0.9340969782216593,
+      "seconds": 0.5
+    },
+    {
+      "model": "MLP (Neural Net)",
+      "cv_acc_mean": 0.929718256093406,
+      "cv_acc_std": 0.01842057751751088,
+      "test_acc": 0.9632950406276268,
+      "test_f1_macro": 0.96318163871497,
+      "test_kappa": 0.9559532402804212,
+      "seconds": 18.5
+    },
+    {
+      "model": "XGBoost",
+      "cv_acc_mean": 0.9219171278946131,
+      "cv_acc_std": 0.015368655484870592,
+      "test_acc": 0.9691790417483889,
+      "test_f1_macro": 0.9690655189539091,
+      "test_kappa": 0.9630141677434064,
+      "seconds": 15.5
+    },
+    {
+      "model": "LightGBM",
+      "cv_acc_mean": 0.921285944531161,
+      "cv_acc_std": 0.01517829923591447,
+      "test_acc": 0.9674978985710283,
+      "test_f1_macro": 0.9673873644725349,
+      "test_kappa": 0.9609966227546896,
+      "seconds": 10.5
+    }
+  ],
+  "best_model": "MLP (Neural Net)",
+  "best_test_acc": 0.9632950406276268,
+  "best_test_f1_macro": 0.96318163871497,
+  "best_test_kappa": 0.9559532402804212,
+  "classification_report": {
+    "Sawah": {
+      "precision": 0.9627659574468085,
+      "recall": 0.9156829679595279,
+      "f1-score": 0.9386343993085566,
+      "support": 593.0
+    },
+    "Bangunan": {
+      "precision": 0.9590834697217676,
+      "recall": 0.984873949579832,
+      "f1-score": 0.9718076285240465,
+      "support": 595.0
+    },
+    "Mangrove": {
+      "precision": 0.9499192245557351,
+      "recall": 0.9865771812080537,
+      "f1-score": 0.9679012345679012,
+      "support": 596.0
+    },
+    "Lahan Hijau": {
+      "precision": 0.946843853820598,
+      "recall": 0.95,
+      "f1-score": 0.9484193011647255,
+      "support": 600.0
+    },
+    "Perairan Terbuka (Laut)": {
+      "precision": 0.9949152542372881,
+      "recall": 0.983249581239531,
+      "f1-score": 0.9890480202190396,
+      "support": 597.0
+    },
+    "Danau (Ranu)": {
+      "precision": 0.967409948542024,
+      "recall": 0.9591836734693877,
+      "f1-score": 0.9632792485055508,
+      "support": 588.0
+    },
+    "accuracy": 0.9632950406276268,
+    "macro avg": {
+      "precision": 0.963489618054037,
+      "recall": 0.9632612255760554,
+      "f1-score": 0.96318163871497,
+      "support": 3569.0
+    },
+    "weighted avg": {
+      "precision": 0.9634728226114757,
+      "recall": 0.9632950406276268,
+      "f1-score": 0.9631903391580602,
+      "support": 3569.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      543,
+      24,
+      5,
+      19,
+      0,
+      2
+    ],
+    [
+      6,
+      586,
+      0,
+      3,
+      0,
+      0
+    ],
+    [
+      2,
+      1,
+      588,
+      3,
+      0,
+      2
+    ],
+    [
+      13,
+      0,
+      12,
+      570,
+      0,
+      5
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      587,
+      10
+    ],
+    [
+      0,
+      0,
+      14,
+      7,
+      3,
+      564
+    ]
+  ],
+  "feature_importance": [
+    [
+      "B12",
+      0.30893807789296723
+    ],
+    [
+      "B2",
+      0.22908377696833854
+    ],
+    [
+      "B5",
+      0.19187447464275711
+    ],
+    [
+      "NDVI",
+      0.15746707761277673
+    ],
+    [
+      "B4",
+      0.15163911459792662
+    ],
+    [
+      "B6",
+      0.14452227514710006
+    ],
+    [
+      "B3",
+      0.11196413561221634
+    ],
+    [
+      "MNDWI",
+      0.10809750630428697
+    ],
+    [
+      "NDWI",
+      0.0976183804987392
+    ],
+    [
+      "B11",
+      0.08837209302325584
+    ],
+    [
+      "EVI",
+      0.07419445222751475
+    ],
+    [
+      "SAVI",
+      0.066629307929392
+    ],
+    [
+      "B8A",
+      0.05289997198094709
+    ],
+    [
+      "B7",
+      0.05155505743905862
+    ],
+    [
+      "NDMI",
+      0.0432053796581676
+    ],
+    [
+      "NDBI",
+      0.04113196973942286
+    ],
+    [
+      "B8",
+      0.021686746987951856
+    ],
+    [
+      "MVI",
+      0.010703278229195923
+    ]
+  ],
+  "data_size_experiment": [
+    {
+      "fraksi": 0.05,
+      "n_train": 708,
+      "test_acc": 0.9235079854300925
+    },
+    {
+      "fraksi": 0.1,
+      "n_train": 1420,
+      "test_acc": 0.9574110395068647
+    },
+    {
+      "fraksi": 0.25,
+      "n_train": 3554,
+      "test_acc": 0.9632950406276268
+    },
+    {
+      "fraksi": 0.5,
+      "n_train": 7112,
+      "test_acc": 0.9630148500980666
+    },
+    {
+      "fraksi": 0.75,
+      "n_train": 10667,
+      "test_acc": 0.9649761838049874
+    },
+    {
+      "fraksi": 1.0,
+      "n_train": 14227,
+      "test_acc": 0.9646959932754273
+    }
+  ]
+}

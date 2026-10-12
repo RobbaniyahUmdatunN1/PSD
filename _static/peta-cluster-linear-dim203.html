@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_da4ea8bdb5a65cdd71fa54be7ed6ae34 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    <div style="position:fixed;bottom:30px;left:30px;z-index:9999;background:white;padding:10px 14px;border:1px solid #bbb;border-radius:6px;font-size:13px;font-family:sans-serif;"><b>Dimensi 203 (k=2)</b><div><span style="background:#1F6F78;display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;"></span>Cluster 0</div><div><span style="background:#C97B2E;display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;"></span>Cluster 1</div></div>
+    
+            <div class="folium-map" id="map_da4ea8bdb5a65cdd71fa54be7ed6ae34" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_da4ea8bdb5a65cdd71fa54be7ed6ae34 = L.map(
+                "map_da4ea8bdb5a65cdd71fa54be7ed6ae34",
+                {
+                    center: [-7.204201461290323, 112.57770171935485],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 8,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_5051854e026f2fe43899fb1307a84340 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_5051854e026f2fe43899fb1307a84340.addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+            var circle_marker_46ca377958da2caaa58dc503275e7400 = L.circleMarker(
+                [-7.6071174, 112.0510318],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1F6F78", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_3d44c3f6e6add303c52d9fef25e47f7e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e9896e00acb877c0437f609ebd97c6e6 = $(`<div id="html_e9896e00acb877c0437f609ebd97c6e6" style="width: 100.0%; height: 100.0%;"><b>Baron Nganjuk</b><br>Dimensi 203, Cluster 0</div>`)[0];
+                popup_3d44c3f6e6add303c52d9fef25e47f7e.setContent(html_e9896e00acb877c0437f609ebd97c6e6);
+            
+        
+
+        circle_marker_46ca377958da2caaa58dc503275e7400.bindPopup(popup_3d44c3f6e6add303c52d9fef25e47f7e)
+        ;
+
+        
+    
+    
+            circle_marker_46ca377958da2caaa58dc503275e7400.bindTooltip(
+                `<div>
+                     Baron Nganjuk - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_437a3d4295a2cb6e0c8117b3087ec877 = L.circleMarker(
+                [-7.2190022, 113.1328604],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1F6F78", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_2b1c6ffa3d446fe75c8f9156f610d880 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a95486ee38b870c48ae1517544a10042 = $(`<div id="html_a95486ee38b870c48ae1517544a10042" style="width: 100.0%; height: 100.0%;"><b>Sreseh, Sampang</b><br>Dimensi 203, Cluster 0</div>`)[0];
+                popup_2b1c6ffa3d446fe75c8f9156f610d880.setContent(html_a95486ee38b870c48ae1517544a10042);
+            
+        
+
+        circle_marker_437a3d4295a2cb6e0c8117b3087ec877.bindPopup(popup_2b1c6ffa3d446fe75c8f9156f610d880)
+        ;
+
+        
+    
+    
+            circle_marker_437a3d4295a2cb6e0c8117b3087ec877.bindTooltip(
+                `<div>
+                     Sreseh, Sampang - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_367f7563b93e89ff11ac7e77306c4c1a = L.circleMarker(
+                [-7.2347721, 112.564431],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1F6F78", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_e2ee2a4f36a41ce593e7a056d9da0aa6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9aaeab9e1ae2ff1d33ed22d54d812e34 = $(`<div id="html_9aaeab9e1ae2ff1d33ed22d54d812e34" style="width: 100.0%; height: 100.0%;"><b>Manyar, Gresik</b><br>Dimensi 203, Cluster 0</div>`)[0];
+                popup_e2ee2a4f36a41ce593e7a056d9da0aa6.setContent(html_9aaeab9e1ae2ff1d33ed22d54d812e34);
+            
+        
+
+        circle_marker_367f7563b93e89ff11ac7e77306c4c1a.bindPopup(popup_e2ee2a4f36a41ce593e7a056d9da0aa6)
+        ;
+
+        
+    
+    
+            circle_marker_367f7563b93e89ff11ac7e77306c4c1a.bindTooltip(
+                `<div>
+                     Manyar, Gresik - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b99c9ff36b7de851abab80d9a0eea553 = L.circleMarker(
+                [-7.1702821, 112.7288563],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1F6F78", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_f1a18cb950e405f1c0a79b63e14de560 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_70217808df776c7973172789ef98cef6 = $(`<div id="html_70217808df776c7973172789ef98cef6" style="width: 100.0%; height: 100.0%;"><b>Kamal, Bangkalan</b><br>Dimensi 203, Cluster 0</div>`)[0];
+                popup_f1a18cb950e405f1c0a79b63e14de560.setContent(html_70217808df776c7973172789ef98cef6);
+            
+        
+
+        circle_marker_b99c9ff36b7de851abab80d9a0eea553.bindPopup(popup_f1a18cb950e405f1c0a79b63e14de560)
+        ;
+
+        
+    
+    
+            circle_marker_b99c9ff36b7de851abab80d9a0eea553.bindTooltip(
+                `<div>
+                     Kamal, Bangkalan - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_83981c9601d4e9857ab158d7fd85dbcc = L.circleMarker(
+                [-7.1843952, 112.1982965],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1F6F78", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_bd7b19b6f8184a3c1c2c9a2812241e49 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_57e61704dfd996df56a37aebf3054d6d = $(`<div id="html_57e61704dfd996df56a37aebf3054d6d" style="width: 100.0%; height: 100.0%;"><b>Kedungpring Lamongan</b><br>Dimensi 203, Cluster 0</div>`)[0];
+                popup_bd7b19b6f8184a3c1c2c9a2812241e49.setContent(html_57e61704dfd996df56a37aebf3054d6d);
+            
+        
+
+        circle_marker_83981c9601d4e9857ab158d7fd85dbcc.bindPopup(popup_bd7b19b6f8184a3c1c2c9a2812241e49)
+        ;
+
+        
+    
+    
+            circle_marker_83981c9601d4e9857ab158d7fd85dbcc.bindTooltip(
+                `<div>
+                     Kedungpring Lamongan - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7054004faa7822fd599ddb606e09eb1d = L.circleMarker(
+                [-7.206313, 112.6386912],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1F6F78", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_7569c5b77566cdf6ed35e630a83a6c41 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d68108b0ff92ff5d93aabd786c9f3526 = $(`<div id="html_d68108b0ff92ff5d93aabd786c9f3526" style="width: 100.0%; height: 100.0%;"><b>Gresik Kota, Gresik</b><br>Dimensi 203, Cluster 0</div>`)[0];
+                popup_7569c5b77566cdf6ed35e630a83a6c41.setContent(html_d68108b0ff92ff5d93aabd786c9f3526);
+            
+        
+
+        circle_marker_7054004faa7822fd599ddb606e09eb1d.bindPopup(popup_7569c5b77566cdf6ed35e630a83a6c41)
+        ;
+
+        
+    
+    
+            circle_marker_7054004faa7822fd599ddb606e09eb1d.bindTooltip(
+                `<div>
+                     Gresik Kota, Gresik - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ff1ce269e6d4a556166429739069124c = L.circleMarker(
+                [-6.9418166, 113.5515118],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1F6F78", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_0adf859c8bbf96289ae81033e8156928 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_cdc1b7fcb96149ec2aa2fb6666b9290c = $(`<div id="html_cdc1b7fcb96149ec2aa2fb6666b9290c" style="width: 100.0%; height: 100.0%;"><b>Waru, Pamekasan</b><br>Dimensi 203, Cluster 0</div>`)[0];
+                popup_0adf859c8bbf96289ae81033e8156928.setContent(html_cdc1b7fcb96149ec2aa2fb6666b9290c);
+            
+        
+
+        circle_marker_ff1ce269e6d4a556166429739069124c.bindPopup(popup_0adf859c8bbf96289ae81033e8156928)
+        ;
+
+        
+    
+    
+            circle_marker_ff1ce269e6d4a556166429739069124c.bindTooltip(
+                `<div>
+                     Waru, Pamekasan - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2faf4f58bce366829565538e532546d4 = L.circleMarker(
+                [-6.8703484, 112.339679],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1F6F78", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_fdf14cc1e7d5014b54cac0ceda0496ab = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5456910e6dcdffb26b2bf43e41105f32 = $(`<div id="html_5456910e6dcdffb26b2bf43e41105f32" style="width: 100.0%; height: 100.0%;"><b>Paciran, Lamongan</b><br>Dimensi 203, Cluster 0</div>`)[0];
+                popup_fdf14cc1e7d5014b54cac0ceda0496ab.setContent(html_5456910e6dcdffb26b2bf43e41105f32);
+            
+        
+
+        circle_marker_2faf4f58bce366829565538e532546d4.bindPopup(popup_fdf14cc1e7d5014b54cac0ceda0496ab)
+        ;
+
+        
+    
+    
+            circle_marker_2faf4f58bce366829565538e532546d4.bindTooltip(
+                `<div>
+                     Paciran, Lamongan - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_195d67268e27b7f5ae81817141281f13 = L.circleMarker(
+                [-7.6071174, 112.0510318],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1F6F78", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_9df1dc8c8e8a3ed5b8520884183a2559 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2c4b66ee8a710d02fc35ff69fdadd543 = $(`<div id="html_2c4b66ee8a710d02fc35ff69fdadd543" style="width: 100.0%; height: 100.0%;"><b>Kertosono, Nganjuk</b><br>Dimensi 203, Cluster 0</div>`)[0];
+                popup_9df1dc8c8e8a3ed5b8520884183a2559.setContent(html_2c4b66ee8a710d02fc35ff69fdadd543);
+            
+        
+
+        circle_marker_195d67268e27b7f5ae81817141281f13.bindPopup(popup_9df1dc8c8e8a3ed5b8520884183a2559)
+        ;
+
+        
+    
+    
+            circle_marker_195d67268e27b7f5ae81817141281f13.bindTooltip(
+                `<div>
+                     Kertosono, Nganjuk - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e8433a0c47b3f14bdc9c020b7370533e = L.circleMarker(
+                [-7.5351067, 112.810693],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C97B2E", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_dfd86f48cb0c2bac24a6d967950e4f06 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4bc51e8f1a20346080569d6b637728cf = $(`<div id="html_4bc51e8f1a20346080569d6b637728cf" style="width: 100.0%; height: 100.0%;"><b>Jabon, Sidoarjo</b><br>Dimensi 203, Cluster 1</div>`)[0];
+                popup_dfd86f48cb0c2bac24a6d967950e4f06.setContent(html_4bc51e8f1a20346080569d6b637728cf);
+            
+        
+
+        circle_marker_e8433a0c47b3f14bdc9c020b7370533e.bindPopup(popup_dfd86f48cb0c2bac24a6d967950e4f06)
+        ;
+
+        
+    
+    
+            circle_marker_e8433a0c47b3f14bdc9c020b7370533e.bindTooltip(
+                `<div>
+                     Jabon, Sidoarjo - Cluster 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0d76b3086f18d737101bcfdedaefc3be = L.circleMarker(
+                [-7.3028931, 112.5828799],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1F6F78", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_ae2e3787baf4dbc197c8964e6a8bc79e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fffb93237e751aa74660b571286144d8 = $(`<div id="html_fffb93237e751aa74660b571286144d8" style="width: 100.0%; height: 100.0%;"><b>Menganti, Gresik</b><br>Dimensi 203, Cluster 0</div>`)[0];
+                popup_ae2e3787baf4dbc197c8964e6a8bc79e.setContent(html_fffb93237e751aa74660b571286144d8);
+            
+        
+
+        circle_marker_0d76b3086f18d737101bcfdedaefc3be.bindPopup(popup_ae2e3787baf4dbc197c8964e6a8bc79e)
+        ;
+
+        
+    
+    
+            circle_marker_0d76b3086f18d737101bcfdedaefc3be.bindTooltip(
+                `<div>
+                     Menganti, Gresik - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5e0d5717847d1e476bc66e1b0a139b93 = L.circleMarker(
+                [-7.0854536, 112.1707012],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1F6F78", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_2ab90e409267b52526dcc868f50dfcc4 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0d99f814d1914f9281a146657ba09cd9 = $(`<div id="html_0d99f814d1914f9281a146657ba09cd9" style="width: 100.0%; height: 100.0%;"><b>Widang, Tuban</b><br>Dimensi 203, Cluster 0</div>`)[0];
+                popup_2ab90e409267b52526dcc868f50dfcc4.setContent(html_0d99f814d1914f9281a146657ba09cd9);
+            
+        
+
+        circle_marker_5e0d5717847d1e476bc66e1b0a139b93.bindPopup(popup_2ab90e409267b52526dcc868f50dfcc4)
+        ;
+
+        
+    
+    
+            circle_marker_5e0d5717847d1e476bc66e1b0a139b93.bindTooltip(
+                `<div>
+                     Widang, Tuban - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8e45b96f8b663b3b15863b09d9ab85d4 = L.circleMarker(
+                [-7.4455575, 112.6644479],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C97B2E", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_e7ebb97bbbc28024483320fccde9552e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_424e83723b68d6baaa87dc55e50498d5 = $(`<div id="html_424e83723b68d6baaa87dc55e50498d5" style="width: 100.0%; height: 100.0%;"><b>Sidoarjo, Wonoayu</b><br>Dimensi 203, Cluster 1</div>`)[0];
+                popup_e7ebb97bbbc28024483320fccde9552e.setContent(html_424e83723b68d6baaa87dc55e50498d5);
+            
+        
+
+        circle_marker_8e45b96f8b663b3b15863b09d9ab85d4.bindPopup(popup_e7ebb97bbbc28024483320fccde9552e)
+        ;
+
+        
+    
+    
+            circle_marker_8e45b96f8b663b3b15863b09d9ab85d4.bindTooltip(
+                `<div>
+                     Sidoarjo, Wonoayu - Cluster 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4da5518a64e177f93db58c842bccbb62 = L.circleMarker(
+                [-7.1638712, 112.8509634],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1F6F78", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_a6b742ad526f1394fbe2886b2d385fd0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_950e9c9468d8a2c843e4b08cbbee104f = $(`<div id="html_950e9c9468d8a2c843e4b08cbbee104f" style="width: 100.0%; height: 100.0%;"><b>Kwanyar, Bangkalan</b><br>Dimensi 203, Cluster 0</div>`)[0];
+                popup_a6b742ad526f1394fbe2886b2d385fd0.setContent(html_950e9c9468d8a2c843e4b08cbbee104f);
+            
+        
+
+        circle_marker_4da5518a64e177f93db58c842bccbb62.bindPopup(popup_a6b742ad526f1394fbe2886b2d385fd0)
+        ;
+
+        
+    
+    
+            circle_marker_4da5518a64e177f93db58c842bccbb62.bindTooltip(
+                `<div>
+                     Kwanyar, Bangkalan - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2e5a97dc73d4a95ffa7ea07548733f07 = L.circleMarker(
+                [-7.2974241, 112.2709727],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1F6F78", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_933abaff873969da075359f06c821bb5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_84a07a71debedc6603aad1b0d8329ff1 = $(`<div id="html_84a07a71debedc6603aad1b0d8329ff1" style="width: 100.0%; height: 100.0%;"><b>sambeng, lamongan</b><br>Dimensi 203, Cluster 0</div>`)[0];
+                popup_933abaff873969da075359f06c821bb5.setContent(html_84a07a71debedc6603aad1b0d8329ff1);
+            
+        
+
+        circle_marker_2e5a97dc73d4a95ffa7ea07548733f07.bindPopup(popup_933abaff873969da075359f06c821bb5)
+        ;
+
+        
+    
+    
+            circle_marker_2e5a97dc73d4a95ffa7ea07548733f07.bindTooltip(
+                `<div>
+                     sambeng, lamongan - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c00d26be343acf93edfeabd082470f60 = L.circleMarker(
+                [-7.2347721, 112.564431],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1F6F78", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_98dec8c1ec809c83cd1ffaeafa30df2f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_06eb30402a95e96a2701aa1003a95d49 = $(`<div id="html_06eb30402a95e96a2701aa1003a95d49" style="width: 100.0%; height: 100.0%;"><b>Cerme, Gresik</b><br>Dimensi 203, Cluster 0</div>`)[0];
+                popup_98dec8c1ec809c83cd1ffaeafa30df2f.setContent(html_06eb30402a95e96a2701aa1003a95d49);
+            
+        
+
+        circle_marker_c00d26be343acf93edfeabd082470f60.bindPopup(popup_98dec8c1ec809c83cd1ffaeafa30df2f)
+        ;
+
+        
+    
+    
+            circle_marker_c00d26be343acf93edfeabd082470f60.bindTooltip(
+                `<div>
+                     Cerme, Gresik - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5336752b520a54c8e5d958ff1195c5a1 = L.circleMarker(
+                [-6.8970592, 111.8854917],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1F6F78", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_11ed1ebb11dd0ad5df1f6795716824bb = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_49f3ccb214f11d60aca29c76aa6f15e9 = $(`<div id="html_49f3ccb214f11d60aca29c76aa6f15e9" style="width: 100.0%; height: 100.0%;"><b>Kerek, Tuban</b><br>Dimensi 203, Cluster 0</div>`)[0];
+                popup_11ed1ebb11dd0ad5df1f6795716824bb.setContent(html_49f3ccb214f11d60aca29c76aa6f15e9);
+            
+        
+
+        circle_marker_5336752b520a54c8e5d958ff1195c5a1.bindPopup(popup_11ed1ebb11dd0ad5df1f6795716824bb)
+        ;
+
+        
+    
+    
+            circle_marker_5336752b520a54c8e5d958ff1195c5a1.bindTooltip(
+                `<div>
+                     Kerek, Tuban - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f4b597f66df0fdfb6599627b8a891758 = L.circleMarker(
+                [-7.1598712, 112.8549634],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1F6F78", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_3d6d1c4dd60d0a3718570a0239d64d15 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a499dc5a438f94a6c3bee85d6384fbd3 = $(`<div id="html_a499dc5a438f94a6c3bee85d6384fbd3" style="width: 100.0%; height: 100.0%;"><b>Kwanyar, Bangkalan</b><br>Dimensi 203, Cluster 0</div>`)[0];
+                popup_3d6d1c4dd60d0a3718570a0239d64d15.setContent(html_a499dc5a438f94a6c3bee85d6384fbd3);
+            
+        
+
+        circle_marker_f4b597f66df0fdfb6599627b8a891758.bindPopup(popup_3d6d1c4dd60d0a3718570a0239d64d15)
+        ;
+
+        
+    
+    
+            circle_marker_f4b597f66df0fdfb6599627b8a891758.bindTooltip(
+                `<div>
+                     Kwanyar, Bangkalan - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_76a1c07ead641dc89bef4dc3ae744cf0 = L.circleMarker(
+                [-7.2915772, 112.7320364],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1F6F78", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_9d9e41ab522cffa7ebf1f482390ef77f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3d8d09142d6be49e385a90d510d98065 = $(`<div id="html_3d8d09142d6be49e385a90d510d98065" style="width: 100.0%; height: 100.0%;"><b>Wonokromo, Surabaya</b><br>Dimensi 203, Cluster 0</div>`)[0];
+                popup_9d9e41ab522cffa7ebf1f482390ef77f.setContent(html_3d8d09142d6be49e385a90d510d98065);
+            
+        
+
+        circle_marker_76a1c07ead641dc89bef4dc3ae744cf0.bindPopup(popup_9d9e41ab522cffa7ebf1f482390ef77f)
+        ;
+
+        
+    
+    
+            circle_marker_76a1c07ead641dc89bef4dc3ae744cf0.bindTooltip(
+                `<div>
+                     Wonokromo, Surabaya - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5b9e973a54604b5938fa1ef1c3ccf50b = L.circleMarker(
+                [-7.2520324, 112.715258],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1F6F78", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_a4d7983d8d6a67f6f81f95fa71e9f2b0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2b9f6ac27043a734cd1f5a4d2ad350b3 = $(`<div id="html_2b9f6ac27043a734cd1f5a4d2ad350b3" style="width: 100.0%; height: 100.0%;"><b>Asemrowo, Surabaya</b><br>Dimensi 203, Cluster 0</div>`)[0];
+                popup_a4d7983d8d6a67f6f81f95fa71e9f2b0.setContent(html_2b9f6ac27043a734cd1f5a4d2ad350b3);
+            
+        
+
+        circle_marker_5b9e973a54604b5938fa1ef1c3ccf50b.bindPopup(popup_a4d7983d8d6a67f6f81f95fa71e9f2b0)
+        ;
+
+        
+    
+    
+            circle_marker_5b9e973a54604b5938fa1ef1c3ccf50b.bindTooltip(
+                `<div>
+                     Asemrowo, Surabaya - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_51d7d05ae563f175fb9f513db2859f9a = L.circleMarker(
+                [-7.006745, 113.8598666],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1F6F78", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_975210fd3ca1bdd588b1aebf34aac370 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e882d2d5474996b97da3fc9083de3374 = $(`<div id="html_e882d2d5474996b97da3fc9083de3374" style="width: 100.0%; height: 100.0%;"><b>Kota Sumenep, Sumenep</b><br>Dimensi 203, Cluster 0</div>`)[0];
+                popup_975210fd3ca1bdd588b1aebf34aac370.setContent(html_e882d2d5474996b97da3fc9083de3374);
+            
+        
+
+        circle_marker_51d7d05ae563f175fb9f513db2859f9a.bindPopup(popup_975210fd3ca1bdd588b1aebf34aac370)
+        ;
+
+        
+    
+    
+            circle_marker_51d7d05ae563f175fb9f513db2859f9a.bindTooltip(
+                `<div>
+                     Kota Sumenep, Sumenep - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ae809c408af443e129878d2a59b9d650 = L.circleMarker(
+                [-7.0909364, 112.7055302],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1F6F78", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_2e2cf1487cec174564aad07fe87aa39a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a9fe0b094b771350d36dba0dee7bfe27 = $(`<div id="html_a9fe0b094b771350d36dba0dee7bfe27" style="width: 100.0%; height: 100.0%;"><b>Socah, Bangkalan</b><br>Dimensi 203, Cluster 0</div>`)[0];
+                popup_2e2cf1487cec174564aad07fe87aa39a.setContent(html_a9fe0b094b771350d36dba0dee7bfe27);
+            
+        
+
+        circle_marker_ae809c408af443e129878d2a59b9d650.bindPopup(popup_2e2cf1487cec174564aad07fe87aa39a)
+        ;
+
+        
+    
+    
+            circle_marker_ae809c408af443e129878d2a59b9d650.bindTooltip(
+                `<div>
+                     Socah, Bangkalan - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bbd1def83eee24fe6785ed86d2acf033 = L.circleMarker(
+                [-7.499596, 111.6442548],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1F6F78", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_80866f619ac9ab7e023284d5132da13d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d6bd9c5c8f42dc7e4e0e6bb0aa8ef824 = $(`<div id="html_d6bd9c5c8f42dc7e4e0e6bb0aa8ef824" style="width: 100.0%; height: 100.0%;"><b>Pilangkenceng, Madiun</b><br>Dimensi 203, Cluster 0</div>`)[0];
+                popup_80866f619ac9ab7e023284d5132da13d.setContent(html_d6bd9c5c8f42dc7e4e0e6bb0aa8ef824);
+            
+        
+
+        circle_marker_bbd1def83eee24fe6785ed86d2acf033.bindPopup(popup_80866f619ac9ab7e023284d5132da13d)
+        ;
+
+        
+    
+    
+            circle_marker_bbd1def83eee24fe6785ed86d2acf033.bindTooltip(
+                `<div>
+                     Pilangkenceng, Madiun - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1d22ee137736a4f4011977f4df15320d = L.circleMarker(
+                [-7.0882748, 112.8853403],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#C97B2E", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_890a55afd9667bf4f13ad368178805f1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e93a6ff4e0d9f41e07d39f8ce8d78d7f = $(`<div id="html_e93a6ff4e0d9f41e07d39f8ce8d78d7f" style="width: 100.0%; height: 100.0%;"><b>Tanah Merah, Bangkalan</b><br>Dimensi 203, Cluster 1</div>`)[0];
+                popup_890a55afd9667bf4f13ad368178805f1.setContent(html_e93a6ff4e0d9f41e07d39f8ce8d78d7f);
+            
+        
+
+        circle_marker_1d22ee137736a4f4011977f4df15320d.bindPopup(popup_890a55afd9667bf4f13ad368178805f1)
+        ;
+
+        
+    
+    
+            circle_marker_1d22ee137736a4f4011977f4df15320d.bindTooltip(
+                `<div>
+                     Tanah Merah, Bangkalan - Cluster 1
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5eafbb72b03bcbaa2c71744a2e90b68b = L.circleMarker(
+                [-7.13961, 112.7730944],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1F6F78", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_9fac5d71f4b2cdd0fb619862ccc39ff6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5304b3b3837286e95ca79168a917e870 = $(`<div id="html_5304b3b3837286e95ca79168a917e870" style="width: 100.0%; height: 100.0%;"><b>Labang, Bangkalan</b><br>Dimensi 203, Cluster 0</div>`)[0];
+                popup_9fac5d71f4b2cdd0fb619862ccc39ff6.setContent(html_5304b3b3837286e95ca79168a917e870);
+            
+        
+
+        circle_marker_5eafbb72b03bcbaa2c71744a2e90b68b.bindPopup(popup_9fac5d71f4b2cdd0fb619862ccc39ff6)
+        ;
+
+        
+    
+    
+            circle_marker_5eafbb72b03bcbaa2c71744a2e90b68b.bindTooltip(
+                `<div>
+                     Labang, Bangkalan - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1ff5c7ca2583160e6d94bec89f535892 = L.circleMarker(
+                [-7.4028554, 111.2238532],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1F6F78", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_5d0c0f2754b6efa8ef3c9e421322b238 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_91b384caa9afd6104b35c2acb1ebdc26 = $(`<div id="html_91b384caa9afd6104b35c2acb1ebdc26" style="width: 100.0%; height: 100.0%;"><b>Widodaren, Ngawi</b><br>Dimensi 203, Cluster 0</div>`)[0];
+                popup_5d0c0f2754b6efa8ef3c9e421322b238.setContent(html_91b384caa9afd6104b35c2acb1ebdc26);
+            
+        
+
+        circle_marker_1ff5c7ca2583160e6d94bec89f535892.bindPopup(popup_5d0c0f2754b6efa8ef3c9e421322b238)
+        ;
+
+        
+    
+    
+            circle_marker_1ff5c7ca2583160e6d94bec89f535892.bindTooltip(
+                `<div>
+                     Widodaren, Ngawi - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9cb7697e406437f36af9905c72092ddd = L.circleMarker(
+                [-7.0294703, 112.7473329],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1F6F78", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_b00d0927ba5fd6c3bfeca59a4bc7b950 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fe8218ca0a50c909f8d0621a1245d4f3 = $(`<div id="html_fe8218ca0a50c909f8d0621a1245d4f3" style="width: 100.0%; height: 100.0%;"><b>Bangkalan, Bangkalan</b><br>Dimensi 203, Cluster 0</div>`)[0];
+                popup_b00d0927ba5fd6c3bfeca59a4bc7b950.setContent(html_fe8218ca0a50c909f8d0621a1245d4f3);
+            
+        
+
+        circle_marker_9cb7697e406437f36af9905c72092ddd.bindPopup(popup_b00d0927ba5fd6c3bfeca59a4bc7b950)
+        ;
+
+        
+    
+    
+            circle_marker_9cb7697e406437f36af9905c72092ddd.bindTooltip(
+                `<div>
+                     Bangkalan, Bangkalan - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_157a386059059769b21c3d65abaf4e8d = L.circleMarker(
+                [-7.1662821, 112.73285630000001],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1F6F78", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_f142667078bae8eaa9626741e4e4d317 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d590d743500c56ceb0b7ffbafcb2499e = $(`<div id="html_d590d743500c56ceb0b7ffbafcb2499e" style="width: 100.0%; height: 100.0%;"><b>Kamal, Bangkalan</b><br>Dimensi 203, Cluster 0</div>`)[0];
+                popup_f142667078bae8eaa9626741e4e4d317.setContent(html_d590d743500c56ceb0b7ffbafcb2499e);
+            
+        
+
+        circle_marker_157a386059059769b21c3d65abaf4e8d.bindPopup(popup_f142667078bae8eaa9626741e4e4d317)
+        ;
+
+        
+    
+    
+            circle_marker_157a386059059769b21c3d65abaf4e8d.bindTooltip(
+                `<div>
+                     Kamal, Bangkalan - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4449c2f7ab742bedc188b49475806b43 = L.circleMarker(
+                [-7.1614724, 112.7196874],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1F6F78", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_84f4668b2304fb43e747521d04e10da1 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6d935cc2e90df9fff32208938f42d0c2 = $(`<div id="html_6d935cc2e90df9fff32208938f42d0c2" style="width: 100.0%; height: 100.0%;"><b>Banyuajuh kamal, Bangkalan</b><br>Dimensi 203, Cluster 0</div>`)[0];
+                popup_84f4668b2304fb43e747521d04e10da1.setContent(html_6d935cc2e90df9fff32208938f42d0c2);
+            
+        
+
+        circle_marker_4449c2f7ab742bedc188b49475806b43.bindPopup(popup_84f4668b2304fb43e747521d04e10da1)
+        ;
+
+        
+    
+    
+            circle_marker_4449c2f7ab742bedc188b49475806b43.bindTooltip(
+                `<div>
+                     Banyuajuh kamal, Bangkalan - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_98cee26d821bf4a02693e30a880fa75a = L.circleMarker(
+                [-7.0087499, 112.5103759],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1F6F78", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_956675f2f945ed04977fa8711ba18ca3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d1934c820a2ba1ef18f3823bcd3702d8 = $(`<div id="html_d1934c820a2ba1ef18f3823bcd3702d8" style="width: 100.0%; height: 100.0%;"><b>Dukun, Gresik</b><br>Dimensi 203, Cluster 0</div>`)[0];
+                popup_956675f2f945ed04977fa8711ba18ca3.setContent(html_d1934c820a2ba1ef18f3823bcd3702d8);
+            
+        
+
+        circle_marker_98cee26d821bf4a02693e30a880fa75a.bindPopup(popup_956675f2f945ed04977fa8711ba18ca3)
+        ;
+
+        
+    
+    
+            circle_marker_98cee26d821bf4a02693e30a880fa75a.bindTooltip(
+                `<div>
+                     Dukun, Gresik - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c2a2cac125ebe98e349a137093a04d7b = L.circleMarker(
+                [-7.0294703, 112.7473329],
+                {"bubblingMouseEvents": true, "color": "white", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1F6F78", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9, "stroke": true, "weight": 1.5}
+            ).addTo(map_da4ea8bdb5a65cdd71fa54be7ed6ae34);
+        
+    
+        var popup_801be6e3328c47aed9c6d0c5d22ffc38 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_2865f7cd5887b42ade7631a649df9ae0 = $(`<div id="html_2865f7cd5887b42ade7631a649df9ae0" style="width: 100.0%; height: 100.0%;"><b>Kecamatan Bangkalan,Bangkalan</b><br>Dimensi 203, Cluster 0</div>`)[0];
+                popup_801be6e3328c47aed9c6d0c5d22ffc38.setContent(html_2865f7cd5887b42ade7631a649df9ae0);
+            
+        
+
+        circle_marker_c2a2cac125ebe98e349a137093a04d7b.bindPopup(popup_801be6e3328c47aed9c6d0c5d22ffc38)
+        ;
+
+        
+    
+    
+            circle_marker_c2a2cac125ebe98e349a137093a04d7b.bindTooltip(
+                `<div>
+                     Kecamatan Bangkalan,Bangkalan - Cluster 0
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            map_da4ea8bdb5a65cdd71fa54be7ed6ae34.fitBounds(
+                [[-7.6071174, 111.2238532], [-6.8703484, 113.8598666]],
+                {}
+            );
+        
+</script>
+</html>

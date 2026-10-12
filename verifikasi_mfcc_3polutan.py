@@ -4,10 +4,6 @@ Implementasi manual dari nol (NumPy + SciPy DCT) dibandingkan dengan TSFEL
 
 Implementasi ini sudah diverifikasi menghasilkan nilai IDENTIK (selisih 0.0)
 dengan tsfel.feature_extraction.features.mfcc() pada data uji.
-
-Cara pakai:
-    pip install scipy tsfel pandas numpy
-    python verifikasi_mfcc_3polutan.py
 """
 
 import numpy as np
@@ -52,7 +48,7 @@ def manual_mfcc(signal, fs, pre_emphasis=PRE_EMPHASIS, nfft=NFFT,
         for k in range(f_m, f_m_plus):
             fbank[m - 1, k] = (filter_bin[m + 1] - k) / (filter_bin[m + 1] - filter_bin[m])
 
-    # ---- Tahap 3b: Normalisasi luas filter (penting, sering terlewat) ----
+    # ---- Tahap 3: Normalisasi luas filter ----
     enorm = 2.0 / (hz_points[2:nfilt + 2] - hz_points[:nfilt])
     fbank *= enorm[:, np.newaxis]
 
@@ -100,5 +96,5 @@ for nama_pol, path in POLUTAN_FILES.items():
     if np.max(selisih) < 1e-4:
         print("=> COCOK SEMPURNA")
     else:
-        print("=> Ada perbedaan, cek data (mungkin ada NaN atau nilai konstan)")
+        print("=> Ada perbedaan, cek data")
     print()

@@ -1,0 +1,41 @@
+{
+  "bounds": [
+    [
+      -8.906796042045055,
+      110.89926761276523
+    ],
+    [
+      -5.598750008274918,
+      114.60032658333766
+    ]
+  ],
+  "width": 1648,
+  "height": 1473,
+  "pixel_size_deg": 0.002245788210298804,
+  "class_stats": {
+    "Sawah": {
+      "piksel": 338582,
+      "luas_ha": 2083510.7
+    },
+    "Bangunan": {
+      "piksel": 236659,
+      "luas_ha": 1456680.3
+    },
+    "Mangrove": {
+      "piksel": 18060,
+      "luas_ha": 111165.2
+    },
+    "Lahan Hijau": {
+      "piksel": 312304,
+      "luas_ha": 1920500.8
+    },
+    "Perairan Terbuka (Laut)": {
+      "piksel": 1495136,
+      "luas_ha": 9211124.0
+    },
+    "Danau (Ranu)": {
+      "piksel": 23850,
+      "luas_ha": 146829.5
+    }
+  }
+}

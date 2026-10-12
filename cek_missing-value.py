@@ -24,8 +24,8 @@ print((df_all.isnull().sum() / len(df_all)) * 100)
 
 # 5. Interpolasi Time Series (Jika missing value < 15%)
 df_clean = df_all.copy()
-df_clean[['SO2', 'NO2', 'CO']] = df_clean[['SO2', 'NO2', 'CO']].interpolate(method='linear').bfill().ffill()
+df_clean[['SO2', 'NO2', 'CO']] = df_clean[['SO2', 'NO2', 'CO']].interpolate(method='spline', order=2).bfill().ffill()
 
 # Simpan dataset time series yang sudah rapi
-df_clean.to_csv("mystorage/timeseries_cerme_clean.csv", index=False)
+df_clean.to_csv("mystorage/timeseries_cerme_clean_spline.csv", index=False)
 print("\nData time-series berhasil dirapikan & disimpan!")

@@ -1,0 +1,6 @@
+# Dipakai oleh aplikasi Streamlit (juga untuk deploy ke Streamlit Community Cloud)
+streamlit>=1.40
+streamlit-folium>=0.23
+folium>=0.19
+pandas
+numpy
