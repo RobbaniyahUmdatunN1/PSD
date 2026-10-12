@@ -37,4 +37,12 @@ Blog ini berisi catatan progres saya mengerjakan Mata Kuliah Proyek Sains Data S
   <a href="fitur-negative-turning-penjelasan.html">Fitur Negative Turning</a>
   <a href="fitur-mfcc-penjelasan.html">Fitur MFCC</a>
 </div>
+<div class="psd-log-entry">
+  <span class="psd-log-tag">TUGAS 05</span>
+  <a href="tugas5-eksperimen_pca_3level.html">Eksperimen PCA 3 Level Dimensi</a>
+</div>
+<div class="psd-log-entry">
+  <span class="psd-log-tag">TUGAS 06</span>
+  <a href="UTS/klasifikasi_lulc.html">UTS</a>
+</div>
 </div>

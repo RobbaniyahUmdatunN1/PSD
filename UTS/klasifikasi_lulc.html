@@ -1,0 +1,931 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Klasifikasi Penggunaan Lahan Jawa Timur (Sentinel-2A) &#8212; Catatan Proyek Sains Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=bdde7595" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'UTS/klasifikasi_lulc';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Catatan Proyek Sains Data</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Selamat Datang di Catatan Proyek Sains Data
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../profil.html">Profil</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/RobbaniyahUmdatunN1/PSD" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/UTS/klasifikasi_lulc.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Klasifikasi Penggunaan Lahan Jawa Timur (Sentinel-2A)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding-dan-tujuan-analisis">1. Data Understanding dan Tujuan Analisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengumpulan-data">2. Pengumpulan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#band-sentinel-2a">3. Band Sentinel-2A</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skema-kelas-dan-acuan-klasifikasi-lahan-indonesia">4. Skema Kelas dan Acuan Klasifikasi Lahan Indonesia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-dan-rumus">5. Fitur dan Rumus</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-data-dan-kelas">6. Jumlah Data dan Kelas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-model">7. Perbandingan Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-model-terbaik">8. Evaluasi Model Terbaik</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksperimen-jumlah-data">9. Eksperimen Jumlah Data</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="klasifikasi-penggunaan-lahan-jawa-timur-sentinel-2a">
+<h1>Klasifikasi Penggunaan Lahan Jawa Timur (Sentinel-2A)<a class="headerlink" href="#klasifikasi-penggunaan-lahan-jawa-timur-sentinel-2a" title="Link to this heading">#</a></h1>
+<section id="data-understanding-dan-tujuan-analisis">
+<h2>1. Data Understanding dan Tujuan Analisis<a class="headerlink" href="#data-understanding-dan-tujuan-analisis" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Memetakan penutup/penggunaan lahan (land use &amp; land cover, LULC) Provinsi Jawa Timur dari citra Sentinel-2A menjadi 6 kelas: sawah, bangunan, mangrove, lahan hijau, perairan terbuka (laut), dan danau (ranu).</p></li>
+<li><p>Membandingkan beberapa algoritma klasifikasi terbimbing (Random Forest sebagai baseline, XGBoost, LightGBM, SVM, dll.) dan memilih model dengan akurasi tertinggi.</p></li>
+<li><p>Menyajikan hasil klasifikasi sebagai sistem informasi geografis berbasis web (Folium/Leaflet di Streamlit) di atas basemap satelit Google, sebagai dasar analisis spasial penggunaan lahan dan kebijakan tata ruang (mis. pemantauan alih fungsi sawah, perlindungan mangrove, dan kawasan terbangun).</p></li>
+</ul>
+</section>
+<section id="pengumpulan-data">
+<h2>2. Pengumpulan Data<a class="headerlink" href="#pengumpulan-data" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Label</strong>: 6 file GeoJSON poligon sampel, masing-masing 60 poligon (total 360), tersebar di Jawa Timur.</p></li>
+<li><p><strong>Citra</strong>: Sentinel-2A Level-2A (<code class="docutils literal notranslate"><span class="pre">COPERNICUS/S2_SR_HARMONIZED</span></code>) di Google Earth Engine, tahun 2025, filter <code class="docutils literal notranslate"><span class="pre">SPACECRAFT_NAME</span> <span class="pre">=</span> <span class="pre">Sentinel-2A</span></code>, masking awan Cloud Score+ (cs_cdf &gt;= 0,6), komposit median, reflektansi dibagi 10.000.</p></li>
+<li><p><strong>Ekstraksi</strong>: 50 titik acak per poligon (10 m), nilai 10 band dan 8 indeks per titik, diekspor ke CSV.</p></li>
+<li><p><strong>Pembersihan</strong>: buang nilai kosong/tak hingga, batasi indeks rasio (EVI, MVI), seimbangkan jumlah titik per kelas.</p></li>
+<li><p><strong>Pembagian data</strong>: train/test dipisah <em>per poligon</em> (80:20) untuk mencegah kebocoran spasial.</p></li>
+</ol>
+</section>
+<section id="band-sentinel-2a">
+<h2>3. Band Sentinel-2A<a class="headerlink" href="#band-sentinel-2a" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Band</p></th>
+<th class="head"><p>Nama</p></th>
+<th class="head"><p>Panjang gelombang (nm)</p></th>
+<th class="head"><p>Resolusi (m)</p></th>
+<th class="head"><p>Kegunaan</p></th>
+<th class="head"><p>Dipakai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>B1</p></td>
+<td><p>Coastal aerosol</p></td>
+<td><p>442.7</p></td>
+<td><p>60</p></td>
+<td><p>Koreksi aerosol atmosfer, perairan pesisir</p></td>
+<td><p>Tidak</p></td>
+</tr>
+<tr class="row-odd"><td><p>B2</p></td>
+<td><p>Blue</p></td>
+<td><p>492.4</p></td>
+<td><p>10</p></td>
+<td><p>Pembeda air jernih, tanah, vegetasi; penyusun EVI</p></td>
+<td><p>Ya</p></td>
+</tr>
+<tr class="row-even"><td><p>B3</p></td>
+<td><p>Green</p></td>
+<td><p>559.8</p></td>
+<td><p>10</p></td>
+<td><p>Puncak pantulan vegetasi hijau; NDWI/MNDWI/MVI</p></td>
+<td><p>Ya</p></td>
+</tr>
+<tr class="row-odd"><td><p>B4</p></td>
+<td><p>Red</p></td>
+<td><p>664.6</p></td>
+<td><p>10</p></td>
+<td><p>Penyerapan klorofil; NDVI/EVI/SAVI</p></td>
+<td><p>Ya</p></td>
+</tr>
+<tr class="row-even"><td><p>B5</p></td>
+<td><p>Vegetation red edge 1</p></td>
+<td><p>704.1</p></td>
+<td><p>20</p></td>
+<td><p>Kondisi/kandungan klorofil vegetasi</p></td>
+<td><p>Ya</p></td>
+</tr>
+<tr class="row-odd"><td><p>B6</p></td>
+<td><p>Vegetation red edge 2</p></td>
+<td><p>740.5</p></td>
+<td><p>20</p></td>
+<td><p>Struktur kanopi, pembeda tipe vegetasi</p></td>
+<td><p>Ya</p></td>
+</tr>
+<tr class="row-even"><td><p>B7</p></td>
+<td><p>Vegetation red edge 3</p></td>
+<td><p>782.8</p></td>
+<td><p>20</p></td>
+<td><p>Struktur kanopi, biomassa</p></td>
+<td><p>Ya</p></td>
+</tr>
+<tr class="row-odd"><td><p>B8</p></td>
+<td><p>NIR</p></td>
+<td><p>832.8</p></td>
+<td><p>10</p></td>
+<td><p>Pantulan tinggi vegetasi, serapan air</p></td>
+<td><p>Ya</p></td>
+</tr>
+<tr class="row-even"><td><p>B8A</p></td>
+<td><p>Narrow NIR</p></td>
+<td><p>864.7</p></td>
+<td><p>20</p></td>
+<td><p>NIR sempit, sensitif terhadap vegetasi</p></td>
+<td><p>Ya</p></td>
+</tr>
+<tr class="row-odd"><td><p>B9</p></td>
+<td><p>Water vapour</p></td>
+<td><p>945.1</p></td>
+<td><p>60</p></td>
+<td><p>Koreksi uap air atmosfer</p></td>
+<td><p>Tidak</p></td>
+</tr>
+<tr class="row-even"><td><p>B10</p></td>
+<td><p>SWIR - Cirrus</p></td>
+<td><p>1373.5</p></td>
+<td><p>60</p></td>
+<td><p>Deteksi awan cirrus (tidak ada di produk L2A)</p></td>
+<td><p>Tidak</p></td>
+</tr>
+<tr class="row-odd"><td><p>B11</p></td>
+<td><p>SWIR 1</p></td>
+<td><p>1613.7</p></td>
+<td><p>20</p></td>
+<td><p>Kadar air tanah/vegetasi, lahan terbangun; NDBI/MNDWI/NDMI</p></td>
+<td><p>Ya</p></td>
+</tr>
+<tr class="row-even"><td><p>B12</p></td>
+<td><p>SWIR 2</p></td>
+<td><p>2202.4</p></td>
+<td><p>20</p></td>
+<td><p>Pembeda tanah terbuka, lahan terbangun, air</p></td>
+<td><p>Ya</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>B1, B9, B10 tidak dipakai (koreksi atmosfer/deteksi awan, resolusi 60 m; B10 tidak ada di produk L2A).</p>
+</section>
+<section id="skema-kelas-dan-acuan-klasifikasi-lahan-indonesia">
+<h2>4. Skema Kelas dan Acuan Klasifikasi Lahan Indonesia<a class="headerlink" href="#skema-kelas-dan-acuan-klasifikasi-lahan-indonesia" title="Link to this heading">#</a></h2>
+<p>Mengacu pada SNI 7645-1:2014 dan klasifikasi penutup lahan KLHK (23 kelas), diagregasi menjadi 6 kelas.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Kelas</p></th>
+<th class="head"><p>Warna</p></th>
+<th class="head"><p>Padanan klasifikasi Indonesia</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Sawah</p></td>
+<td><p>#f4d03f</p></td>
+<td><p>Sawah (pertanian lahan basah) - kelas ‘Sawah’ KLHK</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Bangunan</p></td>
+<td><p>#e74c3c</p></td>
+<td><p>Permukiman / lahan terbangun - kelas ‘Permukiman’ KLHK; ‘Daerah terbangun’ SNI 7645</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Mangrove</p></td>
+<td><p>#145a32</p></td>
+<td><p>Hutan mangrove (primer/sekunder) - kelas ‘Hutan Mangrove’ KLHK</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Lahan Hijau</p></td>
+<td><p>#58d68d</p></td>
+<td><p>Gabungan vegetasi non-sawah: hutan lahan kering, perkebunan, pertanian lahan kering, semak belukar, padang rumput</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>Perairan Terbuka (Laut)</p></td>
+<td><p>#1f4e9c</p></td>
+<td><p>Tubuh air - perairan laut (SNI 7645: ‘Perairan’)</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>Danau (Ranu)</p></td>
+<td><p>#00bcd4</p></td>
+<td><p>Tubuh air - perairan darat/danau (SNI 7645: ‘Perairan’)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="fitur-dan-rumus">
+<h2>5. Fitur dan Rumus<a class="headerlink" href="#fitur-dan-rumus" title="Link to this heading">#</a></h2>
+<p>Total 18 fitur: 10 band (B2, B3, B4, B5, B6, B7, B8, B8A, B11, B12) dan 8 indeks.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fitur</p></th>
+<th class="head"><p>Rumus</p></th>
+<th class="head"><p>Keterangan</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>NDVI</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(B8</span> <span class="pre">-</span> <span class="pre">B4)</span> <span class="pre">/</span> <span class="pre">(B8</span> <span class="pre">+</span> <span class="pre">B4)</span></code></p></td>
+<td><p>Normalized Difference Vegetation Index. Tinggi pada vegetasi lebat (mangrove, lahan hijau), rendah/negatif pada air dan bangunan.</p></td>
+</tr>
+<tr class="row-odd"><td><p>NDWI</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(B3</span> <span class="pre">-</span> <span class="pre">B8)</span> <span class="pre">/</span> <span class="pre">(B3</span> <span class="pre">+</span> <span class="pre">B8)</span></code></p></td>
+<td><p>Normalized Difference Water Index (McFeeters). Positif pada badan air.</p></td>
+</tr>
+<tr class="row-even"><td><p>MNDWI</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(B3</span> <span class="pre">-</span> <span class="pre">B11)</span> <span class="pre">/</span> <span class="pre">(B3</span> <span class="pre">+</span> <span class="pre">B11)</span></code></p></td>
+<td><p>Modified NDWI (Xu). Lebih baik memisahkan air dari lahan terbangun.</p></td>
+</tr>
+<tr class="row-odd"><td><p>NDBI</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(B11</span> <span class="pre">-</span> <span class="pre">B8)</span> <span class="pre">/</span> <span class="pre">(B11</span> <span class="pre">+</span> <span class="pre">B8)</span></code></p></td>
+<td><p>Normalized Difference Built-up Index. Tinggi pada area terbangun.</p></td>
+</tr>
+<tr class="row-even"><td><p>NDMI</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(B8</span> <span class="pre">-</span> <span class="pre">B11)</span> <span class="pre">/</span> <span class="pre">(B8</span> <span class="pre">+</span> <span class="pre">B11)</span></code></p></td>
+<td><p>Normalized Difference Moisture Index. Kelembapan vegetasi; membantu pembeda sawah tergenang.</p></td>
+</tr>
+<tr class="row-odd"><td><p>EVI</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2.5</span> <span class="pre">*</span> <span class="pre">(B8</span> <span class="pre">-</span> <span class="pre">B4)</span> <span class="pre">/</span> <span class="pre">(B8</span> <span class="pre">+</span> <span class="pre">6*B4</span> <span class="pre">-</span> <span class="pre">7.5*B2</span> <span class="pre">+</span> <span class="pre">1)</span></code></p></td>
+<td><p>Enhanced Vegetation Index. Tidak mudah jenuh pada vegetasi rapat; reflektansi skala 0-1.</p></td>
+</tr>
+<tr class="row-even"><td><p>SAVI</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1.5</span> <span class="pre">*</span> <span class="pre">(B8</span> <span class="pre">-</span> <span class="pre">B4)</span> <span class="pre">/</span> <span class="pre">(B8</span> <span class="pre">+</span> <span class="pre">B4</span> <span class="pre">+</span> <span class="pre">0.5)</span></code></p></td>
+<td><p>Soil Adjusted Vegetation Index (L = 0,5). Mengurangi pengaruh latar tanah.</p></td>
+</tr>
+<tr class="row-odd"><td><p>MVI</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(B8</span> <span class="pre">-</span> <span class="pre">B3)</span> <span class="pre">/</span> <span class="pre">(B11</span> <span class="pre">-</span> <span class="pre">B3)</span></code></p></td>
+<td><p>Mangrove Vegetation Index (Baloloy dkk., 2020). Menonjolkan mangrove terhadap vegetasi lain. Nilai dibatasi -20 s.d. 20.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="jumlah-data-dan-kelas">
+<h2>6. Jumlah Data dan Kelas<a class="headerlink" href="#jumlah-data-dan-kelas" title="Link to this heading">#</a></h2>
+<p>Jumlah kelas <strong>6</strong>, data latih <strong>14227</strong>, data uji <strong>3569</strong>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas</p></th>
+<th class="head"><p>Poligon</p></th>
+<th class="head"><p>Titik (bersih)</p></th>
+<th class="head"><p>Train</p></th>
+<th class="head"><p>Test</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Sawah</p></td>
+<td><p>60</p></td>
+<td><p>3000</p></td>
+<td><p>2373</p></td>
+<td><p>593</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bangunan</p></td>
+<td><p>60</p></td>
+<td><p>3000</p></td>
+<td><p>2371</p></td>
+<td><p>595</p></td>
+</tr>
+<tr class="row-even"><td><p>Mangrove</p></td>
+<td><p>60</p></td>
+<td><p>3000</p></td>
+<td><p>2370</p></td>
+<td><p>596</p></td>
+</tr>
+<tr class="row-odd"><td><p>Lahan Hijau</p></td>
+<td><p>60</p></td>
+<td><p>2966</p></td>
+<td><p>2366</p></td>
+<td><p>600</p></td>
+</tr>
+<tr class="row-even"><td><p>Perairan Terbuka (Laut)</p></td>
+<td><p>60</p></td>
+<td><p>3000</p></td>
+<td><p>2369</p></td>
+<td><p>597</p></td>
+</tr>
+<tr class="row-odd"><td><p>Danau (Ranu)</p></td>
+<td><p>60</p></td>
+<td><p>3000</p></td>
+<td><p>2378</p></td>
+<td><p>588</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="perbandingan-model">
+<h2>7. Perbandingan Model<a class="headerlink" href="#perbandingan-model" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Model</p></th>
+<th class="head"><p>CV akurasi (%)</p></th>
+<th class="head"><p>Akurasi uji (%)</p></th>
+<th class="head"><p>F1-macro uji (%)</p></th>
+<th class="head"><p>Kappa</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Random Forest (baseline)</p></td>
+<td><p>91.22 ± 1.75</p></td>
+<td><p>96.55</p></td>
+<td><p>96.55</p></td>
+<td><p>0.9586</p></td>
+</tr>
+<tr class="row-odd"><td><p>Extra Trees</p></td>
+<td><p>91.41 ± 1.76</p></td>
+<td><p>96.30</p></td>
+<td><p>96.29</p></td>
+<td><p>0.9556</p></td>
+</tr>
+<tr class="row-even"><td><p>HistGradientBoosting</p></td>
+<td><p>91.92 ± 1.57</p></td>
+<td><p>96.75</p></td>
+<td><p>96.74</p></td>
+<td><p>0.9610</p></td>
+</tr>
+<tr class="row-odd"><td><p>SVM (RBF)</p></td>
+<td><p>92.72 ± 1.80</p></td>
+<td><p>95.88</p></td>
+<td><p>95.87</p></td>
+<td><p>0.9506</p></td>
+</tr>
+<tr class="row-even"><td><p>KNN (k=7)</p></td>
+<td><p>90.26 ± 2.45</p></td>
+<td><p>94.51</p></td>
+<td><p>94.48</p></td>
+<td><p>0.9341</p></td>
+</tr>
+<tr class="row-odd"><td><p>MLP (Neural Net) (terbaik)</p></td>
+<td><p>92.97 ± 1.84</p></td>
+<td><p>96.33</p></td>
+<td><p>96.32</p></td>
+<td><p>0.9560</p></td>
+</tr>
+<tr class="row-even"><td><p>XGBoost</p></td>
+<td><p>92.19 ± 1.54</p></td>
+<td><p>96.92</p></td>
+<td><p>96.91</p></td>
+<td><p>0.9630</p></td>
+</tr>
+<tr class="row-odd"><td><p>LightGBM</p></td>
+<td><p>92.13 ± 1.52</p></td>
+<td><p>96.75</p></td>
+<td><p>96.74</p></td>
+<td><p>0.9610</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Model terbaik (dipilih dari CV data latih): <strong>MLP (Neural Net)</strong>, akurasi uji <strong>96.33%</strong>, kappa <strong>0.9560</strong>.</p>
+<p><img alt="Perbandingan model" src="../_images/perbandingan_model.png" /></p>
+</section>
+<section id="evaluasi-model-terbaik">
+<h2>8. Evaluasi Model Terbaik<a class="headerlink" href="#evaluasi-model-terbaik" title="Link to this heading">#</a></h2>
+<p><img alt="Confusion matrix" src="../_images/confusion_matrix.png" />
+<img alt="Kepentingan fitur" src="../_images/feature_importance.png" /></p>
+</section>
+<section id="eksperimen-jumlah-data">
+<h2>9. Eksperimen Jumlah Data<a class="headerlink" href="#eksperimen-jumlah-data" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Fraksi data latih</p></th>
+<th class="head"><p>Jumlah</p></th>
+<th class="head"><p>Akurasi uji (%)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>5%</p></td>
+<td><p>708</p></td>
+<td><p>92.35</p></td>
+</tr>
+<tr class="row-odd"><td><p>10%</p></td>
+<td><p>1420</p></td>
+<td><p>95.74</p></td>
+</tr>
+<tr class="row-even"><td><p>25%</p></td>
+<td><p>3554</p></td>
+<td><p>96.33</p></td>
+</tr>
+<tr class="row-odd"><td><p>50%</p></td>
+<td><p>7112</p></td>
+<td><p>96.30</p></td>
+</tr>
+<tr class="row-even"><td><p>75%</p></td>
+<td><p>10667</p></td>
+<td><p>96.50</p></td>
+</tr>
+<tr class="row-odd"><td><p>100%</p></td>
+<td><p>14227</p></td>
+<td><p>96.47</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img alt="Eksperimen jumlah data" src="../_images/eksperimen_jumlah_data.png" /></p>
+</section>
+<section id="hasil-klasifikasi-dan-luas-kelas">
+<h2>10. Hasil Klasifikasi dan Luas Kelas<a class="headerlink" href="#hasil-klasifikasi-dan-luas-kelas" title="Link to this heading">#</a></h2>
+<p><img alt="Hasil klasifikasi (overlay)" src="../_images/klasifikasi_jatim.png" /></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Kelas</p></th>
+<th class="head"><p>Luas (ha)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Sawah</p></td>
+<td><p>2,083,511</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bangunan</p></td>
+<td><p>1,456,680</p></td>
+</tr>
+<tr class="row-even"><td><p>Mangrove</p></td>
+<td><p>111,165</p></td>
+</tr>
+<tr class="row-odd"><td><p>Lahan Hijau</p></td>
+<td><p>1,920,501</p></td>
+</tr>
+<tr class="row-even"><td><p>Perairan Terbuka (Laut)</p></td>
+<td><p>9,211,124</p></td>
+</tr>
+<tr class="row-odd"><td><p>Danau (Ranu)</p></td>
+<td><p>146,830</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Luas bersifat indikatif karena dihitung dari raster kasar.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./UTS"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-understanding-dan-tujuan-analisis">1. Data Understanding dan Tujuan Analisis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengumpulan-data">2. Pengumpulan Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#band-sentinel-2a">3. Band Sentinel-2A</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skema-kelas-dan-acuan-klasifikasi-lahan-indonesia">4. Skema Kelas dan Acuan Klasifikasi Lahan Indonesia</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fitur-dan-rumus">5. Fitur dan Rumus</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jumlah-data-dan-kelas">6. Jumlah Data dan Kelas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-model">7. Perbandingan Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-model-terbaik">8. Evaluasi Model Terbaik</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eksperimen-jumlah-data">9. Eksperimen Jumlah Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil-klasifikasi-dan-luas-kelas">10. Hasil Klasifikasi dan Luas Kelas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-kebijakan">11. Analisis Kebijakan</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Robbaniyah Umdatun Ni'mah (240411100101)
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

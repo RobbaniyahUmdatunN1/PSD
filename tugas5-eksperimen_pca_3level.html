@@ -1,0 +1,849 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Eksperimen PCA 3 Level Dimensi untuk Clustering Kecamatan Berdasarkan 3 Polutan &#8212; Catatan Proyek Sains Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=bdde7595" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tugas5-eksperimen_pca_3level';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Catatan Proyek Sains Data</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Selamat Datang di Catatan Proyek Sains Data
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="profil.html">Profil</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/RobbaniyahUmdatunN1/PSD" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/tugas5-eksperimen_pca_3level.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Eksperimen PCA 3 Level Dimensi untuk Clustering Kecamatan Berdasarkan 3 Polutan</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Eksperimen PCA 3 Level Dimensi untuk Clustering Kecamatan Berdasarkan 3 Polutan</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi">Deskripsi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-eksperimen">Tujuan Eksperimen</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#eksperimen-fitur-polynomial">Eksperimen Fitur Polynomial</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perintah">Perintah</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil">Hasil</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-hasil">Ringkasan Hasil</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi">Interpretasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output">Output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#eksperimen-fitur-linear">Eksperimen Fitur Linear</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Perintah</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Hasil</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Ringkasan Hasil</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Interpretasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-linear-dan-polynomial">Perbandingan Linear dan Polynomial</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">Analisis</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#geocoding-kecamatan">Geocoding Kecamatan</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="eksperimen-pca-3-level-dimensi-untuk-clustering-kecamatan-berdasarkan-3-polutan">
+<h1>Eksperimen PCA 3 Level Dimensi untuk Clustering Kecamatan Berdasarkan 3 Polutan<a class="headerlink" href="#eksperimen-pca-3-level-dimensi-untuk-clustering-kecamatan-berdasarkan-3-polutan" title="Link to this heading">#</a></h1>
+<section id="deskripsi">
+<h2>Deskripsi<a class="headerlink" href="#deskripsi" title="Link to this heading">#</a></h2>
+<p>Eksperimen ini bertujuan untuk menganalisis pola kemiripan antar kecamatan berdasarkan data kualitas udara yang telah diekstraksi menjadi fitur statistik dan temporal dari tiga polutan.</p>
+<p>Metode yang digunakan meliputi:</p>
+<ol class="arabic simple">
+<li><p>Penggabungan data tiga polutan.</p></li>
+<li><p>Ekstraksi fitur.</p></li>
+<li><p>Reduksi dimensi menggunakan PCA.</p></li>
+<li><p>Clustering menggunakan K-Means.</p></li>
+<li><p>Evaluasi menggunakan Silhouette Score.</p></li>
+<li><p>Visualisasi spasial hasil clustering.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="dataset">
+<h2>Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h2>
+<p>Dataset hasil ekstraksi fitur terdiri dari:</p>
+<ul class="simple">
+<li><p>37 kecamatan</p></li>
+<li><p>204 fitur numerik</p></li>
+<li><p>Kolom identitas:</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>id
+nama
+daerah
+</pre></div>
+</div>
+<p>Ketiga kolom tersebut tidak digunakan dalam proses PCA dan clustering.</p>
+</section>
+<hr class="docutils" />
+<section id="tujuan-eksperimen">
+<h2>Tujuan Eksperimen<a class="headerlink" href="#tujuan-eksperimen" title="Link to this heading">#</a></h2>
+<p>Menguji pengaruh jumlah dimensi PCA terhadap hasil clustering.</p>
+<p>Tiga target dimensi yang diuji:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Level</p></th>
+<th class="head"><p>Target Dimensi</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Tinggi</p></td>
+<td><p>203</p></td>
+</tr>
+<tr class="row-odd"><td><p>Menengah</p></td>
+<td><p>74</p></td>
+</tr>
+<tr class="row-even"><td><p>Rendah</p></td>
+<td><p>37</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Namun karena jumlah sampel hanya 37 kecamatan, PCA secara matematis hanya dapat menghasilkan:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>n_sampel - 1 = 36 komponen
+</pre></div>
+</div>
+<p>Sehingga seluruh eksperimen akhirnya menggunakan maksimum 36 komponen PCA.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="eksperimen-fitur-polynomial">
+<h1>Eksperimen Fitur Polynomial<a class="headerlink" href="#eksperimen-fitur-polynomial" title="Link to this heading">#</a></h1>
+<section id="perintah">
+<h2>Perintah<a class="headerlink" href="#perintah" title="Link to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>eksperimen_pca_3level.py<span class="w"> </span>ekstraksi_fitur_polynomial.csv<span class="w"> </span>polynomial
+</pre></div>
+</div>
+</section>
+<section id="hasil">
+<h2>Hasil<a class="headerlink" href="#hasil" title="Link to this heading">#</a></h2>
+<p>Dataset:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>37 kecamatan x 204 fitur
+</pre></div>
+</div>
+<p>Seluruh target dimensi dibatasi menjadi:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>36 komponen
+</pre></div>
+</div>
+<p>karena keterbatasan jumlah sampel.</p>
+<section id="ringkasan-hasil">
+<h3>Ringkasan Hasil<a class="headerlink" href="#ringkasan-hasil" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Target Dimensi</p></th>
+<th class="head"><p>Komponen Dipakai</p></th>
+<th class="head"><p>Varians Dijelaskan (%)</p></th>
+<th class="head"><p>k Terbaik</p></th>
+<th class="head"><p>Silhouette Score</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>203</p></td>
+<td><p>36</p></td>
+<td><p>100.0</p></td>
+<td><p>2</p></td>
+<td><p>0.5375</p></td>
+</tr>
+<tr class="row-odd"><td><p>74</p></td>
+<td><p>36</p></td>
+<td><p>100.0</p></td>
+<td><p>2</p></td>
+<td><p>0.5375</p></td>
+</tr>
+<tr class="row-even"><td><p>37</p></td>
+<td><p>36</p></td>
+<td><p>100.0</p></td>
+<td><p>2</p></td>
+<td><p>0.5375</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="interpretasi">
+<h3>Interpretasi<a class="headerlink" href="#interpretasi" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Seluruh konfigurasi menghasilkan jumlah cluster optimal sebanyak 2.</p></li>
+<li><p>Nilai Silhouette Score sebesar 0.5375 menunjukkan pemisahan cluster yang cukup baik.</p></li>
+<li><p>Karena seluruh target dimensi akhirnya menggunakan 36 komponen PCA, hasil clustering menjadi identik pada ketiga skenario.</p></li>
+</ul>
+</section>
+<section id="output">
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>hasil_clustering_3level_polynomial.csv
+</pre></div>
+</div>
+<p>Visualisasi:</p>
+<p><img alt="alt text" src="_images/image-4.png" />
+peta-cluster-polynomial-dim203</p>
+<p><img alt="alt text" src="_images/image-3.png" />
+peta-cluster-polynomial-dim74</p>
+<p><img alt="alt text" src="_images/image-2.png" />
+peta-cluster-polynomial-dim37</p>
+<p>Gambar:</p>
+<p><img alt="Dimensi 203" src="_images/peta-dim203.png" />
+peta-dim203 linear</p>
+<p><img alt="Dimensi 203" src="_images/peta-dim2031.png" />
+peta-dim203 polynomial</p>
+<p><img alt="Dimensi 74" src="_images/peta-dim74.png" />
+peta-dim74 linear</p>
+<p><img alt="Dimensi 74" src="_images/peta-dim741.png" />
+peta-dim74 polynomial</p>
+<p><img alt="Dimensi 37" src="_images/peta-dim37.png" />
+peta-dim37 linear</p>
+<p><img alt="Dimensi 37" src="_images/peta-dim371.png" />
+peta-dim37 polynomial</p>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="eksperimen-fitur-linear">
+<h1>Eksperimen Fitur Linear<a class="headerlink" href="#eksperimen-fitur-linear" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>Perintah<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>eksperimen_pca_3level.py<span class="w"> </span>ekstraksi_fitur_linear.csv<span class="w"> </span>linear
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2>Hasil<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>Dataset:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>37 kecamatan x 204 fitur
+</pre></div>
+</div>
+<p>Seperti eksperimen sebelumnya, PCA dibatasi menjadi:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>36 komponen
+</pre></div>
+</div>
+<section id="id3">
+<h3>Ringkasan Hasil<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Target Dimensi</p></th>
+<th class="head"><p>Komponen Dipakai</p></th>
+<th class="head"><p>Varians Dijelaskan (%)</p></th>
+<th class="head"><p>k Terbaik</p></th>
+<th class="head"><p>Silhouette Score</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>203</p></td>
+<td><p>36</p></td>
+<td><p>100.0</p></td>
+<td><p>2</p></td>
+<td><p>0.4909</p></td>
+</tr>
+<tr class="row-odd"><td><p>74</p></td>
+<td><p>36</p></td>
+<td><p>100.0</p></td>
+<td><p>2</p></td>
+<td><p>0.4909</p></td>
+</tr>
+<tr class="row-even"><td><p>37</p></td>
+<td><p>36</p></td>
+<td><p>100.0</p></td>
+<td><p>2</p></td>
+<td><p>0.4909</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="id4">
+<h3>Interpretasi<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Seluruh konfigurasi menghasilkan 2 cluster sebagai jumlah cluster optimal.</p></li>
+<li><p>Nilai Silhouette Score sebesar 0.4909 menunjukkan kualitas cluster yang cukup baik namun sedikit lebih rendah dibanding pendekatan Polynomial.</p></li>
+<li><p>Reduksi dimensi tidak memengaruhi hasil karena seluruh konfigurasi menggunakan jumlah komponen PCA yang sama.</p></li>
+</ul>
+</section>
+<section id="id5">
+<h3>Output<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>hasil_clustering_3level_linear.csv
+</pre></div>
+</div>
+<p>Visualisasi:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>peta-cluster-linear-dim203.html
+peta-cluster-linear-dim74.html
+peta-cluster-linear-dim37.html
+</pre></div>
+</div>
+<p>Gambar:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>peta-dim203.png
+peta-dim74.png
+peta-dim37.png
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="perbandingan-linear-dan-polynomial">
+<h1>Perbandingan Linear dan Polynomial<a class="headerlink" href="#perbandingan-linear-dan-polynomial" title="Link to this heading">#</a></h1>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Metode</p></th>
+<th class="head"><p>Silhouette Score</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Polynomial</p></td>
+<td><p>0.5375</p></td>
+</tr>
+<tr class="row-odd"><td><p>Linear</p></td>
+<td><p>0.4909</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="analisis">
+<h2>Analisis<a class="headerlink" href="#analisis" title="Link to this heading">#</a></h2>
+<p>Pendekatan Polynomial menghasilkan nilai Silhouette Score yang lebih tinggi dibandingkan pendekatan Linear.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Polynomial : 0.5375
+Linear     : 0.4909
+</pre></div>
+</div>
+<p>Hal ini menunjukkan bahwa fitur Polynomial mampu merepresentasikan hubungan antar variabel polutan dengan lebih baik, sehingga menghasilkan pemisahan cluster yang lebih jelas.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="geocoding-kecamatan">
+<h1>Geocoding Kecamatan<a class="headerlink" href="#geocoding-kecamatan" title="Link to this heading">#</a></h1>
+<p>Untuk visualisasi spasial, sistem melakukan geocoding otomatis terhadap kecamatan yang belum memiliki koordinat.</p>
+<p>Output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>koordinat_kecamatan.csv
+</pre></div>
+</div>
+<p>Beberapa lokasi tidak berhasil ditemukan secara otomatis sehingga perlu diperiksa dan diisi secara manual:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Bandung - Jogoroto, Jombang
+Banyu Ajuh, Perumnas, Kamal
+Kec. Kalianget, Sumenep
+</pre></div>
+</div>
+<p>Setelah koordinat dilengkapi, eksperimen dijalankan kembali untuk menghasilkan peta cluster yang lengkap.</p>
+</section>
+<hr class="docutils" />
+<section class="tex2jax_ignore mathjax_ignore" id="kesimpulan">
+<h1>Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h1>
+<ol class="arabic simple">
+<li><p>Dataset terdiri dari 37 kecamatan dengan 204 fitur hasil ekstraksi dari tiga polutan.</p></li>
+<li><p>PCA dibatasi pada 36 komponen karena jumlah sampel hanya 37.</p></li>
+<li><p>Seluruh skenario dimensi menghasilkan jumlah cluster optimal sebanyak 2.</p></li>
+<li><p>Metode Polynomial menghasilkan kualitas cluster terbaik dengan Silhouette Score 0.5375.</p></li>
+<li><p>Metode Linear menghasilkan Silhouette Score 0.4909.</p></li>
+<li><p>Berdasarkan hasil evaluasi, pendekatan Polynomial lebih baik dalam memisahkan karakteristik kecamatan berdasarkan data polutan yang dianalisis.</p></li>
+</ol>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Eksperimen PCA 3 Level Dimensi untuk Clustering Kecamatan Berdasarkan 3 Polutan</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deskripsi">Deskripsi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tujuan-eksperimen">Tujuan Eksperimen</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#eksperimen-fitur-polynomial">Eksperimen Fitur Polynomial</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perintah">Perintah</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hasil">Hasil</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ringkasan-hasil">Ringkasan Hasil</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpretasi">Interpretasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output">Output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#eksperimen-fitur-linear">Eksperimen Fitur Linear</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Perintah</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Hasil</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Ringkasan Hasil</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Interpretasi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-linear-dan-polynomial">Perbandingan Linear dan Polynomial</a><ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis">Analisis</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#geocoding-kecamatan">Geocoding Kecamatan</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Robbaniyah Umdatun Ni'mah (240411100101)
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
